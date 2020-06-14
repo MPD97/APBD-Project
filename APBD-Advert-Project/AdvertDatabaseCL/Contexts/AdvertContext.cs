@@ -22,6 +22,9 @@ namespace AdvertDatabaseCL.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
+            // Clients
+            modelBuilder.Entity<Client>().HasKey(e => e.IdClient);
         }
     }
 }
