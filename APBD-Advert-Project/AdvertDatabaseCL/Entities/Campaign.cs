@@ -13,5 +13,9 @@ namespace AdvertDatabaseCL.Entities
         public decimal PricePerSquareMeter { get; set; }
         public int FromIdBuilding { get; set; }
         public int ToIdBuilding { get; set; }
+
+        public Client Client { get; set; }
+        public Building FromBuilding { get; set; }
+        public Building ToBuilding { get; set; }
     }
 }
