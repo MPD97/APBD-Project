@@ -11,6 +11,11 @@ namespace Advert.Presistance.Services
             throw new NotImplementedException();
         }
 
+        public string CreateSalt()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Validate(string value, string salt, string hash)
         {
             throw new NotImplementedException();
