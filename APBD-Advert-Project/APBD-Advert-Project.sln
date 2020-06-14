@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Advert.Database", "AdvertDatabaseCL\Advert.Database.csproj", "{75FB007F-C9EE-465E-8E3E-3AAAB6B6EE5C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{BD19B96E-BAC3-4250-95E4-19305BA5C796}"
+	ProjectSection(SolutionItems) = preProject
+		..\APBD-Project.pdf = ..\APBD-Project.pdf
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E2A5EF11-EA6C-4E5B-8500-873BE41B3DD5}"
 EndProject
