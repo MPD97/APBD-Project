@@ -50,6 +50,23 @@ namespace Advert.Presistance.Services.Tests
             Assert.AreEqual(resultPasswordOne.Length, resultPasswordThree.Length);
             Assert.AreEqual(resultPasswordOne.Length, resultPasswordFour.Length);
         }
+        [TestMethod()]
+        public void Should_Create_Same_Passwords_Length_Using_Different_Salt()
+        {
+            string passwordOne = "abcDEF123!@#";
+            string passwordTwo = "123qazXSW#$%";
+            string passwordThree = "123";
+            string passwordFour = "asdvxc3245543DSFvcbaasd";
+
+            string resultPasswordOne = _passwordHasher.Create(passwordOne, _passwordHasher.CreateSalt());
+            string resultPasswordTwo = _passwordHasher.Create(passwordTwo, _passwordHasher.CreateSalt());
+            string resultPasswordThree = _passwordHasher.Create(passwordThree, _passwordHasher.CreateSalt());
+            string resultPasswordFour = _passwordHasher.Create(passwordFour, _passwordHasher.CreateSalt());
+
+            Assert.AreEqual(resultPasswordOne.Length, resultPasswordTwo.Length);
+            Assert.AreEqual(resultPasswordOne.Length, resultPasswordThree.Length);
+            Assert.AreEqual(resultPasswordOne.Length, resultPasswordFour.Length);
+        }
 
         [TestMethod()]
         public void Should_Create_Different_Passwords_Using_Different_Salt()
