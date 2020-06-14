@@ -19,7 +19,7 @@ namespace AdvertDatabaseCL.Configurations
                 .HasColumnType("decimal(6,2)")
                 .IsRequired(true);
 
-            builder.HasOne(e => e.Campaign).WithMany()
+            builder.HasOne(e => e.Campaign).WithMany(c => c.Banners)
                 .HasForeignKey(e => e.IdCampaign)
                 .OnDelete(DeleteBehavior.NoAction);
 
