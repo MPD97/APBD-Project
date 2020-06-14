@@ -24,13 +24,16 @@ namespace AdvertDatabaseCL.Configurations
                 .IsRequired(true);
 
             builder.HasOne(e => e.Client).WithMany()
-                .HasForeignKey(e => e.IdClient);
+                .HasForeignKey(e => e.IdClient)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(e => e.FromBuilding).WithMany()
-                .HasForeignKey(e => e.FromIdBuilding);
+                .HasForeignKey(e => e.FromIdBuilding)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(e => e.ToBuilding).WithMany()
-                .HasForeignKey(e => e.ToIdBuilding);
+                .HasForeignKey(e => e.ToIdBuilding)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
