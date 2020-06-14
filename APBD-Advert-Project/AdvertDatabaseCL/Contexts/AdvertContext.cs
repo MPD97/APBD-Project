@@ -1,4 +1,5 @@
-﻿using AdvertDatabaseCL.Entities;
+﻿using AdvertDatabaseCL.Configurations;
+using AdvertDatabaseCL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,9 @@ namespace AdvertDatabaseCL.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+
             // Clients
-            modelBuilder.Entity<Client>().HasKey(e => e.IdClient);
+            modelBuilder.ApplyConfiguration(new ClientsEFConfiguration());
         }
     }
 }
