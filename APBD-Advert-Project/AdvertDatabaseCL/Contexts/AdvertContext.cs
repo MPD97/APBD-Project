@@ -11,6 +11,7 @@ namespace AdvertDatabaseCL.Contexts
     public class AdvertContext : DbContext
     {
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Building> Buildings { get; set; }
 
         public AdvertContext([NotNullAttribute] DbContextOptions options) : base(options)
         {
