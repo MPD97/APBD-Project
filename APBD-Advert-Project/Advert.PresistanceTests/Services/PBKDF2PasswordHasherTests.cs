@@ -17,9 +17,28 @@ namespace Advert.Presistance.Services.Tests
         }
 
         [TestMethod()]
-        public void CreateTest()
+        public void Should_Result_True_When_Validate_Same_Password()
         {
-            Assert.Fail();
+            string password = "abcDEF123!@#";
+            string salt = _passwordHasher.CreateSalt();
+
+            string hash = _passwordHasher.Create(password, salt);
+
+            bool result = _passwordHasher.Validate(password, salt, hash);
+            Assert.AreEqual(true, result);
+        }
+        [TestMethod()]
+        public void Should_Result_False_When_Validate_Password_Is_Different()
+        {
+            string password = "abcDEF123!@#";
+            string differentPassword = "AbcDEF123!@#";
+
+            string salt = _passwordHasher.CreateSalt();
+
+            string hash = _passwordHasher.Create(password, salt);
+
+            bool result = _passwordHasher.Validate(differentPassword, salt, hash);
+            Assert.AreEqual(false, result);
         }
 
         [TestMethod()]
