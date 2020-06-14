@@ -23,15 +23,15 @@ namespace AdvertDatabaseCL.Configurations
                 .HasColumnType("decimal(6,2)")
                 .IsRequired(true);
 
-            builder.HasOne(e => e.Client).WithMany()
+            builder.HasOne(e => e.Client).WithMany(c => c.Campaigns)
                 .HasForeignKey(e => e.IdClient)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(e => e.FromBuilding).WithMany()
+            builder.HasOne(e => e.FromBuilding).WithMany(b => b.CampaignsFrom)
                 .HasForeignKey(e => e.FromIdBuilding)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(e => e.ToBuilding).WithMany()
+            builder.HasOne(e => e.ToBuilding).WithMany(b => b.CampaignsTo)
                 .HasForeignKey(e => e.ToIdBuilding)
                 .OnDelete(DeleteBehavior.NoAction);
         }
