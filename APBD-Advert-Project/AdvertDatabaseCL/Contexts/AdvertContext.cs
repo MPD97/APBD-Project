@@ -23,13 +23,13 @@ namespace AdvertDatabaseCL.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             // Clients
             modelBuilder.ApplyConfiguration(new ClientsEFConfiguration());
 
             // Buildings
             modelBuilder.ApplyConfiguration(new BuildingsEFConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
