@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -9,7 +10,14 @@ namespace Advert.Presistance.Services
     {
         public string Create(string value, string salt)
         {
-            throw new NotImplementedException();
+            var valueBytes = KeyDerivation.Pbkdf2(
+                password: value,
+                salt: Encoding.UTF8.GetBytes(salt),
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 10000,
+                numBytesRequested: (256 / 8));
+
+            return Convert.ToBase64String(valueBytes);
         }
 
         public string CreateSalt()
