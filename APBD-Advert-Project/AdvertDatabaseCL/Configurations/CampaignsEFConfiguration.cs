@@ -12,6 +12,25 @@ namespace AdvertDatabaseCL.Configurations
         public void Configure(EntityTypeBuilder<Campaign> builder)
         {
             builder.HasKey(e => e.IdCampaign);
+
+            builder.Property(e => e.StartDate)
+                .IsRequired(true);
+
+            builder.Property(e => e.EndDate)
+                .IsRequired(true);
+
+            builder.Property(e => e.PricePerSquareMeter)
+                .HasColumnType("decimal(6,2)")
+                .IsRequired(true);
+
+            builder.HasOne(e => e.Client).WithMany()
+                .HasForeignKey(e => e.IdClient);
+
+            builder.HasOne(e => e.FromBuilding).WithMany()
+                .HasForeignKey(e => e.FromIdBuilding);
+
+            builder.HasOne(e => e.ToBuilding).WithMany()
+                .HasForeignKey(e => e.ToIdBuilding);
         }
     }
 }
