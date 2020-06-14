@@ -11,7 +11,7 @@ namespace AdvertDatabaseCL.Configurations
     {
         public void Configure(EntityTypeBuilder<Campaign> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(e => e.IdCampaign);
         }
     }
 }
