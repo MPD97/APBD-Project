@@ -27,6 +27,9 @@ namespace AdvertDatabaseCL.Contexts
 
             // Clients
             modelBuilder.ApplyConfiguration(new ClientsEFConfiguration());
+
+            // Buildings
+            modelBuilder.ApplyConfiguration(new BuildingsEFConfiguration());
         }
     }
 }
