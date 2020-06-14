@@ -35,6 +35,9 @@ namespace AdvertDatabaseCL.Contexts
             // Campaigns
             modelBuilder.ApplyConfiguration(new CampaignsEFConfiguration());
 
+            // Banner
+            modelBuilder.ApplyConfiguration(new BannerEFConfiguration());
+
             base.OnModelCreating(modelBuilder);
         }
     }
