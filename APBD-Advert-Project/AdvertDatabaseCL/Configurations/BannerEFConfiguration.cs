@@ -10,7 +10,7 @@ namespace AdvertDatabaseCL.Configurations
     {
         public void Configure(EntityTypeBuilder<Banner> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(e => e.IdAdvertisment);
         }
     }
 }
