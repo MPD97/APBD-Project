@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Advert.Presistance.Services
@@ -13,7 +14,12 @@ namespace Advert.Presistance.Services
 
         public string CreateSalt()
         {
-            throw new NotImplementedException();
+            byte[] randomBytes = new byte[128 / 8];
+            using (var generator = RandomNumberGenerator.Create())
+            {
+                generator.GetBytes(randomBytes);
+                return Convert.ToBase64String(randomBytes);
+            }
         }
 
         public bool Validate(string value, string salt, string hash)
