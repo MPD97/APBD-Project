@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AdvertDatabaseCL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -8,6 +9,8 @@ namespace AdvertDatabaseCL.Contexts
 {
     public class AdvertContext : DbContext
     {
+        public DbSet<Client> Clients { get; set; }
+
         public AdvertContext([NotNullAttribute] DbContextOptions options) : base(options)
         {
         }
