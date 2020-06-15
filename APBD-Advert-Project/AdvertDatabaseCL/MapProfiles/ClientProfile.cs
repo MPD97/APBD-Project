@@ -13,8 +13,8 @@ namespace Advert.Database.MapProfiles
         public ClientProfile()
         {
             CreateMap<Client, ClientRegisterRequestModel>();
-            CreateMap<Client, ClientRegisterResponseModel>();
-            CreateMap<ClientRegisterResponseModel, Client>();
+            CreateMap<Client, ClientResponseModel>();
+            CreateMap<ClientResponseModel, Client>();
             CreateMap<ClientRegisterRequestModel, Client>();
         }
     }

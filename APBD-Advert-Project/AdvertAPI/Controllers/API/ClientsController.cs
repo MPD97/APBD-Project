@@ -33,7 +33,14 @@ namespace Advert.API.Controllers.API
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            throw new NotImplementedException();
+            var client = await _manageService.Get(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            
+            var response = _mapper.Map<ClientResponseModel>(client);
+            return Ok(response);
         }
 
         [HttpPost]
