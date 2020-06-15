@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Services;
+using Advert.Presistance.Services.IManageService;
 using AdvertDatabaseCL.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -17,14 +18,14 @@ namespace Advert.API.Controllers.API
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private readonly IRegisterClientService _registerService;
+        private readonly IManageClientService _manageService;
         private readonly IMapper _mapper;
         private readonly ILogger<ClientsController> _logger;
 
-        public ClientsController(IRegisterClientService registerService, IMapper mapper,
+        public ClientsController(IManageClientService manageService, IMapper mapper,
             ILogger<ClientsController> logger)
         {
-            _registerService = registerService;
+            _manageService = manageService;
             _mapper = mapper;
             _logger = logger;
         }
@@ -46,7 +47,7 @@ namespace Advert.API.Controllers.API
             var client = _mapper.Map<Client>(model);
             try
             {
-                client = await _registerService.Create(client, model.RepeatPassword);
+                client = await _manageService.Create(client, model.RepeatPassword);
             }
             catch (CannotUpdateException ex)
             {
