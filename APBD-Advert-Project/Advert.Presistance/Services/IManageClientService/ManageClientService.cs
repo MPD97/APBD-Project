@@ -20,9 +20,9 @@ namespace Advert.Presistance.Services
             return await _context.Clients.FirstOrDefaultAsync(client => client.IdClient == id);
         }
 
-        public Task<ICollection<Client>> GetAll()
+        public async Task<ICollection<Client>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Clients.ToArrayAsync();
         }
     }
 }
