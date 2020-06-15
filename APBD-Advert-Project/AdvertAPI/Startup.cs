@@ -30,6 +30,7 @@ namespace AdvertAPI
             services.AddDbContext<AdvertContext>(config =>
                 config.UseSqlServer(Configuration.GetConnectionString("default")));
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
+            services.AddSingleton<IRegisterService, ClientRegisterService>();
             services.AddControllers();
         }
 
