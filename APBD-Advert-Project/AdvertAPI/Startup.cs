@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Advert.Database.MapProfiles;
 using Advert.Presistance.Services;
+using Advert.Presistance.Services.IManageService;
 using AdvertDatabaseCL.Contexts;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace AdvertAPI
                 config.UseSqlServer(Configuration.GetConnectionString("default")));
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
             services.AddScoped<IRegisterClientService, RegisterClientService>();
+            services.AddScoped<IManageClientService, ManageClientService>();
             services.AddSingleton<IMapper>(s => new MapperConfiguration(c => 
                 c.AddProfile<ClientProfile>()).CreateMapper());
 
