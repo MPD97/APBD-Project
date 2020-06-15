@@ -9,11 +9,11 @@ namespace Advert.Presistance.Services.Tests
     [TestClass()]
     public class PBKDF2PasswordHasherTests
     {
-        private readonly IPasswordHasher _passwordHasher;
+        private readonly IPasswordHasherService _passwordHasher;
 
         public PBKDF2PasswordHasherTests()
         {
-            _passwordHasher = new PBKDF2PasswordHasher();
+            _passwordHasher = new PBKDF2PasswordHasherService();
         }
 
         [TestMethod()]

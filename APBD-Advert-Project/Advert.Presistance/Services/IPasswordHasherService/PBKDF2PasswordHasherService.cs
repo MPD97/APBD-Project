@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Advert.Presistance.Services
 {
-    public class PBKDF2PasswordHasher : IPasswordHasher
+    public class PBKDF2PasswordHasherService : IPasswordHasherService
     {
         public string Create(string value, string salt)
         {
