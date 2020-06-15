@@ -1,4 +1,5 @@
 ﻿using Advert.Presistance.Services.IManageService;
+using AdvertDatabaseCL.Contexts;
 using AdvertDatabaseCL.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services
 {
-    public class ManageClientService : IManageClientService
+    public class ManageClientService : RegisterClientService, IManageClientService
     {
-        public Task<Client> Create(Client client, string password)
+        public ManageClientService(IPasswordHasherService passwordHasher, AdvertContext context) : base(passwordHasher, context)
         {
-            throw new NotImplementedException();
         }
 
         public Task<Client> Get(int id)
