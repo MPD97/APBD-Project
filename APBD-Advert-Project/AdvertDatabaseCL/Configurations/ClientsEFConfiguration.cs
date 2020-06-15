@@ -32,6 +32,14 @@ namespace AdvertDatabaseCL.Configurations
             builder.Property(e => e.Login)
               .HasMaxLength(100)
               .IsRequired(true);
+
+            builder.Property(e => e.Hash)
+              .HasMaxLength(44)
+              .IsRequired(true);
+
+            builder.Property(e => e.Salt)
+              .HasMaxLength(24)
+              .IsRequired(true);
         }
     }
 }
