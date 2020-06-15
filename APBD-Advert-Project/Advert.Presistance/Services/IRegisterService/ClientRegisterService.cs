@@ -37,7 +37,7 @@ namespace Advert.Presistance.Services
 
             if ((await _context.SaveChangesAsync()) <= 0)
             {
-                throw new CannotUpdateException("SaveChangesAsync returned less or equal 0.");
+                throw new CannotUpdateException("SaveChangesAsync returned less or equal than 0.");
             }
 
             return client;
