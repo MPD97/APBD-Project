@@ -8,4 +8,12 @@
     <ProjectReference Include="..\AdvertDatabaseCL\Advert.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="3.1.5" />
+  </ItemGroup>
+
 </Project>
