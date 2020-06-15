@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services
 {
-    public interface IRegisterService
+    public interface IRegisterClientService
     {
         public Task<Client> Create(Client client, string password);
     }

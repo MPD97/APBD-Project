@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services
 {
-    public class ClientRegisterService : IRegisterService
+    public class RegisterClientService : IRegisterClientService
     {
         private readonly IPasswordHasherService _passwordHasher;
-        private readonly AdvertContext _context;
-        public ClientRegisterService(IPasswordHasherService passwordHasher, AdvertContext context)
+        protected internal readonly AdvertContext _context;
+        public RegisterClientService(IPasswordHasherService passwordHasher, AdvertContext context)
         {
             _passwordHasher = passwordHasher;
             _context = context;

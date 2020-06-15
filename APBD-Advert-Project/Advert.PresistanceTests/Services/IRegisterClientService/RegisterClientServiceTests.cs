@@ -10,7 +10,7 @@ using AdvertDatabaseCL.Entities;
 namespace Advert.Presistance.Services.Tests
 {
     [TestClass()]
-    public class ClientRegisterServiceTests
+    public class RegisterClientServiceTests
     {
         [TestMethod()]
         public void Create_ShouldReturnClientWithId_WhenEverythingIsOk()
@@ -28,7 +28,7 @@ namespace Advert.Presistance.Services.Tests
             mockContext.Setup(x => x.SaveChanges()).Callback(() => saveChanges = callCount++);
 
             // Create the command, providing it the mocked IDbContext and execute it
-            var command = new ClientRegisterService(new PBKDF2PasswordHasherService(), mockContext.Object);
+            var command = new RegisterClientService(new PBKDF2PasswordHasherService(), mockContext.Object);
             command.Create(new Client(), "abc");
 
             // Check that each method was only called once.
