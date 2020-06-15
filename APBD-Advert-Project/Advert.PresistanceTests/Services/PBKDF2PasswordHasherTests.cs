@@ -17,7 +17,7 @@ namespace Advert.Presistance.Services.Tests
         }
 
         [TestMethod()]
-        public void Should_Result_True_When_Validate_Same_Password()
+        public void Validate_ShouldResultTrue_WhenValuesAreTheSame()
         {
             string password = "abcDEF123!@#";
             string salt = _passwordHasher.CreateSalt();
@@ -28,7 +28,7 @@ namespace Advert.Presistance.Services.Tests
             Assert.AreEqual(true, result);
         }
         [TestMethod()]
-        public void Should_Result_False_When_Validate_Password_Is_Different()
+        public void Validate_ShouldResultFalse_WhenValuesAreDifferent()
         {
             string password = "abcDEF123!@#";
             string differentPassword = "AbcDEF123!@#";
@@ -42,7 +42,7 @@ namespace Advert.Presistance.Services.Tests
         }
 
         [TestMethod()]
-        public void Should_Create_Same_Passwords()
+        public void Create_ShouldResultTheSameHashes_WhenCreatingUsingSamePasswordAndSameSalt()
         {
             string password = "abcDEF123!@#";
             string salt = _passwordHasher.CreateSalt();
@@ -52,7 +52,7 @@ namespace Advert.Presistance.Services.Tests
             Assert.AreEqual(passwordOne, passwordTwo);
         }
         [TestMethod()]
-        public void Should_Create_Same_Passwords_Length()
+        public void Create_ShouldResultSameHashesLength_WhenUsingDiffrentValues()
         {
             string passwordOne = "abcDEF123!@#";
             string passwordTwo = "123qazXSW#$%";
@@ -70,7 +70,7 @@ namespace Advert.Presistance.Services.Tests
             Assert.AreEqual(resultPasswordOne.Length, resultPasswordFour.Length);
         }
         [TestMethod()]
-        public void Should_Create_Same_Passwords_Length_Using_Different_Salt()
+        public void Create_ShouldResultSameHashesLength_WhenUsingDiffrentValuesAndSalts()
         {
             string passwordOne = "abcDEF123!@#";
             string passwordTwo = "123qazXSW#$%";
@@ -88,7 +88,7 @@ namespace Advert.Presistance.Services.Tests
         }
 
         [TestMethod()]
-        public void Should_Create_Different_Passwords_Using_Different_Salt()
+        public void Create_ShouldCreateDifferentHashes_WhenUsingDifferentSalts()
         {
             string password = "abcDEF123!@#";
             string saltOne = _passwordHasher.CreateSalt();
@@ -99,7 +99,7 @@ namespace Advert.Presistance.Services.Tests
             Assert.AreNotEqual(resultPasswordOne, resultPasswordTwo);
         }
         [TestMethod()]
-        public void Should_Create_Different_Passwords_Using_Same_Salt_And_Different_Passwords()
+        public void Create_ShouldCreateDifferentHashes_WhenUsingDifferentValues()
         {
             string passwordOne = "abcDEF123!@#";
             string passwordTwo = "123qazXSW#$%";
@@ -112,7 +112,7 @@ namespace Advert.Presistance.Services.Tests
         }
 
         [TestMethod()]
-        public void Should_Create_Differnt_Salt()
+        public void CreateSalt_ShouldCreateDIfferentSalts_WhenGeneratingSalt()
         {
             string saltOne = _passwordHasher.CreateSalt();
             string saltTwo = _passwordHasher.CreateSalt();
@@ -120,7 +120,7 @@ namespace Advert.Presistance.Services.Tests
             Assert.AreNotEqual(saltOne, saltTwo);
         }
         [TestMethod()]
-        public void Should_Create_Same_Length_Salt()
+        public void CreateSalt_ShouldCreateTheSameSaltLength_WhenCreatingSalts()
         {
             string saltOne = _passwordHasher.CreateSalt();
             string saltTwo = _passwordHasher.CreateSalt();
