@@ -29,6 +29,12 @@ namespace Advert.API.Controllers.API
             _logger = logger;
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(ClientRegisterRequestModel model)
         {
@@ -47,9 +53,8 @@ namespace Advert.API.Controllers.API
                 _logger.LogError(ex.ToString());
                 return BadRequest();
             }
-            var response = _mapper.Map<ClientRegisterResponseModel>(client);
 
-            return Ok(response);
+            return CreatedAtAction(nameof(Get), new { id = client.IdClient }, client);
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Advert.Database.MapProfiles
         {
             CreateMap<Client, ClientRegisterRequestModel>();
             CreateMap<Client, ClientRegisterResponseModel>();
+            CreateMap<ClientRegisterResponseModel, Client>();
+            CreateMap<ClientRegisterRequestModel, Client>();
         }
     }
 }
