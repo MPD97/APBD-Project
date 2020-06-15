@@ -61,8 +61,9 @@ namespace Advert.API.Controllers.API
                 _logger.LogError(ex.ToString());
                 return BadRequest();
             }
+            var response = _mapper.Map<ClientResponseModel>(client);
 
-            return CreatedAtAction(nameof(Get), new { id = client.IdClient }, client);
+            return CreatedAtAction(nameof(Get), new { id = client.IdClient }, response);
         }
     }
 }
