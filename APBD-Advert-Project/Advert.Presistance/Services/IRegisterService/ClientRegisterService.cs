@@ -14,12 +14,10 @@ namespace Advert.Presistance.Services
     {
         private readonly IPasswordHasher _passwordHasher;
         private readonly AdvertContext _context;
-        private readonly IMapper _mapper;
-        public ClientRegisterService(IPasswordHasher passwordHasher, AdvertContext context, IMapper mapper)
+        public ClientRegisterService(IPasswordHasher passwordHasher, AdvertContext context)
         {
             _passwordHasher = passwordHasher;
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<Client> Create(Client client, string password)
