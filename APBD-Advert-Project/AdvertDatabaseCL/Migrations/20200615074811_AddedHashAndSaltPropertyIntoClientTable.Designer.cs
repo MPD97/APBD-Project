@@ -4,14 +4,16 @@ using AdvertDatabaseCL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdvertDatabaseCL.Migrations
 {
     [DbContext(typeof(AdvertContext))]
-    partial class AdvertContextModelSnapshot : ModelSnapshot
+    [Migration("20200615074811_AddedHashAndSaltPropertyIntoClientTable")]
+    partial class AddedHashAndSaltPropertyIntoClientTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
