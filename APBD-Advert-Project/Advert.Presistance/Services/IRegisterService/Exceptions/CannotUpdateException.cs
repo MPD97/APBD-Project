@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Advert.Presistance.Services
 {
     [Serializable]
-    internal class CannotUpdateException : Exception
+    public class CannotUpdateException : Exception
     {
         public CannotUpdateException()
         {
