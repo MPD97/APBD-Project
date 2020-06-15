@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Advert.Database.MapProfiles;
 using Advert.Presistance.Services;
 using AdvertDatabaseCL.Contexts;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +33,9 @@ namespace AdvertAPI
                 config.UseSqlServer(Configuration.GetConnectionString("default")));
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
             services.AddSingleton<IRegisterService, ClientRegisterService>();
+            services.AddSingleton<IMapper>(s => new MapperConfiguration(c => 
+                c.AddProfile<ClientProfile>()).CreateMapper());
+
             services.AddControllers();
         }
 
