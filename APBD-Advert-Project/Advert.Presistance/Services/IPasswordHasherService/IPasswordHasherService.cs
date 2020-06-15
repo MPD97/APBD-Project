@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Advert.Presistance.Services
 {
-    public interface IPasswordHasher
+    public interface IPasswordHasherService
     {
         public string Create(string value, string salt);
         public string CreateSalt();

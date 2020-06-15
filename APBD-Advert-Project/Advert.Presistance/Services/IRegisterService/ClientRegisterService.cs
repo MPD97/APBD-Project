@@ -12,9 +12,9 @@ namespace Advert.Presistance.Services
 {
     public class ClientRegisterService : IRegisterService
     {
-        private readonly IPasswordHasher _passwordHasher;
+        private readonly IPasswordHasherService _passwordHasher;
         private readonly AdvertContext _context;
-        public ClientRegisterService(IPasswordHasher passwordHasher, AdvertContext context)
+        public ClientRegisterService(IPasswordHasherService passwordHasher, AdvertContext context)
         {
             _passwordHasher = passwordHasher;
             _context = context;
