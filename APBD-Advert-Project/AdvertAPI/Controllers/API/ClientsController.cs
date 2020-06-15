@@ -29,6 +29,7 @@ namespace Advert.API.Controllers.API
             _logger = logger;
         }
 
+        [HttpPost]
         public async Task<IActionResult> Create(ClientRegisterRequestModel model)
         {
             if (!ModelState.IsValid)

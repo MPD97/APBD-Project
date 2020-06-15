@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Advert.Presistance.Services;
 using AdvertDatabaseCL.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,7 @@ namespace AdvertAPI
         {
             services.AddDbContext<AdvertContext>(config =>
                 config.UseSqlServer(Configuration.GetConnectionString("default")));
+            services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
             services.AddControllers();
         }
 
