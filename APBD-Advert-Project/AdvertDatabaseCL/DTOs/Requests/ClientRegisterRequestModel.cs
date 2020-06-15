@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Advert.Database.DTOs.Requests
 {
-    public class ClientRegisterModel
+    public class ClientRegisterRequestModel
     {
         [Required]
         [MinLength(2), MaxLength(15)]
