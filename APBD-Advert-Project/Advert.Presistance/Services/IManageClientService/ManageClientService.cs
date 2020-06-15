@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services
 {
-    public class ManageClientService : RegisterClientService, IManageClientService
+    public class ManageClientService :RegisterClientService, IManageClientService
     {
         public ManageClientService(IPasswordHasherService passwordHasher, AdvertContext context) : base(passwordHasher, context)
         {
