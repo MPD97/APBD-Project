@@ -17,11 +17,11 @@ namespace Advert.API.Controllers.API
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private readonly IRegisterService _registerService;
+        private readonly IRegisterClientService _registerService;
         private readonly IMapper _mapper;
         private readonly ILogger<ClientsController> _logger;
 
-        public ClientsController(IRegisterService registerService, IMapper mapper,
+        public ClientsController(IRegisterClientService registerService, IMapper mapper,
             ILogger<ClientsController> logger)
         {
             _registerService = registerService;
