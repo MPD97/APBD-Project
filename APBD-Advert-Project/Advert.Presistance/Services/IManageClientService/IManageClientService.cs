@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services.IManageService
 {
-    public interface IManageClientService
+    public interface IManageClientService: IRegisterClientService
     {
-        public Task<Client> Create(Client client, string password);
+        public Task<Client> Get(int id);
 
+        public Task<ICollection<Client>> GetAll();
     }
 }
