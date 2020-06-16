@@ -74,5 +74,21 @@ namespace Advert.API.Controllers.API
 
             return Ok(tokenResult);
         }
+        [HttpPost("refresh")]
+        public async Task<IActionResult> RefreshToken(ClientRefreshTokenCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ErrorResponseModel { Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage)) });
+            }
+
+            var tokenResult = await _mediator.Send(command);
+            if (tokenResult == null)
+            {
+                return BadRequest("Invalid token or refresh token");
+            }
+
+            return Ok(tokenResult);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Advert.Database.DTOs.Requests;
+using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Services.ILoginClientService;
 using MediatR;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class ClientLoginHandler : IRequestHandler<ClientLoginCommand, ClientLoginRequestModel>
+    public class ClientLoginHandler : IRequestHandler<ClientLoginCommand, JwtTokenResponseModel>
     {
         private readonly  ILoginClientService _loginService;
 
@@ -19,7 +20,7 @@ namespace Advert.Presistance.Mediator.Handlers
             _loginService = loginService;
         }
 
-        public async Task<ClientLoginRequestModel> Handle(ClientLoginCommand request, CancellationToken cancellationToken)
+        public async Task<JwtTokenResponseModel> Handle(ClientLoginCommand request, CancellationToken cancellationToken)
         {
             var tokenResult = await _loginService.Login(request);
 

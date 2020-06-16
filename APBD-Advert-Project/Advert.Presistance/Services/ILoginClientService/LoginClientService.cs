@@ -38,8 +38,14 @@ namespace Advert.Presistance.Services.ILoginClientService
                 return null;
             }
 
+            return await GenerateAndSaveToken(client);
+        }
+
+        private async Task<JwtTokenResponseModel> GenerateAndSaveToken(Client client)
+        {
             var tokenResult = await _jwtBearer.CreateToken(client);
             client.RefreshToken = tokenResult.RefreshToken;
+            client.Token = tokenResult.Token;
 
             _context.Entry(client).State = EntityState.Modified;
             if ((await _context.SaveChangesAsync()) <= 0)
@@ -48,6 +54,17 @@ namespace Advert.Presistance.Services.ILoginClientService
             }
 
             return tokenResult;
+        }
+
+        public async Task<JwtTokenResponseModel> RefreshToken(ClientRefreshTokenModel model)
+        {
+            var client = await _context.Clients.FirstOrDefaultAsync(c => c.RefreshToken == model.RefreshToken && c.Token == model.Token);
+            if (client == null)
+            {
+                return null;
+            }
+
+            return await GenerateAndSaveToken(client);
         }
     }
 }

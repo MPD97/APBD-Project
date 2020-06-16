@@ -50,6 +50,10 @@ namespace AdvertDatabaseCL.Configurations
             builder.Property(e => e.RefreshToken)
               .HasMaxLength(36)
               .IsRequired(false);
+
+            builder.Property(e => e.Token)
+              .HasMaxLength(512)
+              .IsRequired(false);
         }
     }
 }
