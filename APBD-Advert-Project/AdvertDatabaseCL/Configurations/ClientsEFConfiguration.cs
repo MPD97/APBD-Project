@@ -47,9 +47,9 @@ namespace AdvertDatabaseCL.Configurations
             builder.HasIndex(e => e.Login)
               .IsUnique();
 
-            builder.Property(e => e.Salt)
+            builder.Property(e => e.RefreshToken)
               .HasMaxLength(36)
-              .IsRequired(true);
+              .IsRequired(false);
         }
     }
 }
