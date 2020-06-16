@@ -75,7 +75,7 @@ namespace Advert.API.Controllers.API
             return Ok(tokenResult);
         }
         [HttpPost("refresh")]
-        public async Task<IActionResult> RefreshToken(ClientLoginCommand command)
+        public async Task<IActionResult> RefreshToken(ClientRefreshTokenModel command)
         {
             if (!ModelState.IsValid)
             {
