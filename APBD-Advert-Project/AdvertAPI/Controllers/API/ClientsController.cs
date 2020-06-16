@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
+using Advert.Presistance.Mediator.Queries;
 using Advert.Presistance.Services;
 using Advert.Presistance.Services.IManageService;
 using AdvertDatabaseCL.Entities;
 using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -21,26 +23,23 @@ namespace Advert.API.Controllers.API
         private readonly IManageClientService _manageService;
         private readonly IMapper _mapper;
         private readonly ILogger<ClientsController> _logger;
+        private readonly IMediator _mediator;
 
         public ClientsController(IManageClientService manageService, IMapper mapper,
-            ILogger<ClientsController> logger)
+            ILogger<ClientsController> logger, IMediator mediator)
         {
             _manageService = manageService;
             _mapper = mapper;
             _logger = logger;
+            _mediator = mediator;
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var client = await _manageService.Get(id);
-            if (client == null)
-            {
-                return NotFound();
-            }
-            
-            var response = _mapper.Map<ClientResponseModel>(client);
-            return Ok(response);
+            var query = new GetClientQuery(id);
+            var result = await _mediator.Send(query);
+            return result != null ?(IActionResult) Ok(result) : NotFound();
         }
 
         [HttpPost]
