@@ -37,15 +37,16 @@ namespace AdvertAPI
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
             services.AddScoped<IRegisterClientService, RegisterClientService>();
             services.AddScoped<IManageClientService, ManageClientService>();
-            services.AddMediatR(typeof(Program));
             services.AddSingleton<IMapper>(s => new MapperConfiguration(c => 
                 c.AddProfile<ClientProfile>()).CreateMapper());
 
             services.AddSwaggerGen(options => 
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Advert.API", Version = "v1" });
-            });    
+            });
 
+            var assembly = AppDomain.CurrentDomain.Load("Advert.Presistance");
+            services.AddMediatR(assembly);
             services.AddControllers();
         }
 

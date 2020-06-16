@@ -20,17 +20,10 @@ namespace Advert.API.Controllers.API
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private readonly IManageClientService _manageService;
-        private readonly IMapper _mapper;
-        private readonly ILogger<ClientsController> _logger;
         private readonly IMediator _mediator;
 
-        public ClientsController(IManageClientService manageService, IMapper mapper,
-            ILogger<ClientsController> logger, IMediator mediator)
+        public ClientsController(IMediator mediator)
         {
-            _manageService = manageService;
-            _mapper = mapper;
-            _logger = logger;
             _mediator = mediator;
         }
 
@@ -47,30 +40,21 @@ namespace Advert.API.Controllers.API
         {
             var query = new GetClientQuery(id);
             var result = await _mediator.Send(query);
-            return result != null ?(IActionResult) Ok(result) : NotFound();
+            return result != null ? (IActionResult)Ok(result) : NotFound();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ClientRegisterCommand model)
+        public async Task<IActionResult> Create(ClientRegisterCommand command)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var client = _mapper.Map<Client>(model);
-            try
-            {
-                client = await _manageService.Create(client, model.RepeatPassword);
-            }
-            catch (CannotUpdateException ex)
-            {
-                _logger.LogError(ex.ToString());
-                return BadRequest();
-            }
-            var response = _mapper.Map<ClientResponseModel>(client);
-
-            return CreatedAtAction(nameof(Get), new { id = client.IdClient }, response);
+            var result = await _mediator.Send(command);
+            return result != null ?
+                (IActionResult)CreatedAtAction(nameof(Get), new { id = result.IdClient }, result)
+                : BadRequest();
         }
     }
 }
