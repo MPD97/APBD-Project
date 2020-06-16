@@ -85,7 +85,7 @@ namespace Advert.API.Controllers.API
             var tokenResult = await _mediator.Send(command);
             if (tokenResult == null)
             {
-                return BadRequest("Invalid login or password");
+                return BadRequest("Invalid token or refresh token");
             }
 
             return Ok(tokenResult);
