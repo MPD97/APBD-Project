@@ -51,7 +51,7 @@ namespace Advert.API.Controllers.API
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ClientRegisterRequestModel model)
+        public async Task<IActionResult> Create(ClientRegisterCommand model)
         {
             if (!ModelState.IsValid)
             {
