@@ -52,7 +52,7 @@ namespace AdvertDatabaseCL.Configurations
               .IsRequired(false);
 
             builder.Property(e => e.Token)
-              .HasMaxLength(256)
+              .HasMaxLength(512)
               .IsRequired(false);
         }
     }
