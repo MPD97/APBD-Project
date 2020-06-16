@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
+using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Mediator.Queries;
 using Advert.Presistance.Services;
 using Advert.Presistance.Services.ILoginClientService;
@@ -22,12 +23,10 @@ namespace Advert.API.Controllers.API
     public class ClientsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly ILoginClientService _loginService;
 
-        public ClientsController(IMediator mediator, ILoginClientService loginService)
+        public ClientsController(IMediator mediator)
         {
             _mediator = mediator;
-            _loginService = loginService;
         }
 
         [HttpGet("")]
@@ -60,14 +59,14 @@ namespace Advert.API.Controllers.API
                 : BadRequest();
         }
         [HttpPost("login")]
-        public async Task<IActionResult> LogIn(ClientLoginRequestModel model)
+        public async Task<IActionResult> LogIn(ClientLoginCommand command)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(new ErrorResponseModel { Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage)) });
             }
 
-            var tokenResult = await _loginService.Login(model);
+            var tokenResult = await _mediator.Send(command);
             if (tokenResult == null)
             {
                 return BadRequest("Invalid login or password");
