@@ -7,6 +7,7 @@ using Advert.Presistance.Services;
 using Advert.Presistance.Services.IManageService;
 using AdvertDatabaseCL.Contexts;
 using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -42,8 +43,10 @@ namespace AdvertAPI
             services.AddSwaggerGen(options => 
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Advert.API", Version = "v1" });
-            });    
+            });
 
+            var assembly = AppDomain.CurrentDomain.Load("Advert.Presistance");
+            services.AddMediatR(assembly);
             services.AddControllers();
         }
 

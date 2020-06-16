@@ -37,7 +37,5 @@ namespace Advert.Database.DTOs.Requests
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string RepeatPassword { get; set; }
-
     }
-
 }
