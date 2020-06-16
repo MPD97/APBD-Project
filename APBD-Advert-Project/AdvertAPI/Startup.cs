@@ -7,6 +7,7 @@ using Advert.Presistance.Services;
 using Advert.Presistance.Services.IManageService;
 using AdvertDatabaseCL.Contexts;
 using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,7 @@ namespace AdvertAPI
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
             services.AddScoped<IRegisterClientService, RegisterClientService>();
             services.AddScoped<IManageClientService, ManageClientService>();
+            services.AddMediatR(typeof(Program));
             services.AddSingleton<IMapper>(s => new MapperConfiguration(c => 
                 c.AddProfile<ClientProfile>()).CreateMapper());
 
