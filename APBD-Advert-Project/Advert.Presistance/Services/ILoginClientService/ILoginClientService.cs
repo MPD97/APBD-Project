@@ -1,4 +1,5 @@
 ﻿using Advert.Database.DTOs.Requests;
+using Advert.Database.DTOs.Responses;
 using AdvertDatabaseCL.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,6 @@ namespace Advert.Presistance.Services.ILoginClientService
 {
     public interface ILoginClientService
     {
-        public Task<Client> Login(ClientLoginRequestModel model);
+        public Task<JwtTokenResponseModel> Login(ClientLoginRequestModel model);
     }
 }
