@@ -42,10 +42,14 @@ namespace AdvertDatabaseCL.Configurations
               .IsRequired(true);
 
             builder.HasIndex(e => e.Email)
-                .IsUnique();
+              .IsUnique();
 
             builder.HasIndex(e => e.Login)
-               .IsUnique();
+              .IsUnique();
+
+            builder.Property(e => e.Salt)
+              .HasMaxLength(36)
+              .IsRequired(true);
         }
     }
 }

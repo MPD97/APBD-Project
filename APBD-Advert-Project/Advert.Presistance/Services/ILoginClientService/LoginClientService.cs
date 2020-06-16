@@ -37,6 +37,8 @@ namespace Advert.Presistance.Services.ILoginClientService
                 return null;
             }
 
+            var tokenResult = await _jwtBearer.CreateToken(client);
+
             throw new NotImplementedException();
         }
     }
