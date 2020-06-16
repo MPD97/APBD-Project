@@ -59,6 +59,22 @@ namespace AdvertAPI
             services.AddSwaggerGen(options => 
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Advert.API", Version = "v1" });
+      
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Description = "JWT Authorization header using the bearer scheme",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {new OpenApiSecurityScheme{Reference = new OpenApiReference
+                    {
+                        Id = "Bearer",
+                        Type = ReferenceType.SecurityScheme
+                    }}, new List<string>()}
+                }); 
             });
 
             var assembly = AppDomain.CurrentDomain.Load("Advert.Presistance");
@@ -73,7 +89,7 @@ namespace AdvertAPI
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Advert.API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Advert.API v1");      
             });
             if (env.IsDevelopment())
             {
