@@ -48,7 +48,7 @@ namespace Advert.API.Controllers.API
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(new ErrorResponseModel { Errors = ModelState.Values.SelectMany(e=> e.Errors.Select(a => a.ErrorMessage)) });
             }
 
             var result = await _mediator.Send(command);
