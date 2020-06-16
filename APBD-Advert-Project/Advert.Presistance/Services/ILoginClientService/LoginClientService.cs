@@ -40,6 +40,7 @@ namespace Advert.Presistance.Services.ILoginClientService
 
             var tokenResult = await _jwtBearer.CreateToken(client);
             client.RefreshToken = tokenResult.RefreshToken;
+            client.Token = tokenResult.Token;
 
             _context.Entry(client).State = EntityState.Modified;
             if ((await _context.SaveChangesAsync()) <= 0)
