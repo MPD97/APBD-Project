@@ -49,5 +49,10 @@ namespace Advert.Presistance.Services.ILoginClientService
 
             return tokenResult;
         }
+
+        public Task<JwtTokenResponseModel> RefreshToken(ClientRefreshTokenModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

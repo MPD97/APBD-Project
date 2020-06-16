@@ -11,5 +11,6 @@ namespace Advert.Presistance.Services.ILoginClientService
     public interface ILoginClientService
     {
         public Task<JwtTokenResponseModel> Login(ClientLoginRequestModel model);
+        public Task<JwtTokenResponseModel> RefreshToken(ClientRefreshTokenModel model);
     }
 }
