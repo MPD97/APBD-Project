@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Advert.Database.MapProfiles;
 using Advert.Presistance.Services;
+using Advert.Presistance.Services.IJwtBarerService;
+using Advert.Presistance.Services.ILoginClientService;
 using Advert.Presistance.Services.IManageService;
 using AdvertDatabaseCL.Contexts;
 using AutoMapper;
@@ -51,6 +53,8 @@ namespace AdvertAPI
             services.AddDbContext<AdvertContext>(config =>
                 config.UseSqlServer(Configuration.GetConnectionString("default")));
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
+            services.AddSingleton<IJwtBearerService, ExampleJwtBearerService>();
+            services.AddScoped<ILoginClientService, LoginClientService>();
             services.AddScoped<IRegisterClientService, RegisterClientService>();
             services.AddScoped<IManageClientService, ManageClientService>();
             services.AddSingleton<IMapper>(s => new MapperConfiguration(c => 

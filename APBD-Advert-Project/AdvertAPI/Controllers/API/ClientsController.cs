@@ -6,6 +6,7 @@ using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Mediator.Queries;
 using Advert.Presistance.Services;
+using Advert.Presistance.Services.ILoginClientService;
 using Advert.Presistance.Services.IManageService;
 using AdvertDatabaseCL.Entities;
 using AutoMapper;
@@ -21,10 +22,12 @@ namespace Advert.API.Controllers.API
     public class ClientsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILoginClientService _loginService;
 
-        public ClientsController(IMediator mediator)
+        public ClientsController(IMediator mediator, ILoginClientService loginService)
         {
             _mediator = mediator;
+            _loginService = loginService;
         }
 
         [HttpGet("")]
@@ -55,6 +58,22 @@ namespace Advert.API.Controllers.API
             return result != null ?
                 (IActionResult)CreatedAtAction(nameof(Get), new { id = result.IdClient }, result)
                 : BadRequest();
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> LogIn(ClientLoginRequestModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ErrorResponseModel { Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage)) });
+            }
+
+            var tokenResult = await _loginService.Login(model);
+            if (tokenResult == null)
+            {
+                return BadRequest("Invalid login or password");
+            }
+
+            return Ok(tokenResult);
         }
     }
 }
