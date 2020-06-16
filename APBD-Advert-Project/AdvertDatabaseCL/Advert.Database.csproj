@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20200614132637_AddedCampaignTableWithDefinedPropertiesRestrictions.Designer.cs" />
     <Compile Remove="Migrations\20200614150114_DefinedWithManyProperty.cs" />
     <Compile Remove="Migrations\20200614150114_DefinedWithManyProperty.Designer.cs" />
+    <Compile Remove="Migrations\20200616132734_AddedTokenToClientTable.cs" />
+    <Compile Remove="Migrations\20200616132734_AddedTokenToClientTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
