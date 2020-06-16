@@ -34,6 +34,14 @@ namespace Advert.API.Controllers.API
             _mediator = mediator;
         }
 
+        [HttpGet("")]
+        public async Task<IActionResult> Get()
+        {
+            var query = new GetAllClientsQuery();
+            var result = await _mediator.Send(query);
+            return result != null ? (IActionResult)Ok(result) : NotFound();
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
