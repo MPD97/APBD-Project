@@ -1,4 +1,5 @@
 ﻿
+using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
 using AdvertDatabaseCL.Entities;
 using AutoMapper;
@@ -12,10 +13,10 @@ namespace Advert.Database.MapProfiles
     {
         public ClientProfile()
         {
-            CreateMap<Client, ClientRegisterCommand>();
+            CreateMap<Client, ClientRegisterRequestModel>();
             CreateMap<Client, ClientResponseModel>();
             CreateMap<ClientResponseModel, Client>();
-            CreateMap<ClientRegisterCommand, Client>();
+            CreateMap<ClientRegisterRequestModel, Client>();
         }
     }
 }

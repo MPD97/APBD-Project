@@ -29,7 +29,7 @@ namespace Advert.Presistance.Mediator.Handlers
         }
         public async Task<ClientResponseModel> Handle(ClientRegisterCommand request, CancellationToken cancellationToken)
         {
-            var client = _mapper.Map<Client>(request);
+            var client = _mapper.Map<Client>((ClientRegisterRequestModel)request);
             try
             {
                 client = await _manageService.Create(client, request.RepeatPassword);
