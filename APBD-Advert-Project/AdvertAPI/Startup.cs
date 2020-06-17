@@ -39,6 +39,7 @@ namespace AdvertAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+    
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                    .AddJwtBearer(options =>
                    {
@@ -61,13 +62,13 @@ namespace AdvertAPI
             services.AddScoped<IClientQueryService, ClientQueryService>();
             services.AddScoped<ICampaignQueryService, CampaignQueryService>();
 
-            services.AddSingleton<IMapper>(s => new MapperConfiguration(c => 
+            services.AddSingleton<IMapper>(s => new MapperConfiguration(c =>
                 c.AddProfile<ClientProfile>()).CreateMapper());
 
-            services.AddSwaggerGen(options => 
+            services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Advert.API", Version = "v1" });
-      
+
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Description = "JWT Authorization header using the bearer scheme",
@@ -82,7 +83,7 @@ namespace AdvertAPI
                         Id = "Bearer",
                         Type = ReferenceType.SecurityScheme
                     }}, new List<string>()}
-                }); 
+                });
             });
 
             var assembly = AppDomain.CurrentDomain.Load("Advert.Presistance");
@@ -97,7 +98,7 @@ namespace AdvertAPI
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Advert.API v1");      
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Advert.API v1");
             });
             if (env.IsDevelopment())
             {
