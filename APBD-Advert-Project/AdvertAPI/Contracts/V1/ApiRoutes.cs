@@ -11,6 +11,13 @@ namespace Advert.API.Contracts.V1
 
         public const string Version = "v1";
 
-        public static readonly string Base = $"{Root}/{Version}";
+        public const string Base = Root + "/" + Version;
+
+        internal static class Campaigns
+        {
+            public const string GetAll = Base + "/Campaigns";
+
+            public const string Get = Base + "/Campaigns/{id}";
+        }
     }
 }

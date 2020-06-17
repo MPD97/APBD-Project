@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Advert.API.Contracts.V1;
 using Advert.Presistance.Mediator.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Advert.API.Controllers.API
 {
-    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class CampaignsController : ControllerBase
@@ -22,7 +22,7 @@ namespace Advert.API.Controllers.API
             _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet(ApiRoutes.Campaigns.Get)]
         public async Task<IActionResult> Get(int id) 
         {
             var query = new CampaignGetQuery(id);
@@ -36,7 +36,7 @@ namespace Advert.API.Controllers.API
             return Ok(result);
         }
 
-        [HttpGet("")]
+        [HttpGet(ApiRoutes.Campaigns.GetAll)]
         public async Task<IActionResult> GetAll()
         {
             var query = new CampaignGetAllQuery();

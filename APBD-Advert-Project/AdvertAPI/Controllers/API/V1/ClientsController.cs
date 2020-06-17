@@ -18,7 +18,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Advert.API.Controllers.API
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class ClientsController : ControllerBase
     {
@@ -30,7 +29,7 @@ namespace Advert.API.Controllers.API
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             var query = new ClientGetAllQuery();
             var result = await _mediator.Send(query);
