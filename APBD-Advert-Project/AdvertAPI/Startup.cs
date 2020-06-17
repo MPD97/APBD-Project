@@ -39,7 +39,7 @@ namespace AdvertAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-    
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                    .AddJwtBearer(options =>
                    {
@@ -63,7 +63,12 @@ namespace AdvertAPI
             services.AddScoped<ICampaignQueryService, CampaignQueryService>();
 
             services.AddSingleton<IMapper>(s => new MapperConfiguration(c =>
-                c.AddProfile<ClientProfile>()).CreateMapper());
+                {
+                    c.AddProfile<ClientProfile>();
+                    c.AddProfile<CampaignProfile>();
+                })
+            .CreateMapper());
+            
 
             services.AddSwaggerGen(options =>
             {
