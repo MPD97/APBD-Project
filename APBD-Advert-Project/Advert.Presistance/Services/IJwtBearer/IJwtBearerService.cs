@@ -9,6 +9,6 @@ namespace Advert.Presistance.Services.IJwtBarerService
 {
     public interface IJwtBearerService
     {
-        public Task<JwtTokenResponseModel> CreateToken(Client model);
+        public JwtTokenResponseModel CreateToken(Client model);
     }
 }

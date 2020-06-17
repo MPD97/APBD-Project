@@ -22,7 +22,7 @@ namespace Advert.Presistance.Services
             _configuration = configuration;
         }
 
-        public async Task<JwtTokenResponseModel> CreateToken(Client model)
+        public JwtTokenResponseModel CreateToken(Client model)
         {
             var claims = new[]
             {
