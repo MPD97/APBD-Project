@@ -32,7 +32,7 @@ namespace Advert.API.Controllers.API
         [HttpGet("")]
         public async Task<IActionResult> Get()
         {
-            var query = new GetAllClientsQuery();
+            var query = new ClientGetAllQuery();
             var result = await _mediator.Send(query);
             return result != null ? (IActionResult)Ok(result) : NotFound();
         }
@@ -40,7 +40,7 @@ namespace Advert.API.Controllers.API
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var query = new GetClientQuery(id);
+            var query = new ClientGetQuery(id);
             var result = await _mediator.Send(query);
             return result != null ? (IActionResult)Ok(result) : NotFound();
         }

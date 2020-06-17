@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class CampaignGetHandler : IRequestHandler<GetCampaignQuery, Campaign>
+    public class CampaignGetHandler : IRequestHandler<CampaignGetQuery, Campaign>
     {
-        public Task<Campaign> Handle(GetCampaignQuery request, CancellationToken cancellationToken)
+        public Task<Campaign> Handle(CampaignGetQuery request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
