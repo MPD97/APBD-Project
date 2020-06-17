@@ -14,7 +14,7 @@ namespace Advert.API.Installers
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
-            services.AddSingleton<IJwtBearerService, ExampleJwtBearerService>();
+            services.AddSingleton<IJwtBearerService, JwtBearerService>();
             services.AddScoped<IClientLoginService, ClientLoginService>();
             services.AddScoped<IClientRegisterService, ClientRegisterService>();
             services.AddScoped<IClientQueryService, ClientQueryService>();

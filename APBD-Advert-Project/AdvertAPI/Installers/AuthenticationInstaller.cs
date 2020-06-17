@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Advert.Presistance.Services.IJwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -14,6 +15,11 @@ namespace Advert.API.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
+            var jwtBearerConfig = new JwtBearerConfig();
+            configuration.Bind(nameof(JwtBearerConfig), jwtBearerConfig);
+
+            services.AddSingleton(jwtBearerConfig);
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                               .AddJwtBearer(options =>
                               {

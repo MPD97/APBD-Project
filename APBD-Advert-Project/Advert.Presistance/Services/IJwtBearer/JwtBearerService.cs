@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Services.IJwtBarerService;
+using Advert.Presistance.Services.IJwtBearer;
 using AdvertDatabaseCL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -13,13 +14,14 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Advert.Presistance.Services
 {
-    public class ExampleJwtBearerService : IJwtBearerService
+    public class JwtBearerService : IJwtBearerService
     {
         private readonly IConfiguration _configuration;
-
-        public ExampleJwtBearerService(IConfiguration configuration)
+        private readonly JwtBearerConfig _jwtBearerConfig;
+        public JwtBearerService(IConfiguration configuration, JwtBearerConfig jwtBearerConfig)
         {
             _configuration = configuration;
+            _jwtBearerConfig = jwtBearerConfig;
         }
 
         public JwtTokenResponseModel CreateToken(Client model)
@@ -30,7 +32,7 @@ namespace Advert.Presistance.Services
                 new Claim(ClaimTypes.Name, model.FirstName +","+ model.LastName),
                 new Claim(ClaimTypes.Role, "default"),
             };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:secret"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtBearerConfig.Secret));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken

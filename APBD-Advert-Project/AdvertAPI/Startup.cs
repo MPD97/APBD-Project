@@ -43,7 +43,6 @@ namespace AdvertAPI
                 && x.IsInterface == false && x.IsAbstract == false).Select(Activator.CreateInstance).Cast<IInstaller>().ToList();
 
             installers.ForEach(i => i.InstallServices(services, Configuration));
-
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
