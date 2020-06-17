@@ -9,10 +9,13 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services
 {
-    public class ManageClientService : RegisterClientService, IManageClientService
+    public class ClientQueryService : IClientQueryService
     {
-        public ManageClientService(IPasswordHasherService passwordHasher, AdvertContext context) : base(passwordHasher, context)
+        protected internal readonly AdvertContext _context;
+
+        public ClientQueryService(AdvertContext context)
         {
+            _context = context;
         }
 
         public async Task<Client> Get(int id)

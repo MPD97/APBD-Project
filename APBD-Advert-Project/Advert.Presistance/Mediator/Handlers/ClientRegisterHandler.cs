@@ -16,14 +16,14 @@ namespace Advert.Presistance.Mediator.Handlers
 {
     public class ClientRegisterHandler : IRequestHandler<ClientRegisterCommand, ClientResponseModel>
     {
-        private readonly IManageClientService _manageService;
+        private readonly IClientRegisterService _registerService;
         private readonly IMapper _mapper;
         private readonly ILogger<ClientRegisterHandler> _logger;
 
-        public ClientRegisterHandler(IManageClientService manageService, IMapper mapper,
+        public ClientRegisterHandler(IClientRegisterService registerService, IMapper mapper,
             ILogger<ClientRegisterHandler> logger)
         {
-            _manageService = manageService;
+            _registerService = registerService;
             _mapper = mapper;
             _logger = logger;
         }
@@ -32,7 +32,7 @@ namespace Advert.Presistance.Mediator.Handlers
             var client = _mapper.Map<Client>((ClientRegisterRequestModel)request);
             try
             {
-                client = await _manageService.Create(client, request.RepeatPassword);
+                client = await _registerService.Create(client, request.RepeatPassword);
             }
             catch (CannotUpdateException ex)
             {

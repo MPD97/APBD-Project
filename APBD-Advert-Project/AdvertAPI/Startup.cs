@@ -55,8 +55,8 @@ namespace AdvertAPI
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
             services.AddSingleton<IJwtBearerService, ExampleJwtBearerService>();
             services.AddScoped<ILoginClientService, LoginClientService>();
-            services.AddScoped<IRegisterClientService, RegisterClientService>();
-            services.AddScoped<IManageClientService, ManageClientService>();
+            services.AddScoped<IClientRegisterService, ClientRegisterService>();
+            services.AddScoped<IClientQueryService, ClientQueryService>();
             services.AddSingleton<IMapper>(s => new MapperConfiguration(c => 
                 c.AddProfile<ClientProfile>()).CreateMapper());
 

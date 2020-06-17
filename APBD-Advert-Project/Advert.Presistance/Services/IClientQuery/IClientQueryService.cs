@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services.IManageService
 {
-    public interface IManageClientService: IRegisterClientService
+    public interface IClientQueryService
     {
         public Task<Client> Get(int id);
 

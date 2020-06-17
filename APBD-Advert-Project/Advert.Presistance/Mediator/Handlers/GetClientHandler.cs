@@ -13,18 +13,18 @@ namespace Advert.Presistance.Mediator.Handlers
 {
     public class GetClientHandler : IRequestHandler<GetClientQuery, ClientResponseModel>
     {
-        private readonly IManageClientService _manageService;
+        private readonly IClientQueryService _clientQueryService;
         private readonly IMapper _mapper;
 
-        public GetClientHandler(IManageClientService manageService, IMapper mapper)
+        public GetClientHandler(IClientQueryService clientQueryService, IMapper mapper)
         {
-            _manageService = manageService;
+            _clientQueryService = clientQueryService;
             _mapper = mapper;
         }
 
         public async Task<ClientResponseModel> Handle(GetClientQuery request, CancellationToken cancellationToken)
         {
-            var client = await _manageService.Get(request.ClientId);
+            var client = await _clientQueryService.Get(request.ClientId);
             if (client == null)
             {
                 return null;
