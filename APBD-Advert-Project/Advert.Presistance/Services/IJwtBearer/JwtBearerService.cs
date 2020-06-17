@@ -16,11 +16,9 @@ namespace Advert.Presistance.Services
 {
     public class JwtBearerService : IJwtBearerService
     {
-        private readonly IConfiguration _configuration;
         private readonly JwtBearerConfig _jwtBearerConfig;
-        public JwtBearerService(IConfiguration configuration, JwtBearerConfig jwtBearerConfig)
+        public JwtBearerService(JwtBearerConfig jwtBearerConfig)
         {
-            _configuration = configuration;
             _jwtBearerConfig = jwtBearerConfig;
         }
 
