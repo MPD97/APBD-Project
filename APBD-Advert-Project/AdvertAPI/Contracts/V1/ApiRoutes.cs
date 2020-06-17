@@ -19,5 +19,17 @@ namespace Advert.API.Contracts.V1
 
             public const string Get = Base + "/Campaigns/{id}";
         }
+        internal static class Clients
+        {
+            public const string GetAll = Base + "/Clients";
+
+            public const string Get = Base + "/Clients/{id}";
+
+            public const string Create = Base + "/Clients";
+
+            public const string LogIn = Base + "/Clients/login";
+
+            public const string Refresh = Base + "/Clients/refresh";
+        }
     }
 }
