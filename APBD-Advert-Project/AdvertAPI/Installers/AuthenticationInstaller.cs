@@ -30,7 +30,7 @@ namespace Advert.API.Installers
                                       ValidateLifetime = true,
                                       ValidIssuer = "Advert",
                                       ValidAudience = "Clients",
-                                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:secret"]))
+                                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtBearerConfig.Secret))
                                   };
                               });
         }
