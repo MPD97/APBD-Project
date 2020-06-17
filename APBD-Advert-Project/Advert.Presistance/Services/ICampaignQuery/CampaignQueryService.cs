@@ -18,12 +18,12 @@ namespace Advert.Presistance.Services.ICampaignQuery
             _context = context;
         }
 
-        public async Task<Campaign> Get(int id)
+        public async Task<Campaign> GetAsync(int id)
         {
             return await _context.Campaigns.FirstOrDefaultAsync(client => client.IdClient == id);
         }
 
-        public async Task<IEnumerable<Campaign>> GetAll()
+        public async Task<IEnumerable<Campaign>> GetAllAsync()
         {
             return await _context.Campaigns.ToArrayAsync();
         }

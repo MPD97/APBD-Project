@@ -25,7 +25,7 @@ namespace Advert.Presistance.Mediator.Handlers
         }
         public async Task<IEnumerable<ClientResponseModel>> Handle(GetAllClientsQuery request, CancellationToken cancellationToken)
         {
-            var client = await _clientQueryService.GetAll();
+            var client = await _clientQueryService.GetAllAsync();
             if (client == null)
             {
                 return null;

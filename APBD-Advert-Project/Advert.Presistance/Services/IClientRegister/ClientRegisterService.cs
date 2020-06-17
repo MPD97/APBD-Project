@@ -20,7 +20,7 @@ namespace Advert.Presistance.Services
             _context = context;
         }
 
-        public async Task<Client> Create(Client client, string password)
+        public async Task<Client> CreateAsync(Client client, string password)
         {
             // Create salt
             var salt = _passwordHasher.CreateSalt();

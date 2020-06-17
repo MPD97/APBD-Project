@@ -24,7 +24,7 @@ namespace Advert.Presistance.Mediator.Handlers
 
         public async Task<ClientResponseModel> Handle(GetClientQuery request, CancellationToken cancellationToken)
         {
-            var client = await _clientQueryService.Get(request.ClientId);
+            var client = await _clientQueryService.GetAsync(request.ClientId);
             if (client == null)
             {
                 return null;

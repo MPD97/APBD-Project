@@ -32,7 +32,7 @@ namespace Advert.Presistance.Mediator.Handlers
             var client = _mapper.Map<Client>((ClientRegisterRequestModel)request);
             try
             {
-                client = await _registerService.Create(client, request.RepeatPassword);
+                client = await _registerService.CreateAsync(client, request.RepeatPassword);
             }
             catch (CannotUpdateException ex)
             {

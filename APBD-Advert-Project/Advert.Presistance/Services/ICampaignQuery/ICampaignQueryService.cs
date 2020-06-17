@@ -8,8 +8,8 @@ namespace Advert.Presistance.Services.ICampaignService
 {
     public interface ICampaignQueryService
     {
-        public Task<Campaign> Get(int id);
+        public Task<Campaign> GetAsync(int id);
 
-        public Task<IEnumerable<Campaign>> GetAll();
+        public Task<IEnumerable<Campaign>> GetAllAsync();
     }
 }

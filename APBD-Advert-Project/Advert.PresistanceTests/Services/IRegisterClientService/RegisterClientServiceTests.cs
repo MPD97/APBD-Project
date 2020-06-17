@@ -29,7 +29,7 @@ namespace Advert.Presistance.Services.Tests
 
             // Create the command, providing it the mocked IDbContext and execute it
             var command = new ClientRegisterService(new PBKDF2PasswordHasherService(), mockContext.Object);
-            command.Create(new Client(), "abc");
+            command.CreateAsync(new Client(), "abc");
 
             // Check that each method was only called once.
             mockContext.Verify(x => x.Add(It.IsAny<Client>()), Times.Once());
