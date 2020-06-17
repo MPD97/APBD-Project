@@ -1,6 +1,7 @@
 ﻿using Advert.Presistance.Services.ICampaignService;
 using AdvertDatabaseCL.Contexts;
 using AdvertDatabaseCL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,14 +18,14 @@ namespace Advert.Presistance.Services.ICampaignQuery
             _context = context;
         }
 
-        public Task<Campaign> Get(int id)
+        public async Task<Campaign> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Campaigns.FirstOrDefaultAsync(client => client.IdClient == id);
         }
 
-        public Task<IEnumerable<Campaign>> GetAll()
+        public async Task<IEnumerable<Campaign>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Campaigns.ToArrayAsync();
         }
     }
 }
