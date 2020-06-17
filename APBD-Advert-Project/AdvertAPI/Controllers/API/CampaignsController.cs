@@ -27,7 +27,7 @@ namespace Advert.API.Controllers.API
         {
             var query = new CampaignGetQuery(id);
 
-            var result = _mediator.Send(query);
+            var result = await _mediator.Send(query);
             if (result == null)
             {
                 return NotFound();
@@ -41,7 +41,7 @@ namespace Advert.API.Controllers.API
         {
             var query = new CampaignGetAllQuery();
 
-            var result = _mediator.Send(query);
+            var result = await _mediator.Send(query);
             if (result == null)
             {
                 return NotFound();
