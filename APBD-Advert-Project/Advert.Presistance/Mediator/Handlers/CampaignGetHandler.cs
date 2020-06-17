@@ -26,7 +26,10 @@ namespace Advert.Presistance.Mediator.Handlers
         public async Task<CampaignResponseModel> Handle(CampaignGetQuery request, CancellationToken cancellationToken)
         {
             var campaign = await _campaignQueryService.GetAsync(request.CampaignId);
-
+            if (campaign == null)
+            {
+                return null;
+            }
             return _mapper.Map<CampaignResponseModel>(campaign);
         }
     }

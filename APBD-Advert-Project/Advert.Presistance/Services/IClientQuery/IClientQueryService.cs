@@ -10,6 +10,6 @@ namespace Advert.Presistance.Services.IManageService
     {
         public Task<Client> GetAsync(int id);
 
-        public Task<ICollection<Client>> GetAllAsync();
+        public Task<IEnumerable<Client>> GetAllAsync();
     }
 }

@@ -23,7 +23,7 @@ namespace Advert.Presistance.Services
             return await _context.Clients.FirstOrDefaultAsync(client => client.IdClient == id);
         }
 
-        public async Task<ICollection<Client>> GetAllAsync()
+        public async Task<IEnumerable<Client>> GetAllAsync()
         {
             return await _context.Clients.ToArrayAsync();
         }
