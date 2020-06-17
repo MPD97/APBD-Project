@@ -39,7 +39,15 @@ namespace Advert.API.Controllers.API
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            throw new NotImplementedException();
+            var query = new CampaignGetAllQuery();
+
+            var result = _mediator.Send(query);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
     }
 }
