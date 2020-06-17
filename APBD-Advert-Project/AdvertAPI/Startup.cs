@@ -67,7 +67,7 @@ namespace AdvertAPI
                     c.AddProfile<CampaignProfile>();
                 })
             .CreateMapper());
-            
+
 
             services.AddSwaggerGen(options =>
             {
@@ -92,10 +92,8 @@ namespace AdvertAPI
 
             var assembly = AppDomain.CurrentDomain.Load("Advert.Presistance");
             services.AddMediatR(assembly);
-            services.AddControllers().AddNewtonsoftJson( x => 
-            x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
