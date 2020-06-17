@@ -1,4 +1,5 @@
 ﻿using Advert.Presistance.Mediator.Queries;
+using Advert.Presistance.Services.ICampaignService;
 using AdvertDatabaseCL.Entities;
 using MediatR;
 using System;
@@ -11,9 +12,17 @@ namespace Advert.Presistance.Mediator.Handlers
 {
     public class CampaignGetAllHandler : IRequestHandler<CampaignGetAllQuery, IEnumerable<Campaign>>
     {
-        public Task<IEnumerable<Campaign>> Handle(CampaignGetAllQuery request, CancellationToken cancellationToken)
+        private readonly ICampaignQueryService _campaignQueryService;
+
+        public CampaignGetAllHandler(ICampaignQueryService campaignQueryService)
         {
-            throw new NotImplementedException();
+            _campaignQueryService = campaignQueryService;
+        }
+        public async Task<IEnumerable<Campaign>> Handle(CampaignGetAllQuery request, CancellationToken cancellationToken)
+        {
+            var campaigns = await _campaignQueryService.GetAllAsync();
+
+            return campaigns;
         }
     }
 }
