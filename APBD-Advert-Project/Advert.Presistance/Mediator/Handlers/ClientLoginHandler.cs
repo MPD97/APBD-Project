@@ -22,7 +22,7 @@ namespace Advert.Presistance.Mediator.Handlers
 
         public async Task<JwtTokenResponseModel> Handle(ClientLoginCommand request, CancellationToken cancellationToken)
         {
-            var tokenResult = await _loginService.Login(request);
+            var tokenResult = await _loginService.LoginAsync(request);
 
             return tokenResult;
         }

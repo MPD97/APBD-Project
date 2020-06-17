@@ -13,19 +13,19 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class GetAllClientsHandler : IRequestHandler<GetAllClientsQuery, IEnumerable<ClientResponseModel>>
+    public class ClientGetAllHandler : IRequestHandler<ClientGetAllQuery, IEnumerable<ClientResponseModel>>
     {
-        private readonly IManageClientService _manageService;
+        private readonly IClientQueryService _clientQueryService;
         private readonly IMapper _mapper;
 
-        public GetAllClientsHandler(IManageClientService manageService, IMapper mapper)
+        public ClientGetAllHandler(IClientQueryService clientQueryService, IMapper mapper)
         {
-            _manageService = manageService;
+            _clientQueryService = clientQueryService;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ClientResponseModel>> Handle(GetAllClientsQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ClientResponseModel>> Handle(ClientGetAllQuery request, CancellationToken cancellationToken)
         {
-            var client = await _manageService.GetAll();
+            var client = await _clientQueryService.GetAllAsync();
             if (client == null)
             {
                 return null;

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Advert.Database.MapProfiles;
 using Advert.Presistance.Services;
+using Advert.Presistance.Services.ICampaignQuery;
+using Advert.Presistance.Services.ICampaignService;
 using Advert.Presistance.Services.IJwtBarerService;
 using Advert.Presistance.Services.ILoginClientService;
 using Advert.Presistance.Services.IManageService;
@@ -55,15 +57,22 @@ namespace AdvertAPI
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
             services.AddSingleton<IJwtBearerService, ExampleJwtBearerService>();
             services.AddScoped<ILoginClientService, LoginClientService>();
-            services.AddScoped<IRegisterClientService, RegisterClientService>();
-            services.AddScoped<IManageClientService, ManageClientService>();
-            services.AddSingleton<IMapper>(s => new MapperConfiguration(c => 
-                c.AddProfile<ClientProfile>()).CreateMapper());
+            services.AddScoped<IClientRegisterService, ClientRegisterService>();
+            services.AddScoped<IClientQueryService, ClientQueryService>();
+            services.AddScoped<ICampaignQueryService, CampaignQueryService>();
 
-            services.AddSwaggerGen(options => 
+            services.AddSingleton<IMapper>(s => new MapperConfiguration(c =>
+                {
+                    c.AddProfile<ClientProfile>();
+                    c.AddProfile<CampaignProfile>();
+                })
+            .CreateMapper());
+            
+
+            services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Advert.API", Version = "v1" });
-      
+
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Description = "JWT Authorization header using the bearer scheme",
@@ -78,12 +87,13 @@ namespace AdvertAPI
                         Id = "Bearer",
                         Type = ReferenceType.SecurityScheme
                     }}, new List<string>()}
-                }); 
+                });
             });
 
             var assembly = AppDomain.CurrentDomain.Load("Advert.Presistance");
             services.AddMediatR(assembly);
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson( x => 
+            x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,7 +103,7 @@ namespace AdvertAPI
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Advert.API v1");      
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Advert.API v1");
             });
             if (env.IsDevelopment())
             {

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services.IManageService
 {
-    public interface IManageClientService: IRegisterClientService
+    public interface IClientQueryService
     {
-        public Task<Client> Get(int id);
+        public Task<Client> GetAsync(int id);
 
-        public Task<ICollection<Client>> GetAll();
+        public Task<ICollection<Client>> GetAllAsync();
     }
 }

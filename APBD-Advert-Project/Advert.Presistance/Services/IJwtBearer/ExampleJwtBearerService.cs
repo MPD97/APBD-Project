@@ -22,7 +22,7 @@ namespace Advert.Presistance.Services
             _configuration = configuration;
         }
 
-        public async Task<JwtTokenResponseModel> CreateToken(Client model)
+        public JwtTokenResponseModel CreateToken(Client model)
         {
             var claims = new[]
             {
@@ -35,10 +35,10 @@ namespace Advert.Presistance.Services
 
             var token = new JwtSecurityToken
             (
-                issuer: "Gakko",
-                audience: "Students",
+                issuer: "Advert",
+                audience: "Clients",
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(10),
+                expires: DateTime.UtcNow.AddMinutes(10),
                 signingCredentials: creds
             );
 

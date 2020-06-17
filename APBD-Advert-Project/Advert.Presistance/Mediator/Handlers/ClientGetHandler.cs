@@ -11,20 +11,20 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class GetClientHandler : IRequestHandler<GetClientQuery, ClientResponseModel>
+    public class ClientGetHandler : IRequestHandler<ClientGetQuery, ClientResponseModel>
     {
-        private readonly IManageClientService _manageService;
+        private readonly IClientQueryService _clientQueryService;
         private readonly IMapper _mapper;
 
-        public GetClientHandler(IManageClientService manageService, IMapper mapper)
+        public ClientGetHandler(IClientQueryService clientQueryService, IMapper mapper)
         {
-            _manageService = manageService;
+            _clientQueryService = clientQueryService;
             _mapper = mapper;
         }
 
-        public async Task<ClientResponseModel> Handle(GetClientQuery request, CancellationToken cancellationToken)
+        public async Task<ClientResponseModel> Handle(ClientGetQuery request, CancellationToken cancellationToken)
         {
-            var client = await _manageService.Get(request.ClientId);
+            var client = await _clientQueryService.GetAsync(request.ClientId);
             if (client == null)
             {
                 return null;

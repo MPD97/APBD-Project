@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Advert.Presistance.Mediator.Queries
 {
-    public class GetClientQuery : IRequest<ClientResponseModel>
+    public class ClientGetQuery : IRequest<ClientResponseModel>
     {
-        public GetClientQuery(int clientId)
+        public ClientGetQuery(int clientId)
         {
             ClientId = clientId;
         }

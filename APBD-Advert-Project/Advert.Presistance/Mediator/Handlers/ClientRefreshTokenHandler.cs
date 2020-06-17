@@ -20,7 +20,7 @@ namespace Advert.Presistance.Mediator.Handlers
         }
         public async Task<JwtTokenResponseModel> Handle(ClientRefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            var tokenResult = await _loginService.RefreshToken(request);
+            var tokenResult = await _loginService.RefreshTokenAsync(request);
 
             return tokenResult;
         }

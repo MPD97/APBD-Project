@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Advert.Presistance.Mediator.Queries
 {
-    public class GetAllClientsQuery : IRequest<IEnumerable<ClientResponseModel>>
+    public class ClientGetAllQuery : IRequest<IEnumerable<ClientResponseModel>>
     {
     }
 }

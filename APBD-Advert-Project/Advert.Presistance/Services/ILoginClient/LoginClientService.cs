@@ -24,7 +24,7 @@ namespace Advert.Presistance.Services.ILoginClientService
             _jwtBearer = jwtBearer;
         }
 
-        public async Task<JwtTokenResponseModel> Login(ClientLoginRequestModel model)
+        public async Task<JwtTokenResponseModel> LoginAsync(ClientLoginRequestModel model)
         {
             var client = await _context.Clients.FirstOrDefaultAsync(c => c.Login == model.Login);
             if (client == null)
@@ -38,12 +38,12 @@ namespace Advert.Presistance.Services.ILoginClientService
                 return null;
             }
 
-            return await GenerateAndSaveToken(client);
+            return await GenerateAndSaveTokenAsync(client);
         }
 
-        private async Task<JwtTokenResponseModel> GenerateAndSaveToken(Client client)
+        private async Task<JwtTokenResponseModel> GenerateAndSaveTokenAsync(Client client)
         {
-            var tokenResult = await _jwtBearer.CreateToken(client);
+            var tokenResult = _jwtBearer.CreateToken(client);
             client.RefreshToken = tokenResult.RefreshToken;
             client.Token = tokenResult.Token;
 
@@ -56,7 +56,7 @@ namespace Advert.Presistance.Services.ILoginClientService
             return tokenResult;
         }
 
-        public async Task<JwtTokenResponseModel> RefreshToken(ClientRefreshTokenModel model)
+        public async Task<JwtTokenResponseModel> RefreshTokenAsync(ClientRefreshTokenModel model)
         {
             var client = await _context.Clients.FirstOrDefaultAsync(c => c.RefreshToken == model.RefreshToken && c.Token == model.Token);
             if (client == null)
@@ -64,7 +64,7 @@ namespace Advert.Presistance.Services.ILoginClientService
                 return null;
             }
 
-            return await GenerateAndSaveToken(client);
+            return await GenerateAndSaveTokenAsync(client);
         }
     }
 }
