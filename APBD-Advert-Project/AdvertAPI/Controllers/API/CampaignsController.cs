@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Advert.Presistance.Mediator.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +25,15 @@ namespace Advert.API.Controllers.API
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id) 
         {
-            throw new NotImplementedException();
+            var query = new CampaignGetQuery(id);
+
+            var result = _mediator.Send(query);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("")]
