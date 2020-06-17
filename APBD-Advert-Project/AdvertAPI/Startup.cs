@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Advert.Database.MapProfiles;
 using Advert.Presistance.Services;
+using Advert.Presistance.Services.ICampaignQuery;
+using Advert.Presistance.Services.ICampaignService;
 using Advert.Presistance.Services.IJwtBarerService;
 using Advert.Presistance.Services.ILoginClientService;
 using Advert.Presistance.Services.IManageService;
@@ -57,6 +59,8 @@ namespace AdvertAPI
             services.AddScoped<ILoginClientService, LoginClientService>();
             services.AddScoped<IClientRegisterService, ClientRegisterService>();
             services.AddScoped<IClientQueryService, ClientQueryService>();
+            services.AddScoped<ICampaignQueryService, CampaignQueryService>();
+
             services.AddSingleton<IMapper>(s => new MapperConfiguration(c => 
                 c.AddProfile<ClientProfile>()).CreateMapper());
 
