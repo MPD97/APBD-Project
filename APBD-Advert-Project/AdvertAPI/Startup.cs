@@ -39,7 +39,6 @@ namespace AdvertAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                    .AddJwtBearer(options =>
                    {
@@ -93,7 +92,8 @@ namespace AdvertAPI
 
             var assembly = AppDomain.CurrentDomain.Load("Advert.Presistance");
             services.AddMediatR(assembly);
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson( x => 
+            x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
