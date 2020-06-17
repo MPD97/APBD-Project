@@ -13,9 +13,9 @@ namespace Advert.Presistance.Mediator.Handlers
 {
     public class ClientLoginHandler : IRequestHandler<ClientLoginCommand, JwtTokenResponseModel>
     {
-        private readonly  ILoginClientService _loginService;
+        private readonly  IClientLoginService _loginService;
 
-        public ClientLoginHandler(ILoginClientService loginService)
+        public ClientLoginHandler(IClientLoginService loginService)
         {
             _loginService = loginService;
         }

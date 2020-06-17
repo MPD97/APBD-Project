@@ -56,7 +56,7 @@ namespace AdvertAPI
                 config.UseSqlServer(Configuration.GetConnectionString("default")));
             services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
             services.AddSingleton<IJwtBearerService, ExampleJwtBearerService>();
-            services.AddScoped<ILoginClientService, LoginClientService>();
+            services.AddScoped<IClientLoginService, ClientLoginService>();
             services.AddScoped<IClientRegisterService, ClientRegisterService>();
             services.AddScoped<IClientQueryService, ClientQueryService>();
             services.AddScoped<ICampaignQueryService, CampaignQueryService>();

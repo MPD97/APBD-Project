@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services.ILoginClientService
 {
-    public interface ILoginClientService
+    public interface IClientLoginService
     {
         public Task<JwtTokenResponseModel> LoginAsync(ClientLoginRequestModel model);
         public Task<JwtTokenResponseModel> RefreshTokenAsync(ClientRefreshTokenModel model);

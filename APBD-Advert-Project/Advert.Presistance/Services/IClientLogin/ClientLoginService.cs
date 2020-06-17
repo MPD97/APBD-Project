@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Advert.Presistance.Services.ILoginClientService
 {
-    public class LoginClientService : ILoginClientService
+    public class ClientLoginService : IClientLoginService
     {
         private readonly IPasswordHasherService _passwordHasher;
         protected internal readonly AdvertContext _context;
         private readonly IJwtBearerService _jwtBearer;
 
-        public LoginClientService(IPasswordHasherService passwordHasher, AdvertContext context, IJwtBearerService jwtBearer)
+        public ClientLoginService(IPasswordHasherService passwordHasher, AdvertContext context, IJwtBearerService jwtBearer)
         {
             _passwordHasher = passwordHasher;
             _context = context;
