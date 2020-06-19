@@ -1,7 +1,9 @@
 ﻿using AdvertDatabaseCL.Contexts;
 using AdvertDatabaseCL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,14 +18,14 @@ namespace Advert.Presistance.Services.IBuildingQuery
             _context = context;
         }
 
-        public Task<ICollection<Building>> GetAllAsync()
+        public async Task<ICollection<Building>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Buildings.ToArrayAsync();
         }
 
-        public Task<Building> GetAsync(int id)
+        public async Task<Building> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Buildings.FirstOrDefaultAsync(b => b.IdBuilding == id);
         }
     }
 }

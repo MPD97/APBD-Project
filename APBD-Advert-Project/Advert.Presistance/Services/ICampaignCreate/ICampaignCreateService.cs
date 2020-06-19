@@ -9,6 +9,6 @@ namespace Advert.Presistance.Services.ICampaignCreate
 {
     public interface ICampaignCreateService
     {
-        public Task<Campaign>
+        public Task<Campaign> CreateAsync();
     }
 }
