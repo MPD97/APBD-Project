@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Advert.API.Contracts.V1;
 using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Mediator.Commands;
@@ -28,7 +29,7 @@ namespace Advert.API.Controllers.API
             _mediator = mediator;
         }
 
-        [HttpGet("")]
+        [HttpGet(ApiRoutes.Clients.GetAll)]
         public async Task<IActionResult> GetAll()
         {
             var query = new ClientGetAllQuery();
@@ -36,7 +37,7 @@ namespace Advert.API.Controllers.API
             return result != null ? (IActionResult)Ok(result) : NotFound();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet(ApiRoutes.Clients.Get)]
         public async Task<IActionResult> Get(int id)
         {
             var query = new ClientGetQuery(id);
@@ -44,7 +45,7 @@ namespace Advert.API.Controllers.API
             return result != null ? (IActionResult)Ok(result) : NotFound();
         }
 
-        [HttpPost]
+        [HttpPost(ApiRoutes.Clients.Create)]
         public async Task<IActionResult> Create(ClientRegisterCommand command)
         {
             if (!ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace Advert.API.Controllers.API
                 (IActionResult)CreatedAtAction(nameof(Get), new { id = result.IdClient }, result)
                 : BadRequest();
         }
-        [HttpPost("login")]
+        [HttpPost(ApiRoutes.Clients.LogIn)]
         public async Task<IActionResult> LogIn(ClientLoginCommand command)
         {
             if (!ModelState.IsValid)
@@ -73,7 +74,7 @@ namespace Advert.API.Controllers.API
 
             return Ok(tokenResult);
         }
-        [HttpPost("refresh")]
+        [HttpPost(ApiRoutes.Clients.Refresh)]
         public async Task<IActionResult> RefreshToken(ClientRefreshTokenCommand command)
         {
             if (!ModelState.IsValid)

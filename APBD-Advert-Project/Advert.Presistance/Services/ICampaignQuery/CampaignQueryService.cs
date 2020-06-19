@@ -4,6 +4,7 @@ using AdvertDatabaseCL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace Advert.Presistance.Services.ICampaignQuery
 
         public async Task<IEnumerable<Campaign>> GetAllAsync()
         {
-            return await _context.Campaigns.ToArrayAsync();
+            return await _context.Campaigns.OrderByDescending(c => c.StartDate).ToArrayAsync();
         }
     }
 }
