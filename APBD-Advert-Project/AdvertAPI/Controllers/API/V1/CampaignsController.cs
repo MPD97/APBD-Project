@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
+using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Mediator.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Advert.API.Controllers.API
 {
@@ -53,6 +55,13 @@ namespace Advert.API.Controllers.API
         [HttpGet(ApiRoutes.Campaigns.Create)]
         public async Task<IActionResult> Create(CampaignCreateCommand command)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ErrorResponseModel { Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage)) });
+            }
+
+            var result = await _mediator.Send(command);
+
             throw new NotImplementedException();
         }
     }
