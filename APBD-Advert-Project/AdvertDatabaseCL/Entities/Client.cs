@@ -13,6 +13,12 @@ namespace AdvertDatabaseCL.Entities
         public string Phone { get; set; }
         public string Login { get; set; }
 
+        public string Hash { get; set; }
+        public string Salt { get; set; }
+
+        public string Token { get; set; }
+        public string RefreshToken { get; set; }
+
         public virtual ICollection<Campaign> Campaigns { get; set; }
     }
 }

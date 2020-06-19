@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -9,15 +9,19 @@
     <Compile Remove="Migrations\20200614132637_AddedCampaignTableWithDefinedPropertiesRestrictions.Designer.cs" />
     <Compile Remove="Migrations\20200614150114_DefinedWithManyProperty.cs" />
     <Compile Remove="Migrations\20200614150114_DefinedWithManyProperty.Designer.cs" />
+    <Compile Remove="Migrations\20200616132734_AddedTokenToClientTable.cs" />
+    <Compile Remove="Migrations\20200616132734_AddedTokenToClientTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="4.0.2.206221351" />
   </ItemGroup>
 
 </Project>

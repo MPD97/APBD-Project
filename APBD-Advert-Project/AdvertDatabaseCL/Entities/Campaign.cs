@@ -15,10 +15,10 @@ namespace AdvertDatabaseCL.Entities
         public int FromIdBuilding { get; set; }
         public int ToIdBuilding { get; set; }
 
-        public Client Client { get; set; }
-        public Building FromBuilding { get; set; }
-        public Building ToBuilding { get; set; }
+        public  Client Client { get; set; }
+        public  Building FromBuilding { get; set; }
+        public  Building ToBuilding { get; set; }
 
-        public virtual ICollection<Banner> Banners { get; set; }
+        public  ICollection<Banner> Banners { get; set; }
     }
 }
