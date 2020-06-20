@@ -44,7 +44,7 @@ namespace Advert.API.Controllers.API.V1
             return Ok(result);
         }
 
-        [HttpGet(ApiRoutes.Campaigns.Create)]
+        [HttpPost(ApiRoutes.Campaigns.Create)]
         public async Task<IActionResult> Create(CampaignCreateCommand command)
         {
             if (!ModelState.IsValid)
