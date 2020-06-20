@@ -29,6 +29,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
 
             if (fromBuilding.StreetNumber == toBuilding.StreetNumber) return null; // Buildings must be different
             // TODO: Get buildings beetwen
+
             throw new NotImplementedException();
         }
     }
