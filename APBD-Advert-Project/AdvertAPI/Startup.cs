@@ -12,6 +12,7 @@ namespace Advert.API
     // TODO: Add filters to requests
     // TODO: Add fluent validation
     // TODO: Add fluent validation using Mediator
+    // TODO: Change return type of services to some IResponseService interface
     // TODO: Add clean code logging
     // TODO: Add clean code performance
     // TODO: Add Polly
