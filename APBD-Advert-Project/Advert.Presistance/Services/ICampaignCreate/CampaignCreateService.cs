@@ -13,20 +13,17 @@ namespace Advert.Presistance.Services.ICampaignCreate
     {
         private readonly IBuildingQueryService _buildingQueryService;
         private readonly IClientQueryService _clientQueryService;
-
         private readonly IMapper _mapper;
 
-        public CampaignCreateService(IBuildingQueryService buildingQueryService, IMapper mapper)
+        public CampaignCreateService(IBuildingQueryService buildingQueryService, IMapper mapper, IClientQueryService clientQueryService)
         {
             _buildingQueryService = buildingQueryService;
             _mapper = mapper;
+            _clientQueryService = clientQueryService;
         }
 
-        public async Task<Campaign> CreateAsync(CampaignCreateRequestModel model,
-            CampaignCreateResponseModel.Banner[] banner)
+        public async Task<Campaign> CreateAsync(CampaignCreateRequestModel model)
         {
-            if (banner.Length != 2) return null;
-
             var campaign = _mapper.Map<Campaign>(model);
 
             var client = await _clientQueryService.GetAsync(model.ClientId);
@@ -37,7 +34,11 @@ namespace Advert.Presistance.Services.ICampaignCreate
 
             var toBuilding = await _buildingQueryService.GetAsync(model.ToIdBuilidng);
             if (toBuilding == null) return null;
-
+            
+            // Create Banners
+            
+            // Save Data
+            
             throw new NotImplementedException();
         }
     }

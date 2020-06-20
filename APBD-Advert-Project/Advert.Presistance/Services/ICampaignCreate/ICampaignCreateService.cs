@@ -7,7 +7,6 @@ namespace Advert.Presistance.Services.ICampaignCreate
 {
     public interface ICampaignCreateService
     {
-        public Task<Campaign> CreateAsync(CampaignCreateRequestModel model,
-            CampaignCreateResponseModel.Banner[] banner);
+        public Task<Campaign> CreateAsync(CampaignCreateRequestModel model);
     }
 }
