@@ -1,7 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
+using Advert.Database.Entities;
 using Advert.Presistance.Services.IBuildingQuery;
 
 namespace Advert.Presistance.Services.IBannerCalculate
@@ -16,32 +17,12 @@ namespace Advert.Presistance.Services.IBannerCalculate
             _buildingQueryService = buildingQueryService;
         }
 
-        public async Task<CampaignCreateResponseModel> Calculate(CampaignCreateRequestModel model)
+        public async Task<CampaignCreateResponseModel> Calculate(List<Building> buildings,
+            decimal pricePerSquareMeter = 35)
         {
-            // TODO: Refactor this method to achieve SRP
-
-            var fromBuilding = await _buildingQueryService.GetAsync(model.FromIdBuilding);
-            var toBuilding = await _buildingQueryService.GetAsync(model.ToIdBuilidng);
-
-            if (fromBuilding.City != toBuilding.City) return null; // City must be the same.
-
-            if (fromBuilding.Street != toBuilding.Street) return null; // Street must be the same.
-
-            if (fromBuilding.StreetNumber % toBuilding.StreetNumber != 0)
-                return null; // Cant place banner across the road.
-
-            if (fromBuilding.StreetNumber > toBuilding.StreetNumber)
-                return null; // FromCity street number must be befeore toCity street number 
-
-            if (fromBuilding.StreetNumber == toBuilding.StreetNumber) return null; // Buildings must be different
-
-            var allBuildings = _buildingQueryService.GetAll(fromBuilding.City,
-                fromBuilding.Street, fromBuilding.StreetNumber,
-                toBuilding.StreetNumber, toBuilding.StreetNumber % 2 == 0).ToList();
-
             var response = new CampaignCreateResponseModel();
-            var firstBuilding = allBuildings.First();
-            var lasBuilding = allBuildings.Last();
+            var firstBuilding = buildings.First();
+            var lasBuilding = buildings.Last();
             if (firstBuilding.Height >= lasBuilding.Height)
             {
                 response.Banner1 = new CampaignCreateResponseModel.Banner
@@ -53,7 +34,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
 
                 response.Banner2 = new CampaignCreateResponseModel.Banner
                 {
-                    Width = (allBuildings.Count() - 1) * _buildingWidth,
+                    Width = (buildings.Count() - 1) * _buildingWidth,
                     Height = lasBuilding.Height
                 };
                 response.Banner2.SquareMeters = response.Banner2.Width * response.Banner2.Height;
@@ -62,7 +43,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
             {
                 response.Banner1 = new CampaignCreateResponseModel.Banner
                 {
-                    Width = (allBuildings.Count() - 1) * _buildingWidth,
+                    Width = (buildings.Count() - 1) * _buildingWidth,
                     Height = firstBuilding.Height
                 };
                 response.Banner1.SquareMeters = response.Banner1.Width * response.Banner1.Height;
@@ -76,7 +57,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
             }
 
             response.TotalSquareMeters = response.Banner1.SquareMeters + response.Banner2.SquareMeters;
-            response.PricePerSquareMeter = model.PricePerSquareMeter;
+            response.PricePerSquareMeter = pricePerSquareMeter;
             response.TotalPrice = response.TotalSquareMeters * response.PricePerSquareMeter;
 
             return response;
