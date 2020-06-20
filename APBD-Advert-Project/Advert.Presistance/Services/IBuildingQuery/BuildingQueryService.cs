@@ -22,19 +22,19 @@ namespace Advert.Presistance.Services.IBuildingQuery
             return await _context.Buildings.FirstOrDefaultAsync(b => b.IdBuilding == id);
         }
 
-        public async Task<ICollection<Building>> GetAllAsync()
+        public async Task<IEnumerable<Building>> GetAllAsync()
         {
             return await _context.Buildings.ToArrayAsync();
         }
 
-        public async Task<ICollection<Building>> GetAllAsync(string city)
+        public async Task<IEnumerable<Building>> GetAllAsync(string city)
         {
             return await _context.Buildings
                 .Where(b => b.City.Equals(city, StringComparison.OrdinalIgnoreCase))
                 .ToArrayAsync();
         }
 
-        public async Task<ICollection<Building>> GetAllAsync(string city, string street)
+        public async Task<IEnumerable<Building>> GetAllAsync(string city, string street)
         {
             return await _context.Buildings
                 .Where(b => b.City.Equals(city, StringComparison.OrdinalIgnoreCase))
@@ -43,7 +43,7 @@ namespace Advert.Presistance.Services.IBuildingQuery
                 .ToArrayAsync();
         }
 
-        public async Task<ICollection<Building>> GetAllAsync(string city, string street, int streetNumberStart,
+        public async Task<IEnumerable<Building>> GetAllAsync(string city, string street, int streetNumberStart,
             int streetNumberEnd)
         {
             return await _context.Buildings
@@ -54,7 +54,7 @@ namespace Advert.Presistance.Services.IBuildingQuery
                 .ToArrayAsync();
         }
 
-        public async Task<ICollection<Building>> GetAllAsync(string city, string street, int streetNumberStart,
+        public async Task<IEnumerable<Building>> GetAllAsync(string city, string street, int streetNumberStart,
             int streetNumberEnd, bool even)
         {
             return await _context.Buildings
