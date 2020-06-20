@@ -12,7 +12,7 @@
         {
             public const string GetAll = Base + "/Campaigns";
 
-            public const string Get = Base + "/Campaigns/{id}";
+            public const string Get = Base + "/Campaigns/{id:int}";
 
             public const string Create = Base + "/Campaigns";
         }
@@ -21,7 +21,7 @@
         {
             public const string GetAll = Base + "/Clients";
 
-            public const string Get = Base + "/Clients/{id}";
+            public const string Get = Base + "/Clients/{id:int}";
 
             public const string Create = Base + "/Clients";
 
@@ -34,7 +34,7 @@
         {
             public const string GetAll = Base + "/Buildings";
 
-            public const string Get = Base + "/Buildings/{id}";
+            public const string Get = Base + "/Buildings/{id:int}";
         }
     }
 }

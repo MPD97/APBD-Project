@@ -26,7 +26,9 @@ namespace Advert.Presistance.Mediator.Handlers
         public async Task<IEnumerable<BuildingResponseModel>> Handle(BuildingGetAllQuery request,
             CancellationToken cancellationToken)
         {
-            var buildings = await _buildingQueryService.GetAllAsync();
+            // TODO: FluentValidation
+            var buildings = _buildingQueryService.GetAll(request.City, request.Street,
+                request.StreetStartNumber, request.SteetEndNumber, request.Even);
             if (buildings == null) return null;
 
             return buildings.Select(_mapper.Map<Building, BuildingResponseModel>);

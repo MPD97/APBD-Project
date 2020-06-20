@@ -8,14 +8,7 @@ namespace Advert.Presistance.Services.IBuildingQuery
     {
         public Task<Building> GetAsync(int id);
 
-        public Task<IEnumerable<Building>> GetAllAsync();
-        public Task<IEnumerable<Building>> GetAllAsync(string city);
-        public Task<IEnumerable<Building>> GetAllAsync(string city, string street);
-
-        public Task<IEnumerable<Building>> GetAllAsync(string city, string street, int streetNumberStart,
-            int streetNumberEnd);
-
-        public Task<IEnumerable<Building>> GetAllAsync(string city, string street, int streetNumberStart,
-            int streetNumberEnd, bool even);
+        public IEnumerable<Building> GetAll(string city, string street, int? streetNumberStart,
+            int? streetNumberEnd, bool? even);
     }
 }

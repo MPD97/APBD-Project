@@ -35,9 +35,9 @@ namespace Advert.Presistance.Services.IBannerCalculate
 
             if (fromBuilding.StreetNumber == toBuilding.StreetNumber) return null; // Buildings must be different
 
-            var allBuildings = (await _buildingQueryService.GetAllAsync(fromBuilding.City,
+            var allBuildings = _buildingQueryService.GetAll(fromBuilding.City,
                 fromBuilding.Street, fromBuilding.StreetNumber,
-                toBuilding.StreetNumber, toBuilding.StreetNumber % 2 == 0)).ToList();
+                toBuilding.StreetNumber, toBuilding.StreetNumber % 2 == 0).ToList();
 
             var response = new CampaignCreateResponseModel();
             var firstBuilding = allBuildings.First();

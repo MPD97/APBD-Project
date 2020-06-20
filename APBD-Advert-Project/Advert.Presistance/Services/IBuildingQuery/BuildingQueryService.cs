@@ -22,48 +22,23 @@ namespace Advert.Presistance.Services.IBuildingQuery
             return await _context.Buildings.FirstOrDefaultAsync(b => b.IdBuilding == id);
         }
 
-        public async Task<IEnumerable<Building>> GetAllAsync()
+        public IEnumerable<Building> GetAll(string city, string street, int? streetNumberStart,
+            int? streetNumberEnd, bool? even)
         {
-            return await _context.Buildings.ToArrayAsync();
-        }
+            IEnumerable<Building> result = _context.Buildings;
+            if (city != null)
+                result = result.Where(b => string.Equals(b.City, city, StringComparison.CurrentCultureIgnoreCase));
 
-        public async Task<IEnumerable<Building>> GetAllAsync(string city)
-        {
-            return await _context.Buildings
-                .Where(b => b.City.Equals(city, StringComparison.OrdinalIgnoreCase))
-                .ToArrayAsync();
-        }
+            if (street != null)
+                result = result.Where(b => string.Equals(b.Street, street, StringComparison.CurrentCultureIgnoreCase));
 
-        public async Task<IEnumerable<Building>> GetAllAsync(string city, string street)
-        {
-            return await _context.Buildings
-                .Where(b => b.City.Equals(city, StringComparison.OrdinalIgnoreCase))
-                .Where(b => b.Street.Equals(street, StringComparison.OrdinalIgnoreCase))
-                .OrderBy(b => b.StreetNumber)
-                .ToArrayAsync();
-        }
+            if (streetNumberStart.HasValue) result = result.Where(b => b.StreetNumber >= streetNumberStart);
 
-        public async Task<IEnumerable<Building>> GetAllAsync(string city, string street, int streetNumberStart,
-            int streetNumberEnd)
-        {
-            return await _context.Buildings
-                .Where(b => b.City.Equals(city, StringComparison.OrdinalIgnoreCase))
-                .Where(b => b.Street.Equals(street, StringComparison.OrdinalIgnoreCase))
-                .Where(b => b.StreetNumber >= streetNumberStart && b.StreetNumber <= streetNumberEnd)
-                .OrderBy(b => b.StreetNumber)
-                .ToArrayAsync();
-        }
+            if (streetNumberEnd.HasValue) result = result.Where(b => b.StreetNumber <= streetNumberEnd);
 
-        public async Task<IEnumerable<Building>> GetAllAsync(string city, string street, int streetNumberStart,
-            int streetNumberEnd, bool even)
-        {
-            return await _context.Buildings
-                .Where(b => b.City.Equals(city, StringComparison.OrdinalIgnoreCase))
-                .Where(b => b.Street.Equals(street, StringComparison.OrdinalIgnoreCase))
-                .Where(b => b.StreetNumber >= streetNumberStart && b.StreetNumber <= streetNumberEnd)
-                .Where(b => b.StreetNumber % 2 == 0 == even)
-                .OrderBy(b => b.StreetNumber)
-                .ToArrayAsync();
+            if (even.HasValue) result = result.Where(b => b.StreetNumber % 2 == 0 == even);
+
+            return result.OrderBy(b => b.StreetNumber);
         }
     }
 }

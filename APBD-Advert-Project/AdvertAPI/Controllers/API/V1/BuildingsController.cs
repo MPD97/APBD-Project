@@ -28,9 +28,10 @@ namespace Advert.API.Controllers.API.V1
         }
 
         [HttpGet(ApiRoutes.Buildings.GetAll)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(string city, string street, int? streetNumberStart,
+            int? streetNumberEnd, bool? even)
         {
-            var query = new BuildingGetAllQuery();
+            var query = new BuildingGetAllQuery(city, street, streetNumberStart, streetNumberEnd, even);
 
             var result = await _mediator.Send(query);
             if (result == null) return NotFound();
