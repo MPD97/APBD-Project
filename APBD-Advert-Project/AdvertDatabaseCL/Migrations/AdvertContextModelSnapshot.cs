@@ -19,7 +19,7 @@ namespace Advert.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("AdvertDatabaseCL.Configurations.Banner", b =>
+            modelBuilder.Entity("Advert.Database.Entities.Banner", b =>
             {
                 b.Property<int>("IdAdvertisment")
                     .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace Advert.Database.Migrations
                 b.ToTable("Banners");
             });
 
-            modelBuilder.Entity("AdvertDatabaseCL.Entities.Building", b =>
+            modelBuilder.Entity("Advert.Database.Entities.Building", b =>
             {
                 b.Property<int>("IdBuilding")
                     .ValueGeneratedOnAdd()
@@ -81,83 +81,323 @@ namespace Advert.Database.Migrations
                         City = "Warszawa",
                         Height = 150.6m,
                         Street = "Afrodyty",
-                        StreetNumber = 11
+                        StreetNumber = 1
                     },
                     new
                     {
                         IdBuilding = 2,
-                        City = "Kraków",
-                        Height = 133.3m,
-                        Street = "Odległa",
-                        StreetNumber = 12
+                        City = "Warszawa",
+                        Height = 40.2m,
+                        Street = "Afrodyty",
+                        StreetNumber = 2
                     },
                     new
                     {
                         IdBuilding = 3,
-                        City = "Gdańsk",
-                        Height = 12.5m,
-                        Street = "Uczniowska",
-                        StreetNumber = 44
+                        City = "Warszawa",
+                        Height = 60.3m,
+                        Street = "Afrodyty",
+                        StreetNumber = 3
                     },
                     new
                     {
                         IdBuilding = 4,
-                        City = "Kraków",
-                        Height = 18.7m,
-                        Street = "Popularna",
-                        StreetNumber = 55
+                        City = "Warszawa",
+                        Height = 75m,
+                        Street = "Afrodyty",
+                        StreetNumber = 4
                     },
                     new
                     {
                         IdBuilding = 5,
                         City = "Warszawa",
-                        Height = 19.2m,
+                        Height = 90.5m,
                         Street = "Afrodyty",
-                        StreetNumber = 262
+                        StreetNumber = 5
                     },
                     new
                     {
                         IdBuilding = 6,
-                        City = "Kraków",
-                        Height = 111.3m,
-                        Street = "Popularna",
-                        StreetNumber = 66
+                        City = "Warszawa",
+                        Height = 120m,
+                        Street = "Afrodyty",
+                        StreetNumber = 6
                     },
                     new
                     {
                         IdBuilding = 7,
-                        City = "Gdańsk",
-                        Height = 50.5m,
-                        Street = "Uczniowska",
-                        StreetNumber = 8
+                        City = "Warszawa",
+                        Height = 23.5m,
+                        Street = "Afrodyty",
+                        StreetNumber = 7
                     },
                     new
                     {
                         IdBuilding = 8,
-                        City = "Poznan",
-                        Height = 56.5m,
-                        Street = "Sobótki",
-                        StreetNumber = 9
+                        City = "Warszawa",
+                        Height = 30.8m,
+                        Street = "Afrodyty",
+                        StreetNumber = 8
                     },
                     new
                     {
                         IdBuilding = 9,
-                        City = "Poznan",
-                        Height = 93.5m,
-                        Street = "Sobótki",
-                        StreetNumber = 4
+                        City = "Warszawa",
+                        Height = 88.6m,
+                        Street = "Afrodyty",
+                        StreetNumber = 9
                     },
                     new
                     {
                         IdBuilding = 10,
                         City = "Warszawa",
-                        Height = 40.4m,
+                        Height = 132.6m,
+                        Street = "Afrodyty",
+                        StreetNumber = 10
+                    },
+                    new
+                    {
+                        IdBuilding = 11,
+                        City = "Warszawa",
+                        Height = 35.7m,
                         Street = "Potulicka",
-                        StreetNumber = 45
+                        StreetNumber = 1
+                    },
+                    new
+                    {
+                        IdBuilding = 12,
+                        City = "Warszawa",
+                        Height = 17.7m,
+                        Street = "Potulicka",
+                        StreetNumber = 2
+                    },
+                    new
+                    {
+                        IdBuilding = 13,
+                        City = "Warszawa",
+                        Height = 44.5m,
+                        Street = "Potulicka",
+                        StreetNumber = 3
+                    },
+                    new
+                    {
+                        IdBuilding = 14,
+                        City = "Warszawa",
+                        Height = 39.9m,
+                        Street = "Potulicka",
+                        StreetNumber = 4
+                    },
+                    new
+                    {
+                        IdBuilding = 15,
+                        City = "Warszawa",
+                        Height = 89.0m,
+                        Street = "Potulicka",
+                        StreetNumber = 5
+                    },
+                    new
+                    {
+                        IdBuilding = 16,
+                        City = "Kraków",
+                        Height = 133.3m,
+                        Street = "Odległa",
+                        StreetNumber = 1
+                    },
+                    new
+                    {
+                        IdBuilding = 17,
+                        City = "Kraków",
+                        Height = 166.3m,
+                        Street = "Odległa",
+                        StreetNumber = 2
+                    },
+                    new
+                    {
+                        IdBuilding = 18,
+                        City = "Kraków",
+                        Height = 45.0m,
+                        Street = "Odległa",
+                        StreetNumber = 3
+                    },
+                    new
+                    {
+                        IdBuilding = 19,
+                        City = "Kraków",
+                        Height = 44.2m,
+                        Street = "Odległa",
+                        StreetNumber = 4
+                    },
+                    new
+                    {
+                        IdBuilding = 20,
+                        City = "Kraków",
+                        Height = 12.0m,
+                        Street = "Uczniowska",
+                        StreetNumber = 1
+                    },
+                    new
+                    {
+                        IdBuilding = 21,
+                        City = "Kraków",
+                        Height = 15.0m,
+                        Street = "Uczniowska",
+                        StreetNumber = 2
+                    },
+                    new
+                    {
+                        IdBuilding = 22,
+                        City = "Kraków",
+                        Height = 15.0m,
+                        Street = "Uczniowska",
+                        StreetNumber = 3
+                    },
+                    new
+                    {
+                        IdBuilding = 23,
+                        City = "Kraków",
+                        Height = 18.7m,
+                        Street = "Popularna",
+                        StreetNumber = 1
+                    },
+                    new
+                    {
+                        IdBuilding = 24,
+                        City = "Kraków",
+                        Height = 18.7m,
+                        Street = "Popularna",
+                        StreetNumber = 2
+                    },
+                    new
+                    {
+                        IdBuilding = 25,
+                        City = "Kraków",
+                        Height = 18.7m,
+                        Street = "Popularna",
+                        StreetNumber = 3
+                    },
+                    new
+                    {
+                        IdBuilding = 26,
+                        City = "Gdańsk",
+                        Height = 50.5m,
+                        Street = "Portowa",
+                        StreetNumber = 1
+                    },
+                    new
+                    {
+                        IdBuilding = 27,
+                        City = "Gdańsk",
+                        Height = 50.5m,
+                        Street = "Portowa",
+                        StreetNumber = 2
+                    },
+                    new
+                    {
+                        IdBuilding = 28,
+                        City = "Gdańsk",
+                        Height = 50.5m,
+                        Street = "Portowa",
+                        StreetNumber = 3
+                    },
+                    new
+                    {
+                        IdBuilding = 29,
+                        City = "Gdańsk",
+                        Height = 59.5m,
+                        Street = "Portowa",
+                        StreetNumber = 4
+                    },
+                    new
+                    {
+                        IdBuilding = 30,
+                        City = "Gdańsk",
+                        Height = 52.2m,
+                        Street = "Portowa",
+                        StreetNumber = 5
+                    },
+                    new
+                    {
+                        IdBuilding = 31,
+                        City = "Gdańsk",
+                        Height = 54.5m,
+                        Street = "Portowa",
+                        StreetNumber = 6
+                    },
+                    new
+                    {
+                        IdBuilding = 32,
+                        City = "Gdańsk",
+                        Height = 50.1m,
+                        Street = "Portowa",
+                        StreetNumber = 7
+                    },
+                    new
+                    {
+                        IdBuilding = 33,
+                        City = "Poznan",
+                        Height = 22.5m,
+                        Street = "Sobótki",
+                        StreetNumber = 1
+                    },
+                    new
+                    {
+                        IdBuilding = 34,
+                        City = "Poznan",
+                        Height = 25.5m,
+                        Street = "Sobótki",
+                        StreetNumber = 2
+                    },
+                    new
+                    {
+                        IdBuilding = 35,
+                        City = "Poznan",
+                        Height = 27.5m,
+                        Street = "Sobótki",
+                        StreetNumber = 3
+                    },
+                    new
+                    {
+                        IdBuilding = 36,
+                        City = "Poznan",
+                        Height = 18.0m,
+                        Street = "Sobótki",
+                        StreetNumber = 4
+                    },
+                    new
+                    {
+                        IdBuilding = 37,
+                        City = "Poznan",
+                        Height = 22.5m,
+                        Street = "Sobótki",
+                        StreetNumber = 5
+                    },
+                    new
+                    {
+                        IdBuilding = 38,
+                        City = "Poznan",
+                        Height = 11.5m,
+                        Street = "Kolejowa",
+                        StreetNumber = 1
+                    },
+                    new
+                    {
+                        IdBuilding = 39,
+                        City = "Poznan",
+                        Height = 12.5m,
+                        Street = "Kolejowa",
+                        StreetNumber = 2
+                    },
+                    new
+                    {
+                        IdBuilding = 40,
+                        City = "Poznan",
+                        Height = 6.5m,
+                        Street = "Kolejowa",
+                        StreetNumber = 3
                     });
             });
 
-            modelBuilder.Entity("AdvertDatabaseCL.Entities.Campaign", b =>
+            modelBuilder.Entity("Advert.Database.Entities.Campaign", b =>
             {
                 b.Property<int>("IdCampaign")
                     .ValueGeneratedOnAdd()
@@ -194,7 +434,7 @@ namespace Advert.Database.Migrations
                 b.ToTable("Campaigns");
             });
 
-            modelBuilder.Entity("AdvertDatabaseCL.Entities.Client", b =>
+            modelBuilder.Entity("Advert.Database.Entities.Client", b =>
             {
                 b.Property<int>("IdClient")
                     .ValueGeneratedOnAdd()
@@ -256,30 +496,30 @@ namespace Advert.Database.Migrations
                 b.ToTable("Clients");
             });
 
-            modelBuilder.Entity("AdvertDatabaseCL.Configurations.Banner", b =>
+            modelBuilder.Entity("Advert.Database.Entities.Banner", b =>
             {
-                b.HasOne("AdvertDatabaseCL.Entities.Campaign", "Campaign")
+                b.HasOne("Advert.Database.Entities.Campaign", "Campaign")
                     .WithMany("Banners")
                     .HasForeignKey("IdCampaign")
                     .OnDelete(DeleteBehavior.NoAction)
                     .IsRequired();
             });
 
-            modelBuilder.Entity("AdvertDatabaseCL.Entities.Campaign", b =>
+            modelBuilder.Entity("Advert.Database.Entities.Campaign", b =>
             {
-                b.HasOne("AdvertDatabaseCL.Entities.Building", "FromBuilding")
+                b.HasOne("Advert.Database.Entities.Building", "FromBuilding")
                     .WithMany("CampaignsFrom")
                     .HasForeignKey("FromIdBuilding")
                     .OnDelete(DeleteBehavior.NoAction)
                     .IsRequired();
 
-                b.HasOne("AdvertDatabaseCL.Entities.Client", "Client")
+                b.HasOne("Advert.Database.Entities.Client", "Client")
                     .WithMany("Campaigns")
                     .HasForeignKey("IdClient")
                     .OnDelete(DeleteBehavior.NoAction)
                     .IsRequired();
 
-                b.HasOne("AdvertDatabaseCL.Entities.Building", "ToBuilding")
+                b.HasOne("Advert.Database.Entities.Building", "ToBuilding")
                     .WithMany("CampaignsTo")
                     .HasForeignKey("ToIdBuilding")
                     .OnDelete(DeleteBehavior.NoAction)
