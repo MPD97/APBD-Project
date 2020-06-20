@@ -7,27 +7,27 @@ namespace Advert.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateIndex(
-                name: "IX_Clients_Email",
-                table: "Clients",
-                column: "Email",
+                "IX_Clients_Email",
+                "Clients",
+                "Email",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Clients_Login",
-                table: "Clients",
-                column: "Login",
+                "IX_Clients_Login",
+                "Clients",
+                "Login",
                 unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(
-                name: "IX_Clients_Email",
-                table: "Clients");
+                "IX_Clients_Email",
+                "Clients");
 
             migrationBuilder.DropIndex(
-                name: "IX_Clients_Login",
-                table: "Clients");
+                "IX_Clients_Login",
+                "Clients");
         }
     }
 }

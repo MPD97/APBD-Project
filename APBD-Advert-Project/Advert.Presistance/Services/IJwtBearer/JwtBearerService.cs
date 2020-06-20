@@ -11,6 +11,7 @@ namespace Advert.Presistance.Services.IJwtBearer
     public class JwtBearerService : IJwtBearerService
     {
         private readonly JwtBearerConfig _jwtBearerConfig;
+
         public JwtBearerService(JwtBearerConfig jwtBearerConfig)
         {
             _jwtBearerConfig = jwtBearerConfig;
@@ -21,17 +22,17 @@ namespace Advert.Presistance.Services.IJwtBearer
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, model.Login),
-                new Claim(ClaimTypes.Name, model.FirstName +","+ model.LastName),
-                new Claim(ClaimTypes.Role, "default"),
+                new Claim(ClaimTypes.Name, model.FirstName + "," + model.LastName),
+                new Claim(ClaimTypes.Role, "default")
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtBearerConfig.Secret));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken
             (
-                issuer: "Advert",
-                audience: "Clients",
-                claims: claims,
+                "Advert",
+                "Clients",
+                claims,
                 expires: DateTime.UtcNow.AddMinutes(10),
                 signingCredentials: creds
             );

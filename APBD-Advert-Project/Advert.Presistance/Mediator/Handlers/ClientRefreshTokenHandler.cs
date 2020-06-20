@@ -1,12 +1,9 @@
-﻿using Advert.Database.DTOs.Responses;
-using Advert.Presistance.Mediator.Commands;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Advert.Database.DTOs.Responses;
+using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Services.IClientLogin;
+using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
@@ -18,7 +15,9 @@ namespace Advert.Presistance.Mediator.Handlers
         {
             _loginService = loginService;
         }
-        public async Task<JwtTokenResponseModel> Handle(ClientRefreshTokenCommand request, CancellationToken cancellationToken)
+
+        public async Task<JwtTokenResponseModel> Handle(ClientRefreshTokenCommand request,
+            CancellationToken cancellationToken)
         {
             var tokenResult = await _loginService.RefreshTokenAsync(request);
 

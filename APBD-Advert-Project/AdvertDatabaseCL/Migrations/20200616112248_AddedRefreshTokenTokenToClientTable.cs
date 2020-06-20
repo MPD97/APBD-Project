@@ -7,8 +7,8 @@ namespace Advert.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "RefreshToken",
-                table: "Clients",
+                "RefreshToken",
+                "Clients",
                 maxLength: 36,
                 nullable: true);
         }
@@ -16,8 +16,8 @@ namespace Advert.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "RefreshToken",
-                table: "Clients");
+                "RefreshToken",
+                "Clients");
         }
     }
 }

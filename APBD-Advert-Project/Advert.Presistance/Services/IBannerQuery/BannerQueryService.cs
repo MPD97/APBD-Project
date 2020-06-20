@@ -1,11 +1,8 @@
-﻿using Advert.Database.DTOs.Responses;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Advert.Database.Contexts;
 using Advert.Database.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Advert.Presistance.Services.IBannerQuery
 {

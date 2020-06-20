@@ -1,26 +1,21 @@
-﻿using Advert.Database.DTOs.Requests;
-using Advert.Database.DTOs.Responses;
-using Advert.Presistance.Services;
-using AutoMapper;
-using MediatR;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Advert.Database.DTOs.Responses;
 using Advert.Database.Entities;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Services.IClientRegister;
 using Advert.Presistance.Services.IClientRegister.Exceptions;
+using AutoMapper;
+using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
     public class ClientRegisterHandler : IRequestHandler<ClientRegisterCommand, ClientResponseModel>
     {
-        private readonly IClientRegisterService _registerService;
-        private readonly IMapper _mapper;
         private readonly ILogger<ClientRegisterHandler> _logger;
+        private readonly IMapper _mapper;
+        private readonly IClientRegisterService _registerService;
 
         public ClientRegisterHandler(IClientRegisterService registerService, IMapper mapper,
             ILogger<ClientRegisterHandler> logger)
@@ -29,9 +24,11 @@ namespace Advert.Presistance.Mediator.Handlers
             _mapper = mapper;
             _logger = logger;
         }
-        public async Task<ClientResponseModel> Handle(ClientRegisterCommand request, CancellationToken cancellationToken)
+
+        public async Task<ClientResponseModel> Handle(ClientRegisterCommand request,
+            CancellationToken cancellationToken)
         {
-            var client = _mapper.Map<Client>((ClientRegisterRequestModel)request);
+            var client = _mapper.Map<Client>(request);
             try
             {
                 client = await _registerService.CreateAsync(client, request.RepeatPassword);
@@ -41,6 +38,7 @@ namespace Advert.Presistance.Mediator.Handlers
                 _logger.LogError(ex.ToString());
                 return null;
             }
+
             return _mapper.Map<ClientResponseModel>(client);
         }
     }

@@ -7,15 +7,15 @@ namespace Advert.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Hash",
-                table: "Clients",
+                "Hash",
+                "Clients",
                 maxLength: 44,
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
-                name: "Salt",
-                table: "Clients",
+                "Salt",
+                "Clients",
                 maxLength: 24,
                 nullable: false,
                 defaultValue: "");
@@ -24,12 +24,12 @@ namespace Advert.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Hash",
-                table: "Clients");
+                "Hash",
+                "Clients");
 
             migrationBuilder.DropColumn(
-                name: "Salt",
-                table: "Clients");
+                "Salt",
+                "Clients");
         }
     }
 }

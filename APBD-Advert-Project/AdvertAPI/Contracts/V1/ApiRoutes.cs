@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Advert.API.Contracts.V1
+﻿namespace Advert.API.Contracts.V1
 {
     public static class ApiRoutes
     {
@@ -21,6 +16,7 @@ namespace Advert.API.Contracts.V1
 
             public const string Create = Base + "/Campaigns";
         }
+
         internal static class Clients
         {
             public const string GetAll = Base + "/Clients";

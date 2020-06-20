@@ -8,8 +8,9 @@ namespace Advert.Presistance.Services.IClientRegister
 {
     public class ClientRegisterService : IClientRegisterService
     {
-        private readonly IPasswordHasherService _passwordHasher;
         private readonly AdvertContext _context;
+        private readonly IPasswordHasherService _passwordHasher;
+
         public ClientRegisterService(IPasswordHasherService passwordHasher, AdvertContext context)
         {
             _passwordHasher = passwordHasher;
@@ -31,10 +32,8 @@ namespace Advert.Presistance.Services.IClientRegister
             // Start tracking
             _context.Add(client);
 
-            if ((await _context.SaveChangesAsync()) <= 0)
-            {
+            if (await _context.SaveChangesAsync() <= 0)
                 throw new CannotUpdateException("SaveChangesAsync returned less or equal than 0.");
-            }
 
             return client;
         }

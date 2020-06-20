@@ -7,88 +7,88 @@ namespace Advert.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Banners_Campaigns_CampaignIdCampaign",
-                table: "Banners");
+                "FK_Banners_Campaigns_CampaignIdCampaign",
+                "Banners");
 
             migrationBuilder.DropIndex(
-                name: "IX_Banners_CampaignIdCampaign",
-                table: "Banners");
+                "IX_Banners_CampaignIdCampaign",
+                "Banners");
 
             migrationBuilder.DropColumn(
-                name: "CampaignIdCampaign",
-                table: "Banners");
+                "CampaignIdCampaign",
+                "Banners");
 
             migrationBuilder.AlterColumn<decimal>(
-                name: "Price",
-                table: "Banners",
-                type: "decimal(6,2)",
+                "Price",
+                "Banners",
+                "decimal(6,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
                 oldType: "decimal(18,2)");
 
             migrationBuilder.AlterColumn<decimal>(
-                name: "Area",
-                table: "Banners",
-                type: "decimal(6,2)",
+                "Area",
+                "Banners",
+                "decimal(6,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
                 oldType: "decimal(18,2)");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Banners_IdCampaign",
-                table: "Banners",
-                column: "IdCampaign");
+                "IX_Banners_IdCampaign",
+                "Banners",
+                "IdCampaign");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Banners_Campaigns_IdCampaign",
-                table: "Banners",
-                column: "IdCampaign",
-                principalTable: "Campaigns",
+                "FK_Banners_Campaigns_IdCampaign",
+                "Banners",
+                "IdCampaign",
+                "Campaigns",
                 principalColumn: "IdCampaign");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Banners_Campaigns_IdCampaign",
-                table: "Banners");
+                "FK_Banners_Campaigns_IdCampaign",
+                "Banners");
 
             migrationBuilder.DropIndex(
-                name: "IX_Banners_IdCampaign",
-                table: "Banners");
+                "IX_Banners_IdCampaign",
+                "Banners");
 
             migrationBuilder.AlterColumn<decimal>(
-                name: "Price",
-                table: "Banners",
-                type: "decimal(18,2)",
+                "Price",
+                "Banners",
+                "decimal(18,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
                 oldType: "decimal(6,2)");
 
             migrationBuilder.AlterColumn<decimal>(
-                name: "Area",
-                table: "Banners",
-                type: "decimal(18,2)",
+                "Area",
+                "Banners",
+                "decimal(18,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
                 oldType: "decimal(6,2)");
 
             migrationBuilder.AddColumn<int>(
-                name: "CampaignIdCampaign",
-                table: "Banners",
-                type: "int",
+                "CampaignIdCampaign",
+                "Banners",
+                "int",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Banners_CampaignIdCampaign",
-                table: "Banners",
-                column: "CampaignIdCampaign");
+                "IX_Banners_CampaignIdCampaign",
+                "Banners",
+                "CampaignIdCampaign");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Banners_Campaigns_CampaignIdCampaign",
-                table: "Banners",
-                column: "CampaignIdCampaign",
-                principalTable: "Campaigns",
+                "FK_Banners_Campaigns_CampaignIdCampaign",
+                "Banners",
+                "CampaignIdCampaign",
+                "Campaigns",
                 principalColumn: "IdCampaign",
                 onDelete: ReferentialAction.Restrict);
         }

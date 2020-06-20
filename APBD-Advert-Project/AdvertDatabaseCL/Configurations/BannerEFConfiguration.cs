@@ -11,11 +11,11 @@ namespace Advert.Database.Configurations
             builder.HasKey(e => e.IdAdvertisment);
 
             builder.Property(e => e.Name)
-                .IsRequired(true);
+                .IsRequired();
 
             builder.Property(e => e.Price)
                 .HasColumnType("decimal(6,2)")
-                .IsRequired(true);
+                .IsRequired();
 
             builder.HasOne(e => e.Campaign).WithMany(c => c.Banners)
                 .HasForeignKey(e => e.IdCampaign)
@@ -23,7 +23,7 @@ namespace Advert.Database.Configurations
 
             builder.Property(e => e.Area)
                 .HasColumnType("decimal(6,2)")
-                .IsRequired(true);
+                .IsRequired();
         }
     }
 }

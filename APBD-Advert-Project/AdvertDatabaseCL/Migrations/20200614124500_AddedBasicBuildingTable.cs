@@ -7,8 +7,8 @@ namespace Advert.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Buildings",
-                columns: table => new
+                "Buildings",
+                table => new
                 {
                     IdBuilding = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -17,16 +17,13 @@ namespace Advert.Database.Migrations
                     City = table.Column<string>(nullable: true),
                     Height = table.Column<decimal>(nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Buildings", x => x.IdBuilding);
-                });
+                constraints: table => { table.PrimaryKey("PK_Buildings", x => x.IdBuilding); });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Buildings");
+                "Buildings");
         }
     }
 }

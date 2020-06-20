@@ -12,18 +12,18 @@ namespace Advert.Database.Configurations
 
             builder.Property(e => e.Street)
                 .HasMaxLength(100)
-                .IsRequired(true);
+                .IsRequired();
 
             builder.Property(e => e.StreetNumber)
-               .IsRequired(true);
+                .IsRequired();
 
             builder.Property(e => e.City)
                 .HasMaxLength(100)
-                .IsRequired(true);
+                .IsRequired();
 
             builder.Property(e => e.Height)
                 .HasColumnType("decimal(6,2)")
-                .IsRequired(true);
+                .IsRequired();
 
 
             builder.HasData(new Building
@@ -33,35 +33,35 @@ namespace Advert.Database.Configurations
                 City = "Warszawa",
                 Height = 150.6M,
                 StreetNumber = 11
-            },new Building
+            }, new Building
             {
                 IdBuilding = 2,
                 Street = "Odległa",
                 City = "Kraków",
                 Height = 133.3M,
                 StreetNumber = 12
-            },new Building
+            }, new Building
             {
                 IdBuilding = 3,
                 Street = "Uczniowska",
                 City = "Gdańsk",
                 Height = 12.5M,
                 StreetNumber = 44
-            },new Building
+            }, new Building
             {
                 IdBuilding = 4,
                 Street = "Popularna",
                 City = "Kraków",
                 Height = 18.7M,
                 StreetNumber = 55
-            },new Building
+            }, new Building
             {
                 IdBuilding = 5,
                 Street = "Afrodyty",
                 City = "Warszawa",
                 Height = 19.2M,
                 StreetNumber = 262
-            },new Building
+            }, new Building
             {
                 IdBuilding = 6,
                 Street = "Popularna",

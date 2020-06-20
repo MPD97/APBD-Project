@@ -1,8 +1,6 @@
-﻿using Advert.Database.DTOs.Responses;
+﻿using System.Collections.Generic;
+using Advert.Database.DTOs.Responses;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Advert.Presistance.Mediator.Queries
 {

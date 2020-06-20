@@ -7,8 +7,8 @@ namespace Advert.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Banners",
-                columns: table => new
+                "Banners",
+                table => new
                 {
                     IdAdvertisment = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -22,23 +22,23 @@ namespace Advert.Database.Migrations
                 {
                     table.PrimaryKey("PK_Banners", x => x.IdAdvertisment);
                     table.ForeignKey(
-                        name: "FK_Banners_Campaigns_CampaignIdCampaign",
-                        column: x => x.CampaignIdCampaign,
-                        principalTable: "Campaigns",
-                        principalColumn: "IdCampaign",
+                        "FK_Banners_Campaigns_CampaignIdCampaign",
+                        x => x.CampaignIdCampaign,
+                        "Campaigns",
+                        "IdCampaign",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Banners_CampaignIdCampaign",
-                table: "Banners",
-                column: "CampaignIdCampaign");
+                "IX_Banners_CampaignIdCampaign",
+                "Banners",
+                "CampaignIdCampaign");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Banners");
+                "Banners");
         }
     }
 }

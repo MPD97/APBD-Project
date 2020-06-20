@@ -7,8 +7,8 @@ namespace Advert.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Phone",
-                table: "Clients",
+                "Phone",
+                "Clients",
                 maxLength: 100,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -16,8 +16,8 @@ namespace Advert.Database.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "Login",
-                table: "Clients",
+                "Login",
+                "Clients",
                 maxLength: 100,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -25,8 +25,8 @@ namespace Advert.Database.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "LastName",
-                table: "Clients",
+                "LastName",
+                "Clients",
                 maxLength: 100,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -34,8 +34,8 @@ namespace Advert.Database.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "FirstName",
-                table: "Clients",
+                "FirstName",
+                "Clients",
                 maxLength: 100,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -43,8 +43,8 @@ namespace Advert.Database.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "Email",
-                table: "Clients",
+                "Email",
+                "Clients",
                 maxLength: 100,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -55,41 +55,41 @@ namespace Advert.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Phone",
-                table: "Clients",
-                type: "nvarchar(max)",
+                "Phone",
+                "Clients",
+                "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 100);
 
             migrationBuilder.AlterColumn<string>(
-                name: "Login",
-                table: "Clients",
-                type: "nvarchar(max)",
+                "Login",
+                "Clients",
+                "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 100);
 
             migrationBuilder.AlterColumn<string>(
-                name: "LastName",
-                table: "Clients",
-                type: "nvarchar(max)",
+                "LastName",
+                "Clients",
+                "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 100);
 
             migrationBuilder.AlterColumn<string>(
-                name: "FirstName",
-                table: "Clients",
-                type: "nvarchar(max)",
+                "FirstName",
+                "Clients",
+                "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 100);
 
             migrationBuilder.AlterColumn<string>(
-                name: "Email",
-                table: "Clients",
-                type: "nvarchar(max)",
+                "Email",
+                "Clients",
+                "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 100);

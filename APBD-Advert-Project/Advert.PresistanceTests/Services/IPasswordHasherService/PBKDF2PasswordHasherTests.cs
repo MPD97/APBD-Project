@@ -1,10 +1,9 @@
-﻿using Advert.Presistance.Services;
-using Advert.Presistance.Services.IPasswordHasher;
+﻿using Advert.Presistance.Services.IPasswordHasher;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Advert.PresistanceTests.Services.IPasswordHasherService
 {
-    [TestClass()]
+    [TestClass]
     public class Pbkdf2PasswordHasherTests
     {
         private readonly Presistance.Services.IPasswordHasher.IPasswordHasherService _passwordHasher;
@@ -14,114 +13,119 @@ namespace Advert.PresistanceTests.Services.IPasswordHasherService
             _passwordHasher = new Pbkdf2PasswordHasherService();
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void Validate_ShouldResultTrue_WhenValuesAreTheSame()
         {
-            string password = "abcDEF123!@#";
-            string salt = _passwordHasher.CreateSalt();
+            var password = "abcDEF123!@#";
+            var salt = _passwordHasher.CreateSalt();
 
-            string hash = _passwordHasher.Create(password, salt);
+            var hash = _passwordHasher.Create(password, salt);
 
-            bool result = _passwordHasher.Validate(password, salt, hash);
+            var result = _passwordHasher.Validate(password, salt, hash);
             Assert.AreEqual(true, result);
         }
-        [TestMethod()]
+
+        [TestMethod]
         public void Validate_ShouldResultFalse_WhenValuesAreDifferent()
         {
-            string password = "abcDEF123!@#";
-            string differentPassword = "AbcDEF123!@#";
+            var password = "abcDEF123!@#";
+            var differentPassword = "AbcDEF123!@#";
 
-            string salt = _passwordHasher.CreateSalt();
+            var salt = _passwordHasher.CreateSalt();
 
-            string hash = _passwordHasher.Create(password, salt);
+            var hash = _passwordHasher.Create(password, salt);
 
-            bool result = _passwordHasher.Validate(differentPassword, salt, hash);
+            var result = _passwordHasher.Validate(differentPassword, salt, hash);
             Assert.AreEqual(false, result);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void Create_ShouldResultTheSameHashes_WhenCreatingUsingSamePasswordAndSameSalt()
         {
-            string password = "abcDEF123!@#";
-            string salt = _passwordHasher.CreateSalt();
+            var password = "abcDEF123!@#";
+            var salt = _passwordHasher.CreateSalt();
 
-            string passwordOne = _passwordHasher.Create(password, salt);
-            string passwordTwo = _passwordHasher.Create(password, salt);
+            var passwordOne = _passwordHasher.Create(password, salt);
+            var passwordTwo = _passwordHasher.Create(password, salt);
             Assert.AreEqual(passwordOne, passwordTwo);
         }
-        [TestMethod()]
+
+        [TestMethod]
         public void Create_ShouldResultSameHashesLength_WhenUsingDiffrentValues()
         {
-            string passwordOne = "abcDEF123!@#";
-            string passwordTwo = "123qazXSW#$%";
-            string passwordThree = "123";
-            string passwordFour = "asdvxc3245543DSFvcbaasd";
-            string salt = _passwordHasher.CreateSalt();
+            var passwordOne = "abcDEF123!@#";
+            var passwordTwo = "123qazXSW#$%";
+            var passwordThree = "123";
+            var passwordFour = "asdvxc3245543DSFvcbaasd";
+            var salt = _passwordHasher.CreateSalt();
 
-            string resultPasswordOne = _passwordHasher.Create(passwordOne, salt);
-            string resultPasswordTwo = _passwordHasher.Create(passwordTwo, salt);
-            string resultPasswordThree = _passwordHasher.Create(passwordThree, salt);
-            string resultPasswordFour = _passwordHasher.Create(passwordFour, salt);
+            var resultPasswordOne = _passwordHasher.Create(passwordOne, salt);
+            var resultPasswordTwo = _passwordHasher.Create(passwordTwo, salt);
+            var resultPasswordThree = _passwordHasher.Create(passwordThree, salt);
+            var resultPasswordFour = _passwordHasher.Create(passwordFour, salt);
 
             Assert.AreEqual(resultPasswordOne.Length, resultPasswordTwo.Length);
             Assert.AreEqual(resultPasswordOne.Length, resultPasswordThree.Length);
             Assert.AreEqual(resultPasswordOne.Length, resultPasswordFour.Length);
         }
-        [TestMethod()]
+
+        [TestMethod]
         public void Create_ShouldResultSameHashesLength_WhenUsingDiffrentValuesAndSalts()
         {
-            string passwordOne = "abcDEF123!@#";
-            string passwordTwo = "123qazXSW#$%";
-            string passwordThree = "123";
-            string passwordFour = "asdvxc3245543DSFvcbaasd";
+            var passwordOne = "abcDEF123!@#";
+            var passwordTwo = "123qazXSW#$%";
+            var passwordThree = "123";
+            var passwordFour = "asdvxc3245543DSFvcbaasd";
 
-            string resultPasswordOne = _passwordHasher.Create(passwordOne, _passwordHasher.CreateSalt());
-            string resultPasswordTwo = _passwordHasher.Create(passwordTwo, _passwordHasher.CreateSalt());
-            string resultPasswordThree = _passwordHasher.Create(passwordThree, _passwordHasher.CreateSalt());
-            string resultPasswordFour = _passwordHasher.Create(passwordFour, _passwordHasher.CreateSalt());
+            var resultPasswordOne = _passwordHasher.Create(passwordOne, _passwordHasher.CreateSalt());
+            var resultPasswordTwo = _passwordHasher.Create(passwordTwo, _passwordHasher.CreateSalt());
+            var resultPasswordThree = _passwordHasher.Create(passwordThree, _passwordHasher.CreateSalt());
+            var resultPasswordFour = _passwordHasher.Create(passwordFour, _passwordHasher.CreateSalt());
 
             Assert.AreEqual(resultPasswordOne.Length, resultPasswordTwo.Length);
             Assert.AreEqual(resultPasswordOne.Length, resultPasswordThree.Length);
             Assert.AreEqual(resultPasswordOne.Length, resultPasswordFour.Length);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void Create_ShouldCreateDifferentHashes_WhenUsingDifferentSalts()
         {
-            string password = "abcDEF123!@#";
-            string saltOne = _passwordHasher.CreateSalt();
-            string saltTwo = _passwordHasher.CreateSalt();
+            var password = "abcDEF123!@#";
+            var saltOne = _passwordHasher.CreateSalt();
+            var saltTwo = _passwordHasher.CreateSalt();
 
-            string resultPasswordOne = _passwordHasher.Create(password, saltOne);
-            string resultPasswordTwo = _passwordHasher.Create(password, saltTwo);
+            var resultPasswordOne = _passwordHasher.Create(password, saltOne);
+            var resultPasswordTwo = _passwordHasher.Create(password, saltTwo);
             Assert.AreNotEqual(resultPasswordOne, resultPasswordTwo);
         }
-        [TestMethod()]
+
+        [TestMethod]
         public void Create_ShouldCreateDifferentHashes_WhenUsingDifferentValues()
         {
-            string passwordOne = "abcDEF123!@#";
-            string passwordTwo = "123qazXSW#$%";
+            var passwordOne = "abcDEF123!@#";
+            var passwordTwo = "123qazXSW#$%";
 
-            string salt = _passwordHasher.CreateSalt();
+            var salt = _passwordHasher.CreateSalt();
 
-            string resultPasswordOne = _passwordHasher.Create(passwordOne, salt);
-            string resultPasswordTwo = _passwordHasher.Create(passwordTwo, salt);
+            var resultPasswordOne = _passwordHasher.Create(passwordOne, salt);
+            var resultPasswordTwo = _passwordHasher.Create(passwordTwo, salt);
             Assert.AreNotEqual(resultPasswordOne, resultPasswordTwo);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void CreateSalt_ShouldCreateDIfferentSalts_WhenGeneratingSalt()
         {
-            string saltOne = _passwordHasher.CreateSalt();
-            string saltTwo = _passwordHasher.CreateSalt();
+            var saltOne = _passwordHasher.CreateSalt();
+            var saltTwo = _passwordHasher.CreateSalt();
 
             Assert.AreNotEqual(saltOne, saltTwo);
         }
-        [TestMethod()]
+
+        [TestMethod]
         public void CreateSalt_ShouldCreateTheSameSaltLength_WhenCreatingSalts()
         {
-            string saltOne = _passwordHasher.CreateSalt();
-            string saltTwo = _passwordHasher.CreateSalt();
+            var saltOne = _passwordHasher.CreateSalt();
+            var saltTwo = _passwordHasher.CreateSalt();
 
             Assert.AreEqual(saltOne.Length, saltTwo.Length);
         }

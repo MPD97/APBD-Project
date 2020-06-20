@@ -7,16 +7,16 @@ using Moq;
 
 namespace Advert.PresistanceTests.Services.IRegisterClientService
 {
-    [TestClass()]
+    [TestClass]
     public class RegisterClientServiceTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void Create_ShouldReturnClientWithId_WhenEverythingIsOk()
         {
             // Counters to verify call order
-            int callCount = 0;
-            int addUser = 0;
-            int saveChanges = 0;
+            var callCount = 0;
+            var addUser = 0;
+            var saveChanges = 0;
 
             // use Moq to create a mock IDbContext.
             var mockContext = new Mock<AdvertContext>();

@@ -1,5 +1,4 @@
-﻿using Advert.Presistance.Services;
-using Advert.Presistance.Services.ICampaignQuery;
+﻿using Advert.Presistance.Services.ICampaignQuery;
 using Advert.Presistance.Services.IClientLogin;
 using Advert.Presistance.Services.IClientQuery;
 using Advert.Presistance.Services.IClientRegister;

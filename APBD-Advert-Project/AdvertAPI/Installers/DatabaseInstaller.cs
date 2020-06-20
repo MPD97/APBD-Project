@@ -10,7 +10,7 @@ namespace Advert.API.Installers
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AdvertContext>(config =>
-                config.UseSqlServer(configuration.GetConnectionString("default")));         
+                config.UseSqlServer(configuration.GetConnectionString("default")));
         }
     }
 }

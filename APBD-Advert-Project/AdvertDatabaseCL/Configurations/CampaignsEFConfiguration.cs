@@ -11,14 +11,14 @@ namespace Advert.Database.Configurations
             builder.HasKey(e => e.IdCampaign);
 
             builder.Property(e => e.StartDate)
-                .IsRequired(true);
+                .IsRequired();
 
             builder.Property(e => e.EndDate)
-                .IsRequired(true);
+                .IsRequired();
 
             builder.Property(e => e.PricePerSquareMeter)
                 .HasColumnType("decimal(6,2)")
-                .IsRequired(true);
+                .IsRequired();
 
             builder.HasOne(e => e.Client).WithMany(c => c.Campaigns)
                 .HasForeignKey(e => e.IdClient)

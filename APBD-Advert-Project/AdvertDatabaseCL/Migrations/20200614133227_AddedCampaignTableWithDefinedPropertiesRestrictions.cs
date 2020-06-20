@@ -8,15 +8,15 @@ namespace Advert.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Campaigns",
-                columns: table => new
+                "Campaigns",
+                table => new
                 {
                     IdCampaign = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdClient = table.Column<int>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    PricePerSquareMeter = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    PricePerSquareMeter = table.Column<decimal>("decimal(6,2)", nullable: false),
                     FromIdBuilding = table.Column<int>(nullable: false),
                     ToIdBuilding = table.Column<int>(nullable: false)
                 },
@@ -24,42 +24,42 @@ namespace Advert.Database.Migrations
                 {
                     table.PrimaryKey("PK_Campaigns", x => x.IdCampaign);
                     table.ForeignKey(
-                        name: "FK_Campaigns_Buildings_FromIdBuilding",
-                        column: x => x.FromIdBuilding,
-                        principalTable: "Buildings",
-                        principalColumn: "IdBuilding");
+                        "FK_Campaigns_Buildings_FromIdBuilding",
+                        x => x.FromIdBuilding,
+                        "Buildings",
+                        "IdBuilding");
                     table.ForeignKey(
-                        name: "FK_Campaigns_Clients_IdClient",
-                        column: x => x.IdClient,
-                        principalTable: "Clients",
-                        principalColumn: "IdClient");
+                        "FK_Campaigns_Clients_IdClient",
+                        x => x.IdClient,
+                        "Clients",
+                        "IdClient");
                     table.ForeignKey(
-                        name: "FK_Campaigns_Buildings_ToIdBuilding",
-                        column: x => x.ToIdBuilding,
-                        principalTable: "Buildings",
-                        principalColumn: "IdBuilding");
+                        "FK_Campaigns_Buildings_ToIdBuilding",
+                        x => x.ToIdBuilding,
+                        "Buildings",
+                        "IdBuilding");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Campaigns_FromIdBuilding",
-                table: "Campaigns",
-                column: "FromIdBuilding");
+                "IX_Campaigns_FromIdBuilding",
+                "Campaigns",
+                "FromIdBuilding");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Campaigns_IdClient",
-                table: "Campaigns",
-                column: "IdClient");
+                "IX_Campaigns_IdClient",
+                "Campaigns",
+                "IdClient");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Campaigns_ToIdBuilding",
-                table: "Campaigns",
-                column: "ToIdBuilding");
+                "IX_Campaigns_ToIdBuilding",
+                "Campaigns",
+                "ToIdBuilding");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Campaigns");
+                "Campaigns");
         }
     }
 }

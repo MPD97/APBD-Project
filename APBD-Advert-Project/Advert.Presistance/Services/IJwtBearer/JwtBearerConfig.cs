@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Advert.Presistance.Services.IJwtBearer
+﻿namespace Advert.Presistance.Services.IJwtBearer
 {
     public class JwtBearerConfig
     {

@@ -7,8 +7,8 @@ namespace Advert.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Token",
-                table: "Clients",
+                "Token",
+                "Clients",
                 maxLength: 512,
                 nullable: true,
                 oldClrType: typeof(string),
@@ -20,9 +20,9 @@ namespace Advert.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Token",
-                table: "Clients",
-                type: "nvarchar(256)",
+                "Token",
+                "Clients",
+                "nvarchar(256)",
                 maxLength: 256,
                 nullable: true,
                 oldClrType: typeof(string),

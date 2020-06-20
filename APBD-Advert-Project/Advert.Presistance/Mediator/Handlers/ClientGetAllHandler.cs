@@ -1,15 +1,13 @@
-﻿using Advert.Database.DTOs.Responses;
-using Advert.Presistance.Mediator.Queries;
-using AutoMapper;
-using MediatR;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Advert.Database.DTOs.Responses;
 using Advert.Database.Entities;
+using Advert.Presistance.Mediator.Queries;
 using Advert.Presistance.Services.IClientQuery;
+using AutoMapper;
+using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
@@ -23,15 +21,14 @@ namespace Advert.Presistance.Mediator.Handlers
             _clientQueryService = clientQueryService;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ClientResponseModel>> Handle(ClientGetAllQuery request, CancellationToken cancellationToken)
+
+        public async Task<IEnumerable<ClientResponseModel>> Handle(ClientGetAllQuery request,
+            CancellationToken cancellationToken)
         {
             var client = await _clientQueryService.GetAllAsync();
-            if (client == null)
-            {
-                return null;
-            }
-            
-            return client.Select(_mapper.Map<Client, ClientResponseModel>); 
+            if (client == null) return null;
+
+            return client.Select(_mapper.Map<Client, ClientResponseModel>);
         }
     }
 }

@@ -23,15 +23,12 @@ namespace Advert.API.Controllers.API.V1
         }
 
         [HttpGet(ApiRoutes.Campaigns.Get)]
-        public async Task<IActionResult> Get(int id) 
+        public async Task<IActionResult> Get(int id)
         {
             var query = new CampaignGetQuery(id);
 
             var result = await _mediator.Send(query);
-            if (result == null)
-            {
-                return NotFound();
-            }
+            if (result == null) return NotFound();
 
             return Ok(result);
         }
@@ -42,20 +39,17 @@ namespace Advert.API.Controllers.API.V1
             var query = new CampaignGetAllQuery();
 
             var result = await _mediator.Send(query);
-            if (result == null)
-            {
-                return NotFound();
-            }
+            if (result == null) return NotFound();
 
             return Ok(result);
         }
+
         [HttpGet(ApiRoutes.Campaigns.Create)]
         public async Task<IActionResult> Create(CampaignCreateCommand command)
         {
             if (!ModelState.IsValid)
-            {
-                return BadRequest(new ErrorResponseModel { Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage)) });
-            }
+                return BadRequest(new ErrorResponseModel
+                    {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
             var result = await _mediator.Send(command);
 
