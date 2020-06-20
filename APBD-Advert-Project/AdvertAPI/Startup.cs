@@ -9,6 +9,13 @@ using Microsoft.Extensions.Hosting;
 
 namespace Advert.API
 {
+    // TODO: Add filters to requests
+    // TODO: Add fluent validation
+    // TODO: Add fluent validation using Mediator
+    // TODO: Add clean code logging
+    // TODO: Add clean code performance
+    // TODO: Add Polly
+    // TODO: Add caching 
     public class Startup
     {
         public Startup(IConfiguration configuration)

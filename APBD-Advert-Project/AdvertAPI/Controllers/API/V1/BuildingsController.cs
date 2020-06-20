@@ -26,5 +26,16 @@ namespace Advert.API.Controllers.API.V1
 
             return Ok(result);
         }
+
+        [HttpGet(ApiRoutes.Buildings.GetAll)]
+        public async Task<IActionResult> GetAll()
+        {
+            var query = new BuildingGetAllQuery();
+
+            var result = await _mediator.Send(query);
+            if (result == null) return NotFound();
+
+            return Ok(result);
+        }
     }
 }
