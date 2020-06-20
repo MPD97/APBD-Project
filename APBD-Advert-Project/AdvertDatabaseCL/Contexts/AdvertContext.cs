@@ -1,12 +1,9 @@
-﻿using AdvertDatabaseCL.Configurations;
-using AdvertDatabaseCL.Entities;
+﻿using System.Diagnostics.CodeAnalysis;
+using Advert.Database.Configurations;
+using Advert.Database.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
 
-namespace AdvertDatabaseCL.Contexts
+namespace Advert.Database.Contexts
 {
     public class AdvertContext : DbContext
     {
@@ -16,7 +13,7 @@ namespace AdvertDatabaseCL.Contexts
         public DbSet<Banner> Banners { get; set; }
 
 
-        public AdvertContext([NotNullAttribute] DbContextOptions options) : base(options)
+        public AdvertContext([NotNull] DbContextOptions options) : base(options)
         {
         }
 

@@ -1,12 +1,12 @@
 ﻿using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Mediator.Commands;
-using Advert.Presistance.Services.ILoginClientService;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Advert.Presistance.Services.IClientLogin;
 
 namespace Advert.Presistance.Mediator.Handlers
 {

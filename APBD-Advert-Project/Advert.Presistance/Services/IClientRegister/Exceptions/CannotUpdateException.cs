@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Advert.Presistance.Services
+namespace Advert.Presistance.Services.IClientRegister.Exceptions
 {
     [Serializable]
     public class CannotUpdateException : Exception

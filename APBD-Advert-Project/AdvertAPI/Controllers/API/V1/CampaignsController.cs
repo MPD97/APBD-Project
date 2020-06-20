@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
@@ -8,11 +7,9 @@ using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Mediator.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Advert.API.Controllers.API
+namespace Advert.API.Controllers.API.V1
 {
     [ApiController]
     [Authorize]

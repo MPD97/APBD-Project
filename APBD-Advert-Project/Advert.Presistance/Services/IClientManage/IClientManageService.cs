@@ -1,9 +1,7 @@
-﻿using Advert.Presistance.Services.IManageService;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Advert.Presistance.Services.IClientQuery;
+using Advert.Presistance.Services.IClientRegister;
 
-namespace Advert.Presistance.Services.IClientManageService
+namespace Advert.Presistance.Services.IClientManage
 {
     public interface IClientManageService :IClientRegisterService, IClientQueryService
     {

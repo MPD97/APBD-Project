@@ -1,17 +1,17 @@
-﻿using AdvertDatabaseCL.Contexts;
-using AdvertDatabaseCL.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Advert.Database.Contexts;
+using Advert.Database.Entities;
 
 namespace Advert.Presistance.Services.IBuildingQuery
 {
     public class BuildingQueryService : IBuildingQueryService
     {
-        protected internal readonly AdvertContext _context;
+        private readonly AdvertContext _context;
 
         public BuildingQueryService(AdvertContext context)
         {

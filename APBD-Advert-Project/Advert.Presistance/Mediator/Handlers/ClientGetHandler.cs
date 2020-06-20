@@ -1,6 +1,5 @@
 ﻿using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Mediator.Queries;
-using Advert.Presistance.Services.IManageService;
 using AutoMapper;
 using MediatR;
 using System;
@@ -8,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Advert.Presistance.Services.IClientQuery;
 
 namespace Advert.Presistance.Mediator.Handlers
 {

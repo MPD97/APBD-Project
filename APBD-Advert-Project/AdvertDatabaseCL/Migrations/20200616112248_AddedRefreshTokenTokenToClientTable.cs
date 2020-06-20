@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AdvertDatabaseCL.Migrations
+namespace Advert.Database.Migrations
 {
     public partial class AddedRefreshTokenTokenToClientTable : Migration
     {

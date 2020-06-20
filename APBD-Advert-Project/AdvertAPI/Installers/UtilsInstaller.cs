@@ -6,8 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Advert.API.Installers
 {
@@ -16,7 +14,7 @@ namespace Advert.API.Installers
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddSingleton<IMapper>(s => new MapperConfiguration(c =>
+            services.AddSingleton(s => new MapperConfiguration(c =>
             {
                 c.AddProfile<ClientProfile>();
                 c.AddProfile<CampaignProfile>();
@@ -27,7 +25,7 @@ namespace Advert.API.Installers
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Advert.API", Version = "v1" });
 
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the bearer scheme",
                     Name = "Authorization",

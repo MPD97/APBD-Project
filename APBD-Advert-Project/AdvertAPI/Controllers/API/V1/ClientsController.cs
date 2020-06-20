@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
 using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Mediator.Queries;
-using Advert.Presistance.Services;
-using Advert.Presistance.Services.ILoginClientService;
-using Advert.Presistance.Services.IManageService;
-using AdvertDatabaseCL.Entities;
-using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace Advert.API.Controllers.API
+namespace Advert.API.Controllers.API.V1
 {
     [ApiController]
     public class ClientsController : ControllerBase

@@ -1,4 +1,4 @@
-﻿using AdvertDatabaseCL.Contexts;
+﻿using Advert.Database.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

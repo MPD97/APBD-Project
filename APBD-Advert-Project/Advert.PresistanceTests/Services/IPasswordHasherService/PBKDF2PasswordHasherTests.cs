@@ -1,19 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Advert.Presistance.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Advert.Presistance.Services;
+using Advert.Presistance.Services.IPasswordHasher;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Advert.Presistance.Services.Tests
+namespace Advert.PresistanceTests.Services.IPasswordHasherService
 {
     [TestClass()]
-    public class PBKDF2PasswordHasherTests
+    public class Pbkdf2PasswordHasherTests
     {
-        private readonly IPasswordHasherService _passwordHasher;
+        private readonly Presistance.Services.IPasswordHasher.IPasswordHasherService _passwordHasher;
 
-        public PBKDF2PasswordHasherTests()
+        public Pbkdf2PasswordHasherTests()
         {
-            _passwordHasher = new PBKDF2PasswordHasherService();
+            _passwordHasher = new Pbkdf2PasswordHasherService();
         }
 
         [TestMethod()]

@@ -1,31 +1,57 @@
-﻿using Advert.Presistance.Services.IBuildingQuery;
-using Advert.Presistance.Services.ICampaignService;
-using Advert.Presistance.Services.IManageService;
-using AdvertDatabaseCL.Entities;
+﻿using Advert.Database.DTOs.Requests;
+using Advert.Presistance.Services.IBuildingQuery;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Advert.Database.DTOs.Responses;
+using Advert.Database.Entities;
+using Advert.Presistance.Services.IClientQuery;
 
 namespace Advert.Presistance.Services.ICampaignCreate
 {
     public class CampaignCreateService : ICampaignCreateService
     {
         private readonly IBuildingQueryService _buildingQueryService;
-        private readonly ICampaignQueryService _campaignQueryService;
         private readonly IClientQueryService _clientQueryService;
 
-        public CampaignCreateService(IBuildingQueryService buildingQueryService, ICampaignQueryService campaignQueryService,
-            IClientQueryService clientQueryService)
+        private readonly IMapper _mapper;
+
+        public CampaignCreateService(IBuildingQueryService buildingQueryService, IMapper mapper)
         {
             _buildingQueryService = buildingQueryService;
-            _campaignQueryService = campaignQueryService;
-            _clientQueryService = clientQueryService;
+            _mapper = mapper;
         }
 
-        public Task<Campaign> CreateAsync()
+        public async Task<Campaign> CreateAsync(CampaignCreateRequestModel model, CampaignCreateResponseModel.Banner[] banner)
         {
-            throw new NotImplementedException();
+            if (banner.Length != 2)
+            {
+                return null;
+            }
+
+            var campaign = _mapper.Map<Campaign>(model);
+
+            var client = await _clientQueryService.GetAsync(model.ClientId);
+            if (client == null)
+            {
+                return null;
+            }
+
+            var fromBuilding = await _buildingQueryService.GetAsync(model.FromIdBuilding);
+            if (fromBuilding == null)
+            {
+                return null;
+            }
+
+            var toBuilding = await _buildingQueryService.GetAsync(model.ToIdBuilidng);
+            if (toBuilding == null)
+            {
+                return null;
+            }
+
+            throw new NotImplementedException();           
         }
     }
 }

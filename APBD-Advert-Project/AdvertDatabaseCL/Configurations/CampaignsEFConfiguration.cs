@@ -1,11 +1,8 @@
-﻿using AdvertDatabaseCL.Entities;
+﻿using Advert.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AdvertDatabaseCL.Configurations
+namespace Advert.Database.Configurations
 {
     public class CampaignsEFConfiguration : IEntityTypeConfiguration<Campaign>
     {

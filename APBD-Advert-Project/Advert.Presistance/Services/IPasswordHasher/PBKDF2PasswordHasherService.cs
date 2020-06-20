@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
-namespace Advert.Presistance.Services
+namespace Advert.Presistance.Services.IPasswordHasher
 {
-    public class PBKDF2PasswordHasherService : IPasswordHasherService
+    public class Pbkdf2PasswordHasherService : IPasswordHasherService
     {
         public string Create(string value, string salt)
         {

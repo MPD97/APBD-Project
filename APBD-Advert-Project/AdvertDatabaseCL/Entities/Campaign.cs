@@ -1,9 +1,7 @@
-﻿using AdvertDatabaseCL.Configurations;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace AdvertDatabaseCL.Entities
+namespace Advert.Database.Entities
 {
     public class Campaign
     {

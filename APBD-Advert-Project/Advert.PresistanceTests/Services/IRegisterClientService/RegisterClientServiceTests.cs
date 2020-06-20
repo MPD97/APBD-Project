@@ -1,13 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Advert.Presistance.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using AdvertDatabaseCL.Contexts;
+﻿using Advert.Database.Contexts;
+using Advert.Database.Entities;
+using Advert.Presistance.Services.IClientRegister;
+using Advert.Presistance.Services.IPasswordHasher;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using AdvertDatabaseCL.Entities;
 
-namespace Advert.Presistance.Services.Tests
+namespace Advert.PresistanceTests.Services.IRegisterClientService
 {
     [TestClass()]
     public class RegisterClientServiceTests
@@ -28,7 +26,7 @@ namespace Advert.Presistance.Services.Tests
             mockContext.Setup(x => x.SaveChanges()).Callback(() => saveChanges = callCount++);
 
             // Create the command, providing it the mocked IDbContext and execute it
-            var command = new ClientRegisterService(new PBKDF2PasswordHasherService(), mockContext.Object);
+            var command = new ClientRegisterService(new Pbkdf2PasswordHasherService(), mockContext.Object);
             command.CreateAsync(new Client(), "abc");
 
             // Check that each method was only called once.

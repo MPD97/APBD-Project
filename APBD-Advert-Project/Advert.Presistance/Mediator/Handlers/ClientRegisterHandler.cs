@@ -1,8 +1,6 @@
 ﻿using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Services;
-using Advert.Presistance.Services.IManageService;
-using AdvertDatabaseCL.Entities;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -11,6 +9,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Advert.Database.Entities;
+using Advert.Presistance.Mediator.Commands;
+using Advert.Presistance.Services.IClientRegister;
+using Advert.Presistance.Services.IClientRegister.Exceptions;
 
 namespace Advert.Presistance.Mediator.Handlers
 {

@@ -1,20 +1,18 @@
-﻿using Advert.Database.DTOs.Requests;
+﻿using System.Threading.Tasks;
+using Advert.Database.Contexts;
+using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
-using Advert.Presistance.Services.IJwtBarerService;
-using AdvertDatabaseCL.Contexts;
-using AdvertDatabaseCL.Entities;
+using Advert.Database.Entities;
+using Advert.Presistance.Services.IJwtBearer;
+using Advert.Presistance.Services.IPasswordHasher;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Advert.Presistance.Services.ILoginClientService
+namespace Advert.Presistance.Services.IClientLogin
 {
     public class ClientLoginService : IClientLoginService
     {
         private readonly IPasswordHasherService _passwordHasher;
-        protected internal readonly AdvertContext _context;
+        private readonly AdvertContext _context;
         private readonly IJwtBearerService _jwtBearer;
 
         public ClientLoginService(IPasswordHasherService passwordHasher, AdvertContext context, IJwtBearerService jwtBearer)

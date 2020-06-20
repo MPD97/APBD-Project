@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace AdvertDatabaseCL.Entities
+namespace Advert.Database.Entities
 {
     public class Building
     {

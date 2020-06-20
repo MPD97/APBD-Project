@@ -1,11 +1,7 @@
-﻿
-using AdvertDatabaseCL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Advert.Database.Entities;
 
-namespace Advert.Presistance.Services
+namespace Advert.Presistance.Services.IClientRegister
 {
     public interface IClientRegisterService
     {

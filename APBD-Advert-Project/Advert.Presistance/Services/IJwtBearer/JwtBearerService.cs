@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Advert.Database.DTOs.Responses;
-using Advert.Presistance.Services.IJwtBarerService;
-using Advert.Presistance.Services.IJwtBearer;
-using AdvertDatabaseCL.Entities;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Configuration;
+using Advert.Database.Entities;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Advert.Presistance.Services
+namespace Advert.Presistance.Services.IJwtBearer
 {
     public class JwtBearerService : IJwtBearerService
     {
