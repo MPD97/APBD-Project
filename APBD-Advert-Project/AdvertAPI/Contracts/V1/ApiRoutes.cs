@@ -29,5 +29,12 @@
 
             public const string Refresh = Base + "/Clients/refresh";
         }
+
+        internal static class Buildings
+        {
+            public const string GetAll = Base + "/Buildings";
+
+            public const string Get = Base + "/Buildings/{id}";
+        }
     }
 }

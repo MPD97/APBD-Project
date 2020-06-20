@@ -1,4 +1,5 @@
-﻿using Advert.Presistance.Services.ICampaignQuery;
+﻿using Advert.Presistance.Services.IBuildingQuery;
+using Advert.Presistance.Services.ICampaignQuery;
 using Advert.Presistance.Services.IClientLogin;
 using Advert.Presistance.Services.IClientQuery;
 using Advert.Presistance.Services.IClientRegister;
@@ -19,6 +20,7 @@ namespace Advert.API.Installers
             services.AddScoped<IClientRegisterService, ClientRegisterService>();
             services.AddScoped<IClientQueryService, ClientQueryService>();
             services.AddScoped<ICampaignQueryService, CampaignQueryService>();
+            services.AddScoped<IBuildingQueryService, BuildingQueryService>();
         }
     }
 }

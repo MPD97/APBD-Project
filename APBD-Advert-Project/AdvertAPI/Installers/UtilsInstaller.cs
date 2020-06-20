@@ -17,6 +17,7 @@ namespace Advert.API.Installers
                 {
                     c.AddProfile<ClientProfile>();
                     c.AddProfile<CampaignProfile>();
+                    c.AddProfile<BuildingProfile>();
                 })
                 .CreateMapper());
 
