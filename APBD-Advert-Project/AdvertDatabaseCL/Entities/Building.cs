@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace AdvertDatabaseCL.Entities
+namespace Advert.Database.Entities
 {
     public class Building
     {
@@ -11,7 +9,6 @@ namespace AdvertDatabaseCL.Entities
         public int StreetNumber { get; set; }
         public string City { get; set; }
         public decimal Height { get; set; }
-
         public virtual ICollection<Campaign> CampaignsFrom { get; set; }
         public virtual ICollection<Campaign> CampaignsTo { get; set; }
     }

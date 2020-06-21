@@ -1,9 +1,4 @@
-﻿using AdvertDatabaseCL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AdvertDatabaseCL.Configurations
+﻿namespace Advert.Database.Entities
 {
     public class Banner
     {

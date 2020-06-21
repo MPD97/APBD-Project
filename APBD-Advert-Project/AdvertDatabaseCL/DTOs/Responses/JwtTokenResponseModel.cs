@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Advert.Database.DTOs.Responses
+﻿namespace Advert.Database.DTOs.Responses
 {
     public class JwtTokenResponseModel
     {

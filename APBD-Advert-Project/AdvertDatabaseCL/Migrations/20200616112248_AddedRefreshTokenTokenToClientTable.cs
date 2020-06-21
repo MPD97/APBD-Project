@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AdvertDatabaseCL.Migrations
+namespace Advert.Database.Migrations
 {
     public partial class AddedRefreshTokenTokenToClientTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "RefreshToken",
-                table: "Clients",
+                "RefreshToken",
+                "Clients",
                 maxLength: 36,
                 nullable: true);
         }
@@ -16,8 +16,8 @@ namespace AdvertDatabaseCL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "RefreshToken",
-                table: "Clients");
+                "RefreshToken",
+                "Clients");
         }
     }
 }

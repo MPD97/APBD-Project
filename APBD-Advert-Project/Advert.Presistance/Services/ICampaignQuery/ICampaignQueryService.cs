@@ -1,10 +1,8 @@
-﻿using AdvertDatabaseCL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Advert.Database.Entities;
 
-namespace Advert.Presistance.Services.ICampaignService
+namespace Advert.Presistance.Services.ICampaignQuery
 {
     public interface ICampaignQueryService
     {

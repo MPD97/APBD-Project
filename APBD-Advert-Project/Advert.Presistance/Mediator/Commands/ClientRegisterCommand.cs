@@ -1,14 +1,10 @@
-﻿using Advert.Database.DTOs.Responses;
+﻿using Advert.Database.DTOs.Requests;
+using Advert.Database.DTOs.Responses;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace Advert.Database.DTOs.Requests
+namespace Advert.Presistance.Mediator.Commands
 {
-    public class ClientRegisterCommand: ClientRegisterRequestModel, IRequest<ClientResponseModel>
+    public class ClientRegisterCommand : ClientRegisterRequestModel, IRequest<ClientResponseModel>
     {
-
     }
 }

@@ -1,19 +1,16 @@
-﻿using Advert.Database.DTOs.Requests;
-using Advert.Database.DTOs.Responses;
-using AdvertDatabaseCL.Contexts;
-using AdvertDatabaseCL.Entities;
-using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Advert.Database.Contexts;
+using Advert.Database.Entities;
+using Advert.Presistance.Services.IClientRegister.Exceptions;
+using Advert.Presistance.Services.IPasswordHasher;
 
-namespace Advert.Presistance.Services
+namespace Advert.Presistance.Services.IClientRegister
 {
     public class ClientRegisterService : IClientRegisterService
     {
+        private readonly AdvertContext _context;
         private readonly IPasswordHasherService _passwordHasher;
-        protected internal readonly AdvertContext _context;
+
         public ClientRegisterService(IPasswordHasherService passwordHasher, AdvertContext context)
         {
             _passwordHasher = passwordHasher;
@@ -35,10 +32,8 @@ namespace Advert.Presistance.Services
             // Start tracking
             _context.Add(client);
 
-            if ((await _context.SaveChangesAsync()) <= 0)
-            {
+            if (await _context.SaveChangesAsync() <= 0)
                 throw new CannotUpdateException("SaveChangesAsync returned less or equal than 0.");
-            }
 
             return client;
         }

@@ -1,23 +1,22 @@
-﻿using Advert.Database.DTOs.Requests;
+﻿using System.Threading.Tasks;
+using Advert.Database.Contexts;
+using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
-using Advert.Presistance.Services.IJwtBarerService;
-using AdvertDatabaseCL.Contexts;
-using AdvertDatabaseCL.Entities;
+using Advert.Database.Entities;
+using Advert.Presistance.Services.IJwtBearer;
+using Advert.Presistance.Services.IPasswordHasher;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Advert.Presistance.Services.ILoginClientService
+namespace Advert.Presistance.Services.IClientLogin
 {
     public class ClientLoginService : IClientLoginService
     {
-        private readonly IPasswordHasherService _passwordHasher;
-        protected internal readonly AdvertContext _context;
+        private readonly AdvertContext _context;
         private readonly IJwtBearerService _jwtBearer;
+        private readonly IPasswordHasherService _passwordHasher;
 
-        public ClientLoginService(IPasswordHasherService passwordHasher, AdvertContext context, IJwtBearerService jwtBearer)
+        public ClientLoginService(IPasswordHasherService passwordHasher, AdvertContext context,
+            IJwtBearerService jwtBearer)
         {
             _passwordHasher = passwordHasher;
             _context = context;
@@ -27,16 +26,20 @@ namespace Advert.Presistance.Services.ILoginClientService
         public async Task<JwtTokenResponseModel> LoginAsync(ClientLoginRequestModel model)
         {
             var client = await _context.Clients.FirstOrDefaultAsync(c => c.Login == model.Login);
-            if (client == null)
-            {
-                return null;
-            }
+            if (client == null) return null;
 
             var loginResult = _passwordHasher.Validate(model.Password, client.Salt, client.Hash);
-            if (!loginResult)
-            {
-                return null;
-            }
+            if (!loginResult) return null;
+
+            return await GenerateAndSaveTokenAsync(client);
+        }
+
+        public async Task<JwtTokenResponseModel> RefreshTokenAsync(ClientRefreshTokenModel model)
+        {
+            var client =
+                await _context.Clients.FirstOrDefaultAsync(c =>
+                    c.RefreshToken == model.RefreshToken && c.Token == model.Token);
+            if (client == null) return null;
 
             return await GenerateAndSaveTokenAsync(client);
         }
@@ -48,23 +51,9 @@ namespace Advert.Presistance.Services.ILoginClientService
             client.Token = tokenResult.Token;
 
             _context.Entry(client).State = EntityState.Modified;
-            if ((await _context.SaveChangesAsync()) <= 0)
-            {
-                return null;
-            }
+            if (await _context.SaveChangesAsync() <= 0) return null;
 
             return tokenResult;
-        }
-
-        public async Task<JwtTokenResponseModel> RefreshTokenAsync(ClientRefreshTokenModel model)
-        {
-            var client = await _context.Clients.FirstOrDefaultAsync(c => c.RefreshToken == model.RefreshToken && c.Token == model.Token);
-            if (client == null)
-            {
-                return null;
-            }
-
-            return await GenerateAndSaveTokenAsync(client);
         }
     }
 }

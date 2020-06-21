@@ -1,11 +1,8 @@
-﻿using AdvertDatabaseCL.Entities;
+﻿using Advert.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AdvertDatabaseCL.Configurations
+namespace Advert.Database.Configurations
 {
     public class CampaignsEFConfiguration : IEntityTypeConfiguration<Campaign>
     {
@@ -14,14 +11,14 @@ namespace AdvertDatabaseCL.Configurations
             builder.HasKey(e => e.IdCampaign);
 
             builder.Property(e => e.StartDate)
-                .IsRequired(true);
+                .IsRequired();
 
             builder.Property(e => e.EndDate)
-                .IsRequired(true);
+                .IsRequired();
 
             builder.Property(e => e.PricePerSquareMeter)
                 .HasColumnType("decimal(6,2)")
-                .IsRequired(true);
+                .IsRequired();
 
             builder.HasOne(e => e.Client).WithMany(c => c.Campaigns)
                 .HasForeignKey(e => e.IdClient)

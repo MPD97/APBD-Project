@@ -1,28 +1,27 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
-namespace Advert.Presistance.Services
+namespace Advert.Presistance.Services.IPasswordHasher
 {
-    public class PBKDF2PasswordHasherService : IPasswordHasherService
+    public class Pbkdf2PasswordHasherService : IPasswordHasherService
     {
         public string Create(string value, string salt)
         {
             var valueBytes = KeyDerivation.Pbkdf2(
-                password: value,
-                salt: Encoding.UTF8.GetBytes(salt),
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 10000,
-                numBytesRequested: (256 / 8));
+                value,
+                Encoding.UTF8.GetBytes(salt),
+                KeyDerivationPrf.HMACSHA256,
+                10000,
+                256 / 8);
 
             return Convert.ToBase64String(valueBytes);
         }
 
         public string CreateSalt()
         {
-            byte[] randomBytes = new byte[128 / 8];
+            var randomBytes = new byte[128 / 8];
             using (var generator = RandomNumberGenerator.Create())
             {
                 generator.GetBytes(randomBytes);

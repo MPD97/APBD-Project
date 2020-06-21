@@ -1,17 +1,14 @@
-﻿using Advert.Presistance.Services.IManageService;
-using AdvertDatabaseCL.Contexts;
-using AdvertDatabaseCL.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Advert.Database.Contexts;
+using Advert.Database.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace Advert.Presistance.Services
+namespace Advert.Presistance.Services.IClientQuery
 {
     public class ClientQueryService : IClientQueryService
     {
-        protected internal readonly AdvertContext _context;
+        private readonly AdvertContext _context;
 
         public ClientQueryService(AdvertContext context)
         {

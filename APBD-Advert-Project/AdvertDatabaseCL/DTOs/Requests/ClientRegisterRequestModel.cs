@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Advert.Database.DTOs.Requests
 {
     public class ClientRegisterRequestModel
     {
         [Required]
-        [MinLength(2), MaxLength(15)]
+        [MinLength(2)]
+        [MaxLength(15)]
         public string FirstName { get; set; }
 
         [Required]
-        [MinLength(2), MaxLength(15)]
+        [MinLength(2)]
+        [MaxLength(15)]
         public string LastName { get; set; }
 
         [Required]
@@ -24,16 +23,19 @@ namespace Advert.Database.DTOs.Requests
         public string Phone { get; set; }
 
         [Required]
-        [MinLength(6), MaxLength(15)]
+        [MinLength(6)]
+        [MaxLength(15)]
         public string Login { get; set; }
 
         [Required]
-        [MinLength(8), MaxLength(20)]
+        [MinLength(8)]
+        [MaxLength(20)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
-        [MinLength(8), MaxLength(20)]
+        [MinLength(8)]
+        [MaxLength(20)]
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string RepeatPassword { get; set; }
