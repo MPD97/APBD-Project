@@ -1,4 +1,4 @@
-﻿namespace Advert.Database.DTOs.Responses
+﻿namespace Advert.Database.DTOs.Responses.ResponseModel
 {
     public interface IResponseModel
     {

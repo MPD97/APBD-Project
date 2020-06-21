@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Advert.Database.DTOs.Responses;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Services.IBannerCalculate;
 using Advert.Presistance.Services.IBuildingQuery;
@@ -10,7 +10,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class CampaignCreateHandler : IRequestHandler<CampaignCreateCommand, CampaignCreateResponseModel>
+    public class CampaignCreateHandler : IRequestHandler<CampaignCreateCommand, IResponseModel>
     {
         private readonly IBannerCalculateService _bannerCalculateService;
         private readonly IBuildingQueryService _buildingQueryService;
@@ -25,7 +25,7 @@ namespace Advert.Presistance.Mediator.Handlers
         }
 
 
-        public async Task<CampaignCreateResponseModel> Handle(CampaignCreateCommand request,
+        public async Task<IResponseModel> Handle(CampaignCreateCommand request,
             CancellationToken cancellationToken)
         {
             var fromBuilding = await _buildingQueryService.GetAsync(request.FromIdBuilding);
