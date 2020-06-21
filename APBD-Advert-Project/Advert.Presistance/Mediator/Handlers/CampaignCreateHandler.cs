@@ -28,7 +28,6 @@ namespace Advert.Presistance.Mediator.Handlers
         public async Task<CampaignCreateResponseModel> Handle(CampaignCreateCommand request,
             CancellationToken cancellationToken)
         {
-            //
             var fromBuilding = await _buildingQueryService.GetAsync(request.FromIdBuilding);
             var toBuilding = await _buildingQueryService.GetAsync(request.ToIdBuilding);
 
