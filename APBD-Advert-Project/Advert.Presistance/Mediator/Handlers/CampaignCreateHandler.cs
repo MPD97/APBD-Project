@@ -1,33 +1,42 @@
-﻿using System;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Mediator.Commands;
+using Advert.Presistance.Services.IBannerCalculate;
 using Advert.Presistance.Services.IBuildingQuery;
+using Advert.Presistance.Services.ICampaignCreate;
 using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
     public class CampaignCreateHandler : IRequestHandler<CampaignCreateCommand, CampaignCreateResponseModel>
     {
+        private readonly IBannerCalculateService _bannerCalculateService;
         private readonly IBuildingQueryService _buildingQueryService;
+        private readonly ICampaignCreateService _campaignCreateService;
 
-        public CampaignCreateHandler(IBuildingQueryService buildingQueryService)
+        public CampaignCreateHandler(IBuildingQueryService buildingQueryService,
+            IBannerCalculateService bannerCalculateService, ICampaignCreateService campaignCreateService)
         {
             _buildingQueryService = buildingQueryService;
+            _bannerCalculateService = bannerCalculateService;
+            _campaignCreateService = campaignCreateService;
         }
+
 
         public async Task<CampaignCreateResponseModel> Handle(CampaignCreateCommand request,
             CancellationToken cancellationToken)
         {
+            //
             var fromBuilding = await _buildingQueryService.GetAsync(request.FromIdBuilding);
-            var toBuilding = await _buildingQueryService.GetAsync(request.ToIdBuilidng);
+            var toBuilding = await _buildingQueryService.GetAsync(request.ToIdBuilding);
 
             if (fromBuilding.City != toBuilding.City) return null; // City must be the same.
 
             if (fromBuilding.Street != toBuilding.Street) return null; // Street must be the same.
 
-            if (fromBuilding.StreetNumber % toBuilding.StreetNumber != 0)
+            if (toBuilding.StreetNumber % 2 == 0 != (fromBuilding.StreetNumber % 2 == 0))
                 return null; // Cant place banner across the road.
 
             if (fromBuilding.StreetNumber > toBuilding.StreetNumber)
@@ -35,7 +44,18 @@ namespace Advert.Presistance.Mediator.Handlers
 
             if (fromBuilding.StreetNumber == toBuilding.StreetNumber) return null; // Buildings must be different
 
-            throw new NotImplementedException();
+            var buildings = _buildingQueryService.GetAll(fromBuilding.City, fromBuilding.Street,
+                fromBuilding.IdBuilding, toBuilding.IdBuilding,
+                toBuilding.StreetNumber % 2 == 0);
+
+            var calculation = await _bannerCalculateService.Calculate(buildings.ToList(), request.PricePerSquareMeter);
+            if (calculation == null)
+                //TODO : Logs
+                return null;
+
+            var result = await _campaignCreateService.CreateAsync(request, calculation);
+            if (result == null) return null;
+            return calculation;
         }
     }
 }

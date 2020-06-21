@@ -13,11 +13,12 @@ namespace Advert.API.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton(s => new MapperConfiguration(c =>
+            services.AddSingleton(s => new MapperConfiguration(configure =>
                 {
-                    c.AddProfile<ClientProfile>();
-                    c.AddProfile<CampaignProfile>();
-                    c.AddProfile<BuildingProfile>();
+                    configure.AddProfile<ClientProfile>();
+                    configure.AddProfile<CampaignProfile>();
+                    configure.AddProfile<BuildingProfile>();
+                    configure.AddProfile<BannerProfile>();
                 })
                 .CreateMapper());
 

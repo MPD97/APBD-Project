@@ -79,7 +79,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 1,
                         City = "Warszawa",
-                        Height = 150.6m,
+                        Height = 33.6m,
                         Street = "Afrodyty",
                         StreetNumber = 1
                     },
@@ -87,7 +87,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 2,
                         City = "Warszawa",
-                        Height = 40.2m,
+                        Height = 22.2m,
                         Street = "Afrodyty",
                         StreetNumber = 2
                     },
@@ -95,7 +95,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 3,
                         City = "Warszawa",
-                        Height = 60.3m,
+                        Height = 52.3m,
                         Street = "Afrodyty",
                         StreetNumber = 3
                     },
@@ -103,7 +103,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 4,
                         City = "Warszawa",
-                        Height = 75m,
+                        Height = 23m,
                         Street = "Afrodyty",
                         StreetNumber = 4
                     },
@@ -111,7 +111,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 5,
                         City = "Warszawa",
-                        Height = 90.5m,
+                        Height = 13.5m,
                         Street = "Afrodyty",
                         StreetNumber = 5
                     },
@@ -119,7 +119,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 6,
                         City = "Warszawa",
-                        Height = 120m,
+                        Height = 9.9m,
                         Street = "Afrodyty",
                         StreetNumber = 6
                     },
@@ -143,7 +143,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 9,
                         City = "Warszawa",
-                        Height = 88.6m,
+                        Height = 62.6m,
                         Street = "Afrodyty",
                         StreetNumber = 9
                     },
@@ -151,7 +151,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 10,
                         City = "Warszawa",
-                        Height = 132.6m,
+                        Height = 14.6m,
                         Street = "Afrodyty",
                         StreetNumber = 10
                     },
@@ -159,7 +159,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 11,
                         City = "Warszawa",
-                        Height = 35.7m,
+                        Height = 36.7m,
                         Street = "Potulicka",
                         StreetNumber = 1
                     },
@@ -167,7 +167,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 12,
                         City = "Warszawa",
-                        Height = 17.7m,
+                        Height = 22.7m,
                         Street = "Potulicka",
                         StreetNumber = 2
                     },
@@ -175,7 +175,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 13,
                         City = "Warszawa",
-                        Height = 44.5m,
+                        Height = 15.5m,
                         Street = "Potulicka",
                         StreetNumber = 3
                     },
@@ -183,7 +183,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 14,
                         City = "Warszawa",
-                        Height = 39.9m,
+                        Height = 13.9m,
                         Street = "Potulicka",
                         StreetNumber = 4
                     },
@@ -191,7 +191,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 15,
                         City = "Warszawa",
-                        Height = 89.0m,
+                        Height = 19.0m,
                         Street = "Potulicka",
                         StreetNumber = 5
                     },
@@ -199,7 +199,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 16,
                         City = "Kraków",
-                        Height = 133.3m,
+                        Height = 64.3m,
                         Street = "Odległa",
                         StreetNumber = 1
                     },
@@ -207,7 +207,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 17,
                         City = "Kraków",
-                        Height = 166.3m,
+                        Height = 34.3m,
                         Street = "Odległa",
                         StreetNumber = 2
                     },
@@ -215,7 +215,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 18,
                         City = "Kraków",
-                        Height = 45.0m,
+                        Height = 54.0m,
                         Street = "Odległa",
                         StreetNumber = 3
                     },
@@ -223,7 +223,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 19,
                         City = "Kraków",
-                        Height = 44.2m,
+                        Height = 22.2m,
                         Street = "Odległa",
                         StreetNumber = 4
                     },
@@ -231,7 +231,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 20,
                         City = "Kraków",
-                        Height = 12.0m,
+                        Height = 11.0m,
                         Street = "Uczniowska",
                         StreetNumber = 1
                     },
@@ -239,7 +239,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 21,
                         City = "Kraków",
-                        Height = 15.0m,
+                        Height = 12.0m,
                         Street = "Uczniowska",
                         StreetNumber = 2
                     },
@@ -247,7 +247,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 22,
                         City = "Kraków",
-                        Height = 15.0m,
+                        Height = 11.0m,
                         Street = "Uczniowska",
                         StreetNumber = 3
                     },
@@ -255,7 +255,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 23,
                         City = "Kraków",
-                        Height = 18.7m,
+                        Height = 19.7m,
                         Street = "Popularna",
                         StreetNumber = 1
                     },
@@ -263,7 +263,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 24,
                         City = "Kraków",
-                        Height = 18.7m,
+                        Height = 26.7m,
                         Street = "Popularna",
                         StreetNumber = 2
                     },
@@ -271,7 +271,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 25,
                         City = "Kraków",
-                        Height = 18.7m,
+                        Height = 23.7m,
                         Street = "Popularna",
                         StreetNumber = 3
                     },
@@ -279,7 +279,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 26,
                         City = "Gdańsk",
-                        Height = 50.5m,
+                        Height = 35.5m,
                         Street = "Portowa",
                         StreetNumber = 1
                     },
@@ -287,7 +287,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 27,
                         City = "Gdańsk",
-                        Height = 50.5m,
+                        Height = 15.5m,
                         Street = "Portowa",
                         StreetNumber = 2
                     },
@@ -295,7 +295,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 28,
                         City = "Gdańsk",
-                        Height = 50.5m,
+                        Height = 5.5m,
                         Street = "Portowa",
                         StreetNumber = 3
                     },
@@ -303,7 +303,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 29,
                         City = "Gdańsk",
-                        Height = 59.5m,
+                        Height = 4.5m,
                         Street = "Portowa",
                         StreetNumber = 4
                     },
@@ -311,7 +311,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 30,
                         City = "Gdańsk",
-                        Height = 52.2m,
+                        Height = 13.2m,
                         Street = "Portowa",
                         StreetNumber = 5
                     },
@@ -319,7 +319,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 31,
                         City = "Gdańsk",
-                        Height = 54.5m,
+                        Height = 12.5m,
                         Street = "Portowa",
                         StreetNumber = 6
                     },
@@ -327,7 +327,7 @@ namespace Advert.Database.Migrations
                     {
                         IdBuilding = 32,
                         City = "Gdańsk",
-                        Height = 50.1m,
+                        Height = 15.1m,
                         Street = "Portowa",
                         StreetNumber = 7
                     },

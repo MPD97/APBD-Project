@@ -1,45 +1,57 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Advert.Database.Contexts;
 using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
 using Advert.Database.Entities;
-using Advert.Presistance.Services.IBuildingQuery;
-using Advert.Presistance.Services.IClientQuery;
+using Advert.Presistance.Services.IBannerCreate;
 using AutoMapper;
 
 namespace Advert.Presistance.Services.ICampaignCreate
 {
     public class CampaignCreateService : ICampaignCreateService
     {
-        private readonly IBuildingQueryService _buildingQueryService;
-        private readonly IClientQueryService _clientQueryService;
+        private readonly IBannerCreateService _bannerCreateService;
+        private readonly AdvertContext _context;
         private readonly IMapper _mapper;
 
-        public CampaignCreateService(IBuildingQueryService buildingQueryService, IMapper mapper, IClientQueryService clientQueryService)
+        public CampaignCreateService(IMapper mapper, AdvertContext context, IBannerCreateService bannerCreateService)
         {
-            _buildingQueryService = buildingQueryService;
             _mapper = mapper;
-            _clientQueryService = clientQueryService;
+            _context = context;
+            _bannerCreateService = bannerCreateService;
         }
 
-        public async Task<Campaign> CreateAsync(CampaignCreateRequestModel model)
+        public async Task<Campaign> CreateAsync(CampaignCreateRequestModel model,
+            CampaignCreateResponseModel calculation)
         {
             var campaign = _mapper.Map<Campaign>(model);
 
-            var client = await _clientQueryService.GetAsync(model.ClientId);
-            if (client == null) return null;
+            _context.Campaigns.Add(campaign);
+            if (await _context.SaveChangesAsync() == 0)
+                // TODO: Log errors
+                return null;
+            var bannerModel1 = new BannerCreateRequestModel
+            {
+                IdCampaign = campaign.IdCampaign,
+                Area = calculation.Banner1.SquareMeters,
+                Name = 0,
+                Price = calculation.Banner1.Price
+            };
+            var bannerModel2 = new BannerCreateRequestModel
+            {
+                IdCampaign = campaign.IdCampaign,
+                Area = calculation.Banner2.SquareMeters,
+                Name = 0,
+                Price = calculation.Banner2.Price
+            };
 
-            var fromBuilding = await _buildingQueryService.GetAsync(model.FromIdBuilding);
-            if (fromBuilding == null) return null;
+            var banner1 = await _bannerCreateService.Create(bannerModel1);
+            var banner2 = await _bannerCreateService.Create(bannerModel2);
 
-            var toBuilding = await _buildingQueryService.GetAsync(model.ToIdBuilidng);
-            if (toBuilding == null) return null;
-            
-            // Create Banners
-            
-            // Save Data
-            
-            throw new NotImplementedException();
+            if (banner1 == null || banner2 == null) return null;
+
+
+            return campaign;
         }
     }
 }

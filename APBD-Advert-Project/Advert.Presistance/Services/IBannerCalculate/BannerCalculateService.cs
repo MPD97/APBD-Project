@@ -31,6 +31,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
                     Height = firstBuilding.Height
                 };
                 response.Banner1.SquareMeters = response.Banner1.Width * response.Banner1.Height;
+                response.Banner1.Price = response.Banner1.Width * response.Banner1.Height * pricePerSquareMeter;
 
                 response.Banner2 = new CampaignCreateResponseModel.Banner
                 {
@@ -38,6 +39,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
                     Height = lasBuilding.Height
                 };
                 response.Banner2.SquareMeters = response.Banner2.Width * response.Banner2.Height;
+                response.Banner2.Price = response.Banner2.Width * response.Banner2.Height * pricePerSquareMeter;
             }
             else
             {
@@ -47,6 +49,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
                     Height = firstBuilding.Height
                 };
                 response.Banner1.SquareMeters = response.Banner1.Width * response.Banner1.Height;
+                response.Banner1.Price = response.Banner1.Width * response.Banner1.Height * pricePerSquareMeter;
 
                 response.Banner2 = new CampaignCreateResponseModel.Banner
                 {
@@ -54,6 +57,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
                     Height = lasBuilding.Height
                 };
                 response.Banner2.SquareMeters = response.Banner2.Width * response.Banner2.Height;
+                response.Banner2.Price = response.Banner2.Width * response.Banner2.Height * pricePerSquareMeter;
             }
 
             response.TotalSquareMeters = response.Banner1.SquareMeters + response.Banner2.SquareMeters;

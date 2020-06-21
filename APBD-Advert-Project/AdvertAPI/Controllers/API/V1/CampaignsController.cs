@@ -1,18 +1,16 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
 using Advert.Database.DTOs.Responses;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Mediator.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Advert.API.Controllers.API.V1
 {
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class CampaignsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -28,9 +26,8 @@ namespace Advert.API.Controllers.API.V1
             var query = new CampaignGetQuery(id);
 
             var result = await _mediator.Send(query);
-            if (result == null) return NotFound();
 
-            return Ok(result);
+            return result != null ? (IActionResult) Ok(result) : BadRequest();
         }
 
         [HttpGet(ApiRoutes.Campaigns.GetAll)]
@@ -39,9 +36,8 @@ namespace Advert.API.Controllers.API.V1
             var query = new CampaignGetAllQuery();
 
             var result = await _mediator.Send(query);
-            if (result == null) return NotFound();
 
-            return Ok(result);
+            return result != null ? (IActionResult) Ok(result) : BadRequest();
         }
 
         [HttpPost(ApiRoutes.Campaigns.Create)]
@@ -53,7 +49,7 @@ namespace Advert.API.Controllers.API.V1
 
             var result = await _mediator.Send(command);
 
-            throw new NotImplementedException();
+            return result != null ? (IActionResult) Ok(result) : BadRequest();
         }
     }
 }
