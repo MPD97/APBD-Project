@@ -28,20 +28,24 @@ namespace Advert.Presistance.Mediator.Handlers
         public async Task<IResponseModel> Handle(CampaignCreateCommand request,
             CancellationToken cancellationToken)
         {
+            // TODO: Logs
             var fromBuilding = await _buildingQueryService.GetAsync(request.FromIdBuilding);
             var toBuilding = await _buildingQueryService.GetAsync(request.ToIdBuilding);
 
-            if (fromBuilding.City != toBuilding.City) return null; // City must be the same.
+            if (fromBuilding.City != toBuilding.City)
+                return new ErrorResponse("The buildings must be in the same city.");
 
-            if (fromBuilding.Street != toBuilding.Street) return null; // Street must be the same.
+            if (fromBuilding.Street != toBuilding.Street)
+                return new ErrorResponse("The buildings must be on the same street.");
 
             if (toBuilding.StreetNumber % 2 == 0 != (fromBuilding.StreetNumber % 2 == 0))
-                return null; // Cant place banner across the road.
+                return new ErrorResponse("The buildings must be on the same side of the road.");
 
             if (fromBuilding.StreetNumber > toBuilding.StreetNumber)
-                return null; // FromCity street number must be befeore toCity street number 
+                return new ErrorResponse("FromIdBuilding must have smaller street number than ToIdBuilding.");
 
-            if (fromBuilding.StreetNumber == toBuilding.StreetNumber) return null; // Buildings must be different
+            if (fromBuilding.StreetNumber == toBuilding.StreetNumber)
+                return new ErrorResponse("The buildings must have different street number.");
 
             var buildings = _buildingQueryService.GetAll(fromBuilding.City, fromBuilding.Street,
                 fromBuilding.IdBuilding, toBuilding.IdBuilding,
@@ -49,12 +53,13 @@ namespace Advert.Presistance.Mediator.Handlers
 
             var calculation = await _bannerCalculateService.Calculate(buildings.ToList(), request.PricePerSquareMeter);
             if (calculation == null)
-                //TODO : Logs
-                return null;
+                return new InternalError("The calculation task could not be completed.");
 
             var result = await _campaignCreateService.CreateAsync(request, calculation);
-            if (result == null) return null;
-            return calculation;
+            if (result == null)
+                return new InternalError("The campaign could not be created.");
+
+            return new SuccessResponse("Campaign has been created.", calculation);
         }
     }
 }

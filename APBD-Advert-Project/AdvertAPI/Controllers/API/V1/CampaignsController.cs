@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
 using Advert.Database.DTOs.Responses;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Mediator.Queries;
 using MediatR;
@@ -49,7 +50,13 @@ namespace Advert.API.Controllers.API.V1
 
             var result = await _mediator.Send(command);
 
-            return result != null ? (IActionResult) Ok(result) : BadRequest();
+            return result switch
+            {
+                SuccessResponse _ => Ok(result),
+                ErrorResponse _ => BadRequest(result),
+                InternalError _ => StatusCode(500, result),
+                _ => NotFound()
+            };
         }
     }
 }
