@@ -6,12 +6,13 @@ using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Mediator.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Advert.API.Controllers.API.V1
 {
     [ApiController]
-    // [Authorize]
+    [Authorize]
     public class CampaignsController : ControllerBase
     {
         private readonly IMediator _mediator;

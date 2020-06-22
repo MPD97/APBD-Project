@@ -8,7 +8,7 @@
 
         private const string Base = Root + "/" + Version;
 
-        internal static class Campaigns
+        public static class Campaigns
         {
             public const string GetAll = Base + "/Campaigns";
 
@@ -17,7 +17,7 @@
             public const string Create = Base + "/Campaigns";
         }
 
-        internal static class Clients
+        public static class Clients
         {
             public const string GetAll = Base + "/Clients";
 
@@ -30,7 +30,7 @@
             public const string Refresh = Base + "/Clients/refresh";
         }
 
-        internal static class Buildings
+        public static class Buildings
         {
             public const string GetAll = Base + "/Buildings";
 
