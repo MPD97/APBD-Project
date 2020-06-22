@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AdvertDatabaseCL.Migrations
+namespace Advert.Database.Migrations
 {
     public partial class DefinedBuildingPropertiesRestrictions : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Street",
-                table: "Buildings",
+                "Street",
+                "Buildings",
                 maxLength: 100,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -16,16 +16,16 @@ namespace AdvertDatabaseCL.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<decimal>(
-                name: "Height",
-                table: "Buildings",
-                type: "decimal(6,2)",
+                "Height",
+                "Buildings",
+                "decimal(6,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
                 oldType: "decimal(18,2)");
 
             migrationBuilder.AlterColumn<string>(
-                name: "City",
-                table: "Buildings",
+                "City",
+                "Buildings",
                 maxLength: 100,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -36,25 +36,25 @@ namespace AdvertDatabaseCL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Street",
-                table: "Buildings",
-                type: "nvarchar(max)",
+                "Street",
+                "Buildings",
+                "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 100);
 
             migrationBuilder.AlterColumn<decimal>(
-                name: "Height",
-                table: "Buildings",
-                type: "decimal(18,2)",
+                "Height",
+                "Buildings",
+                "decimal(18,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
                 oldType: "decimal(6,2)");
 
             migrationBuilder.AlterColumn<string>(
-                name: "City",
-                table: "Buildings",
-                type: "nvarchar(max)",
+                "City",
+                "Buildings",
+                "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 100);

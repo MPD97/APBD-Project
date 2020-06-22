@@ -1,13 +1,10 @@
 ﻿using Advert.Database.DTOs.Responses;
-using AdvertDatabaseCL.Entities;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Advert.Presistance.Mediator.Queries
 {
-    public class CampaignGetQuery : IRequest<CampaignResponseModel>
+    public class CampaignGetQuery : IRequest<IResponseModel>
     {
         public CampaignGetQuery(int campaignId)
         {

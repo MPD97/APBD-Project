@@ -1,32 +1,21 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Advert.Database.MapProfiles;
-using Advert.Presistance.Services;
-using Advert.Presistance.Services.ICampaignQuery;
-using Advert.Presistance.Services.ICampaignService;
-using Advert.Presistance.Services.IJwtBarerService;
-using Advert.Presistance.Services.ILoginClientService;
-using Advert.Presistance.Services.IManageService;
-using AdvertDatabaseCL.Contexts;
-using AutoMapper;
-using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Advert.API.Installers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 
-namespace AdvertAPI
+namespace Advert.API
 {
+    // TODO: Add filters to requests
+    // TODO: Add fluent validation
+    // TODO: Add fluent validation using Mediator
+    // TODO: Add clean code logging
+    // TODO: Add clean code performance
+    // TODO: Add Polly
+    // TODO: Add caching 
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -36,87 +25,29 @@ namespace AdvertAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                   .AddJwtBearer(options =>
-                   {
-                       options.TokenValidationParameters = new TokenValidationParameters
-                       {
-                           ValidateIssuer = true,
-                           ValidateAudience = true,
-                           ValidateLifetime = true,
-                           ValidIssuer = "Advert",
-                           ValidAudience = "Clients",
-                           IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSettings:secret"]))
-                       };
-                   });
-            services.AddDbContext<AdvertContext>(config =>
-                config.UseSqlServer(Configuration.GetConnectionString("default")));
-            services.AddSingleton<IPasswordHasherService, PBKDF2PasswordHasherService>();
-            services.AddSingleton<IJwtBearerService, ExampleJwtBearerService>();
-            services.AddScoped<ILoginClientService, LoginClientService>();
-            services.AddScoped<IClientRegisterService, ClientRegisterService>();
-            services.AddScoped<IClientQueryService, ClientQueryService>();
-            services.AddScoped<ICampaignQueryService, CampaignQueryService>();
+            var installers = typeof(Program).Assembly.ExportedTypes.Where(x => typeof(IInstaller).IsAssignableFrom(x)
+                                                                               && x.IsInterface == false &&
+                                                                               x.IsAbstract == false)
+                .Select(Activator.CreateInstance).Cast<IInstaller>().ToList();
 
-            services.AddSingleton<IMapper>(s => new MapperConfiguration(c =>
-                {
-                    c.AddProfile<ClientProfile>();
-                    c.AddProfile<CampaignProfile>();
-                })
-            .CreateMapper());
-
-
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Advert.API", Version = "v1" });
-
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-                {
-                    Description = "JWT Authorization header using the bearer scheme",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
-                });
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {new OpenApiSecurityScheme{Reference = new OpenApiReference
-                    {
-                        Id = "Bearer",
-                        Type = ReferenceType.SecurityScheme
-                    }}, new List<string>()}
-                });
-            });
-
-            var assembly = AppDomain.CurrentDomain.Load("Advert.Presistance");
-            services.AddMediatR(assembly);
-            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            installers.ForEach(i => i.InstallServices(services, Configuration));
         }
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Advert.API v1");
-            });
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Advert.API v1"); });
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

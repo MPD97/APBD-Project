@@ -1,13 +1,10 @@
 ﻿using Advert.Database.DTOs.Responses;
-using Advert.Presistance.Mediator.Handlers;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Advert.Presistance.Mediator.Queries
 {
-    public class ClientGetQuery : IRequest<ClientResponseModel>
+    public class ClientGetQuery : IRequest<IResponseModel>
     {
         public ClientGetQuery(int clientId)
         {
@@ -15,6 +12,5 @@ namespace Advert.Presistance.Mediator.Queries
         }
 
         public int ClientId { get; set; }
-      
     }
 }

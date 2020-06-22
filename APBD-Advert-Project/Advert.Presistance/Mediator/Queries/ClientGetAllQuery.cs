@@ -1,12 +1,11 @@
-﻿using Advert.Database.DTOs.Responses;
+﻿using System.Collections.Generic;
+using Advert.Database.DTOs.Responses;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Advert.Presistance.Mediator.Queries
 {
-    public class ClientGetAllQuery : IRequest<IEnumerable<ClientResponseModel>>
+    public class ClientGetAllQuery : IRequest<IResponseModel>
     {
     }
 }

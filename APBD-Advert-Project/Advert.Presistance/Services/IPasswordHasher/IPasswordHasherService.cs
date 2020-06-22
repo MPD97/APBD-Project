@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Advert.Presistance.Services
+﻿namespace Advert.Presistance.Services.IPasswordHasher
 {
     public interface IPasswordHasherService
     {

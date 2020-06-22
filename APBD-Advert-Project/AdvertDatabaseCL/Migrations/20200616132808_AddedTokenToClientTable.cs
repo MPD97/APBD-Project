@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AdvertDatabaseCL.Migrations
+namespace Advert.Database.Migrations
 {
     public partial class AddedTokenToClientTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Token",
-                table: "Clients",
+                "Token",
+                "Clients",
                 maxLength: 256,
                 nullable: true);
         }
@@ -16,8 +16,8 @@ namespace AdvertDatabaseCL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Token",
-                table: "Clients");
+                "Token",
+                "Clients");
         }
     }
 }

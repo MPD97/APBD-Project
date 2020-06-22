@@ -1,14 +1,12 @@
-﻿using AdvertDatabaseCL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Advert.Database.Entities;
 
-namespace Advert.Presistance.Services.ICampaignService
+namespace Advert.Presistance.Services.ICampaignQuery
 {
     public interface ICampaignQueryService
     {
-        public Task<Campaign> GetAsync(int id);
+        public Task<Campaign> FindAsync(int id);
 
         public Task<IEnumerable<Campaign>> GetAllAsync();
     }

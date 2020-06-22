@@ -1,11 +1,7 @@
-﻿
-using Advert.Database.DTOs.Requests;
+﻿using Advert.Database.DTOs.Requests;
 using Advert.Database.DTOs.Responses;
-using AdvertDatabaseCL.Entities;
+using Advert.Database.Entities;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Advert.Database.MapProfiles
 {

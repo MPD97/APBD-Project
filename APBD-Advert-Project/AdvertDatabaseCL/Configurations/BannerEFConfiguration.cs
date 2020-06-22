@@ -1,10 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Advert.Database.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AdvertDatabaseCL.Configurations
+namespace Advert.Database.Configurations
 {
     public class BannerEFConfiguration : IEntityTypeConfiguration<Banner>
     {
@@ -13,11 +11,11 @@ namespace AdvertDatabaseCL.Configurations
             builder.HasKey(e => e.IdAdvertisment);
 
             builder.Property(e => e.Name)
-                .IsRequired(true);
+                .IsRequired();
 
             builder.Property(e => e.Price)
                 .HasColumnType("decimal(6,2)")
-                .IsRequired(true);
+                .IsRequired();
 
             builder.HasOne(e => e.Campaign).WithMany(c => c.Banners)
                 .HasForeignKey(e => e.IdCampaign)
@@ -25,7 +23,7 @@ namespace AdvertDatabaseCL.Configurations
 
             builder.Property(e => e.Area)
                 .HasColumnType("decimal(6,2)")
-                .IsRequired(true);
+                .IsRequired();
         }
     }
 }

@@ -1,19 +1,18 @@
-﻿using Advert.Database.DTOs.Responses;
-using Advert.Presistance.Mediator.Queries;
-using Advert.Presistance.Services.IManageService;
-using AdvertDatabaseCL.Entities;
-using AutoMapper;
-using MediatR;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Advert.Database.DTOs.Responses;
+using Advert.Database.DTOs.Responses.ResponseModel;
+using Advert.Database.Entities;
+using Advert.Presistance.Mediator.Queries;
+using Advert.Presistance.Services.IClientQuery;
+using AutoMapper;
+using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class ClientGetAllHandler : IRequestHandler<ClientGetAllQuery, IEnumerable<ClientResponseModel>>
+    public class ClientGetAllHandler : IRequestHandler<ClientGetAllQuery, IResponseModel>
     {
         private readonly IClientQueryService _clientQueryService;
         private readonly IMapper _mapper;
@@ -23,15 +22,14 @@ namespace Advert.Presistance.Mediator.Handlers
             _clientQueryService = clientQueryService;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ClientResponseModel>> Handle(ClientGetAllQuery request, CancellationToken cancellationToken)
+
+        public async Task<IResponseModel> Handle(ClientGetAllQuery request,
+            CancellationToken cancellationToken)
         {
             var client = await _clientQueryService.GetAllAsync();
-            if (client == null)
-            {
-                return null;
-            }
-            
-            return client.Select(_mapper.Map<Client, ClientResponseModel>); 
+            if (client == null) return new NotFoundResponse("No clients could be found");
+
+            return new SuccessResponse( client.Select(_mapper.Map<Client, ClientResponseModel>));
         }
     }
 }

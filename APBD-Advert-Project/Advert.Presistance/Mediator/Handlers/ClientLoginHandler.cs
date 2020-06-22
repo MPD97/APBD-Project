@@ -1,30 +1,26 @@
-﻿using Advert.Database.DTOs.Requests;
-using Advert.Database.DTOs.Responses;
-using Advert.Presistance.Mediator.Commands;
-using Advert.Presistance.Services.ILoginClientService;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Advert.Database.DTOs.Responses.ResponseModel;
+using Advert.Presistance.Mediator.Commands;
+using Advert.Presistance.Services.IClientLogin;
+using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class ClientLoginHandler : IRequestHandler<ClientLoginCommand, JwtTokenResponseModel>
+    public class ClientLoginHandler : IRequestHandler<ClientLoginCommand, IResponseModel>
     {
-        private readonly  ILoginClientService _loginService;
+        private readonly IClientLoginService _loginService;
 
-        public ClientLoginHandler(ILoginClientService loginService)
+        public ClientLoginHandler(IClientLoginService loginService)
         {
             _loginService = loginService;
         }
 
-        public async Task<JwtTokenResponseModel> Handle(ClientLoginCommand request, CancellationToken cancellationToken)
+        public async Task<IResponseModel> Handle(ClientLoginCommand request, CancellationToken cancellationToken)
         {
             var tokenResult = await _loginService.LoginAsync(request);
-
-            return tokenResult;
+            if (tokenResult == null) return new BadRequestResponse("Cannot create token");
+            return new SuccessResponse(tokenResult);
         }
     }
 }

@@ -1,28 +1,24 @@
-﻿using AdvertDatabaseCL.Configurations;
-using AdvertDatabaseCL.Entities;
+﻿using System.Diagnostics.CodeAnalysis;
+using Advert.Database.Configurations;
+using Advert.Database.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
 
-namespace AdvertDatabaseCL.Contexts
+namespace Advert.Database.Contexts
 {
     public class AdvertContext : DbContext
     {
-        public DbSet<Client> Clients { get; set; }
-        public DbSet<Building> Buildings { get; set; }
-        public DbSet<Campaign> Campaigns { get; set; }
-        public DbSet<Banner> Banners { get; set; }
-
-
-        public AdvertContext([NotNullAttribute] DbContextOptions options) : base(options)
+        public AdvertContext([NotNull] DbContextOptions options) : base(options)
         {
         }
 
         protected AdvertContext()
         {
         }
+
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Building> Buildings { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<Banner> Banners { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
