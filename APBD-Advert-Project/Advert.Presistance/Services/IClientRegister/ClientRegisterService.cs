@@ -18,17 +18,13 @@ namespace Advert.Presistance.Services.IClientRegister
 
         public async Task<Client> CreateAsync(Client client, string password)
         {
-            // Create salt
             var salt = _passwordHasher.CreateSalt();
 
-            // Create hash
             var hash = _passwordHasher.Create(password, salt);
 
-            // Assign into Client
             client.Salt = salt;
             client.Hash = hash;
 
-            // Start tracking
             _context.Add(client);
 
             if (await _context.SaveChangesAsync() <= 0)
