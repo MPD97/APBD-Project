@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Advert.Database.DTOs.Responses;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Database.Entities;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Services.IClientRegister;
@@ -11,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class ClientRegisterHandler : IRequestHandler<ClientRegisterCommand, ClientResponseModel>
+    public class ClientRegisterHandler : IRequestHandler<ClientRegisterCommand, IResponseModel>
     {
         private readonly ILogger<ClientRegisterHandler> _logger;
         private readonly IMapper _mapper;
@@ -25,7 +26,7 @@ namespace Advert.Presistance.Mediator.Handlers
             _logger = logger;
         }
 
-        public async Task<ClientResponseModel> Handle(ClientRegisterCommand request,
+        public async Task<IResponseModel> Handle(ClientRegisterCommand request,
             CancellationToken cancellationToken)
         {
             var client = _mapper.Map<Client>(request);
@@ -36,10 +37,15 @@ namespace Advert.Presistance.Mediator.Handlers
             catch (CannotUpdateException ex)
             {
                 _logger.LogError(ex.ToString());
-                return null;
+                return new InternalError("Error occured when creating new client");
             }
 
-            return _mapper.Map<ClientResponseModel>(client);
+            if (client == null)
+            {
+                return new ErrorResponse("Cannot create client");    
+            }
+            
+            return new SuccessResponse("Client created.",_mapper.Map<ClientResponseModel>(client));
         }
     }
 }

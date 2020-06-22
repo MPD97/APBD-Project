@@ -28,7 +28,7 @@ namespace Advert.API.Controllers.API.V1
 
             var result = await _mediator.Send(query);
 
-            return result != null ? (IActionResult) Ok(result) : BadRequest();
+            return Response(result);
         }
 
         [HttpGet(ApiRoutes.Campaigns.GetAll)]
@@ -38,7 +38,7 @@ namespace Advert.API.Controllers.API.V1
 
             var result = await _mediator.Send(query);
 
-            return result != null ? (IActionResult) Ok(result) : BadRequest();
+            return Response(result);
         }
 
         [HttpPost(ApiRoutes.Campaigns.Create)]
@@ -50,9 +50,15 @@ namespace Advert.API.Controllers.API.V1
 
             var result = await _mediator.Send(command);
 
+            return Response(result);
+        }
+        
+        private IActionResult Response(IResponseModel result)
+        {
             return result switch
             {
                 SuccessResponse _ => Ok(result),
+                NotFoundResponse _ => NotFound(result),
                 ErrorResponse _ => BadRequest(result),
                 InternalError _ => StatusCode(500, result),
                 _ => NotFound()

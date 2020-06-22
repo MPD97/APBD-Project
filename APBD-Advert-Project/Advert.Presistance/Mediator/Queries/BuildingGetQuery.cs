@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Advert.Database.DTOs.Responses;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using MediatR;
 
 namespace Advert.Presistance.Mediator.Queries
 {
-    public class BuildingGetQuery : IRequest<BuildingResponseModel>, IRequest<IEnumerable<BuildingResponseModel>>
+    public class BuildingGetQuery : IRequest<IResponseModel>
     {
         public BuildingGetQuery(int buildingId)
         {

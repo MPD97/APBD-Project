@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Advert.Database.DTOs.Responses;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Database.Entities;
 using Advert.Presistance.Mediator.Queries;
 using Advert.Presistance.Services.IClientQuery;
@@ -11,7 +12,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class ClientGetAllHandler : IRequestHandler<ClientGetAllQuery, IEnumerable<ClientResponseModel>>
+    public class ClientGetAllHandler : IRequestHandler<ClientGetAllQuery, IResponseModel>
     {
         private readonly IClientQueryService _clientQueryService;
         private readonly IMapper _mapper;
@@ -22,13 +23,13 @@ namespace Advert.Presistance.Mediator.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ClientResponseModel>> Handle(ClientGetAllQuery request,
+        public async Task<IResponseModel> Handle(ClientGetAllQuery request,
             CancellationToken cancellationToken)
         {
             var client = await _clientQueryService.GetAllAsync();
-            if (client == null) return null;
+            if (client == null) return new NotFoundResponse("No clients could be found");
 
-            return client.Select(_mapper.Map<Client, ClientResponseModel>);
+            return new SuccessResponse( client.Select(_mapper.Map<Client, ClientResponseModel>));
         }
     }
 }

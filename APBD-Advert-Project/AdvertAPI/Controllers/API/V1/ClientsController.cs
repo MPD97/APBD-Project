@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
 using Advert.Database.DTOs.Responses;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Mediator.Queries;
 using MediatR;
@@ -23,16 +24,20 @@ namespace Advert.API.Controllers.API.V1
         public async Task<IActionResult> GetAll()
         {
             var query = new ClientGetAllQuery();
+            
             var result = await _mediator.Send(query);
-            return result != null ? (IActionResult) Ok(result) : NotFound();
+            
+            return Response(result);
         }
 
         [HttpGet(ApiRoutes.Clients.Get)]
         public async Task<IActionResult> Get(int id)
         {
             var query = new ClientGetQuery(id);
+            
             var result = await _mediator.Send(query);
-            return result != null ? (IActionResult) Ok(result) : NotFound();
+            
+            return Response(result);
         }
 
         [HttpPost(ApiRoutes.Clients.Create)]
@@ -43,9 +48,8 @@ namespace Advert.API.Controllers.API.V1
                     {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
             var result = await _mediator.Send(command);
-            return result != null
-                ? (IActionResult) CreatedAtAction(nameof(Get), new {id = result.IdClient}, result)
-                : BadRequest();
+            
+            return Response(result);
         }
 
         [HttpPost(ApiRoutes.Clients.LogIn)]
@@ -55,10 +59,9 @@ namespace Advert.API.Controllers.API.V1
                 return BadRequest(new ErrorResponseModel
                     {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
-            var tokenResult = await _mediator.Send(command);
-            if (tokenResult == null) return BadRequest("Invalid login or password");
+            var result = await _mediator.Send(command);
 
-            return Ok(tokenResult);
+            return Response(result);
         }
 
         [HttpPost(ApiRoutes.Clients.Refresh)]
@@ -68,10 +71,21 @@ namespace Advert.API.Controllers.API.V1
                 return BadRequest(new ErrorResponseModel
                     {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
-            var tokenResult = await _mediator.Send(command);
-            if (tokenResult == null) return BadRequest("Invalid token or refresh token");
-
-            return Ok(tokenResult);
+            var result = await _mediator.Send(command);
+           
+            return Response(result);
+        }
+        
+        private IActionResult Response(IResponseModel result)
+        {
+            return result switch
+            {
+                SuccessResponse _ => Ok(result),
+                NotFoundResponse _ => NotFound(result),
+                ErrorResponse _ => BadRequest(result),
+                InternalError _ => StatusCode(500, result),
+                _ => NotFound()
+            };
         }
     }
 }

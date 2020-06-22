@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Presistance.Mediator.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Advert.API.Controllers.API.V1
 {
     [ApiController]
-    public class BuildingsController : Controller
+    public class BuildingsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -22,9 +23,8 @@ namespace Advert.API.Controllers.API.V1
             var query = new BuildingGetQuery(id);
 
             var result = await _mediator.Send(query);
-            if (result == null) return NotFound();
 
-            return Ok(result);
+            return Response(result);
         }
 
         [HttpGet(ApiRoutes.Buildings.GetAll)]
@@ -34,9 +34,19 @@ namespace Advert.API.Controllers.API.V1
             var query = new BuildingGetAllQuery(city, street, streetNumberStart, streetNumberEnd, even);
 
             var result = await _mediator.Send(query);
-            if (result == null) return NotFound();
 
-            return Ok(result);
+            return Response(result);
+        }
+        private IActionResult Response(IResponseModel result)
+        {
+            return result switch
+            {
+                SuccessResponse _ => Ok(result),
+                NotFoundResponse _ => NotFound(result),
+                ErrorResponse _ => BadRequest(result),
+                InternalError _ => StatusCode(500, result),
+                _ => NotFound()
+            };
         }
     }
 }

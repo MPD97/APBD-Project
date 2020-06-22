@@ -21,8 +21,10 @@ namespace Advert.Presistance.Services.IBannerCalculate
             decimal pricePerSquareMeter = 35)
         {
             var response = new CampaignCreateResponseModel();
+            
             var firstBuilding = buildings.First();
             var lasBuilding = buildings.Last();
+            
             if (firstBuilding.Height >= lasBuilding.Height)
             {
                 response.Banner1 = new CampaignCreateResponseModel.Banner

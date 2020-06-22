@@ -4,13 +4,13 @@
     {
         public SuccessResponse(object result)
         {
-            Result = Result;
+            Result = result;
         }
 
         public SuccessResponse(string message, object result)
         {
-            Message = Message;
-            Result = Result;
+            Message = message;
+            Result = result;
         }
 
         public ResponseStatus Status { get; set; } = ResponseStatus.Ok;
