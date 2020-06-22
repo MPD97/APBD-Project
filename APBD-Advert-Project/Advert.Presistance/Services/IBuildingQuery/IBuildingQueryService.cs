@@ -6,7 +6,7 @@ namespace Advert.Presistance.Services.IBuildingQuery
 {
     public interface IBuildingQueryService
     {
-        public Task<Building> GetAsync(int id);
+        public Task<Building> FindAsync(int id);
 
         public IEnumerable<Building> GetAll(string city, string street, int? streetNumberStart,
             int? streetNumberEnd, bool? even);

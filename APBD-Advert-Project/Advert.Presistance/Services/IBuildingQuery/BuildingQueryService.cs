@@ -17,9 +17,9 @@ namespace Advert.Presistance.Services.IBuildingQuery
             _context = context;
         }
 
-        public async Task<Building> GetAsync(int id)
+        public async Task<Building> FindAsync(int id)
         {
-            return await _context.Buildings.FirstOrDefaultAsync(b => b.IdBuilding == id);
+            return await _context.Buildings.SingleOrDefaultAsync(b => b.IdBuilding == id);
         }
 
         public IEnumerable<Building> GetAll(string city, string street, int? streetNumberStart,

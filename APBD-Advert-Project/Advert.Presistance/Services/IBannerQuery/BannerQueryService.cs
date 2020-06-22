@@ -20,9 +20,9 @@ namespace Advert.Presistance.Services.IBannerQuery
             return await _context.Banners.ToArrayAsync();
         }
 
-        public async Task<Banner> GetAsync(int id)
+        public async Task<Banner> FindAsync(int id)
         {
-            return await _context.Banners.FirstOrDefaultAsync(b => b.IdAdvertisment == id);
+            return await _context.Banners.SingleOrDefaultAsync(b => b.IdAdvertisment == id);
         }
     }
 }

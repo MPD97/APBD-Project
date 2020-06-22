@@ -16,9 +16,9 @@ namespace Advert.Presistance.Services.ICampaignQuery
             _context = context;
         }
 
-        public async Task<Campaign> GetAsync(int id)
+        public async Task<Campaign> FindAsync(int id)
         {
-            return await _context.Campaigns.FirstOrDefaultAsync(client => client.IdClient == id);
+            return await _context.Campaigns.SingleOrDefaultAsync(client => client.IdClient == id);
         }
 
         public async Task<IEnumerable<Campaign>> GetAllAsync()

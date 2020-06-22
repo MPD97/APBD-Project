@@ -29,8 +29,8 @@ namespace Advert.Presistance.Mediator.Handlers
             CancellationToken cancellationToken)
         {
             // TODO: Logs
-            var fromBuilding = await _buildingQueryService.GetAsync(request.FromIdBuilding);
-            var toBuilding = await _buildingQueryService.GetAsync(request.ToIdBuilding);
+            var fromBuilding = await _buildingQueryService.FindAsync(request.FromIdBuilding);
+            var toBuilding = await _buildingQueryService.FindAsync(request.ToIdBuilding);
 
             if (fromBuilding.City != toBuilding.City)
                 return new BadRequestResponse("The buildings must be in the same city.");

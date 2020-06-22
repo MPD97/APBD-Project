@@ -22,7 +22,7 @@ namespace Advert.Presistance.Mediator.Handlers
 
         public async Task<IResponseModel> Handle(CampaignGetQuery request, CancellationToken cancellationToken)
         {
-            var campaign = await _campaignQueryService.GetAsync(request.CampaignId);
+            var campaign = await _campaignQueryService.FindAsync(request.CampaignId);
             if (campaign == null) return new NotFoundResponse("No campaigns could be found with this id");
 
             return new SuccessResponse(_mapper.Map<CampaignResponseModel>(campaign));
