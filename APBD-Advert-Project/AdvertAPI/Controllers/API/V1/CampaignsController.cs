@@ -52,14 +52,14 @@ namespace Advert.API.Controllers.API.V1
 
             return Response(result);
         }
-        
+
         private IActionResult Response(IResponseModel result)
         {
             return result switch
             {
                 SuccessResponse _ => Ok(result),
                 NotFoundResponse _ => NotFound(result),
-                ErrorResponse _ => BadRequest(result),
+                BadRequestResponse _ => BadRequest(result),
                 InternalError _ => StatusCode(500, result),
                 _ => NotFound()
             };

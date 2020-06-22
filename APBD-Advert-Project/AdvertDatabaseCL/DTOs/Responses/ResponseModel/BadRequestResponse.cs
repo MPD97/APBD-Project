@@ -1,8 +1,8 @@
 ﻿namespace Advert.Database.DTOs.Responses.ResponseModel
 {
-    public class ErrorResponse : IResponseModel
+    public class BadRequestResponse : IResponseModel
     {
-        public ErrorResponse(string message)
+        public BadRequestResponse(string message)
         {
             Message = message;
         }
@@ -11,6 +11,7 @@
         public string Message { get; set; }
         public object Result { get; set; } = null;
     }
+
     public class NotFoundResponse : IResponseModel
     {
         public NotFoundResponse(string message)

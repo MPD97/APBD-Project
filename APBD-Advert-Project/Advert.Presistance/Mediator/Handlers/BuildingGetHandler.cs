@@ -23,7 +23,9 @@ namespace Advert.Presistance.Mediator.Handlers
         public async Task<IResponseModel> Handle(BuildingGetQuery request, CancellationToken cancellationToken)
         {
             var building = await _buildingQueryService.GetAsync(request.BuildingId);
+
             if (building == null) return new NotFoundResponse("No buildings could be found with this id");
+
             return new SuccessResponse(_mapper.Map<BuildingResponseModel>(building));
         }
     }

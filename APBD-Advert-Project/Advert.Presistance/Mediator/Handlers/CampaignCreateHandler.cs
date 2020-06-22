@@ -33,19 +33,19 @@ namespace Advert.Presistance.Mediator.Handlers
             var toBuilding = await _buildingQueryService.GetAsync(request.ToIdBuilding);
 
             if (fromBuilding.City != toBuilding.City)
-                return new ErrorResponse("The buildings must be in the same city.");
+                return new BadRequestResponse("The buildings must be in the same city.");
 
             if (fromBuilding.Street != toBuilding.Street)
-                return new ErrorResponse("The buildings must be on the same street.");
+                return new BadRequestResponse("The buildings must be on the same street.");
 
             if (toBuilding.StreetNumber % 2 == 0 != (fromBuilding.StreetNumber % 2 == 0))
-                return new ErrorResponse("The buildings must be on the same side of the road.");
+                return new BadRequestResponse("The buildings must be on the same side of the road.");
 
             if (fromBuilding.StreetNumber > toBuilding.StreetNumber)
-                return new ErrorResponse("FromIdBuilding must have smaller street number than ToIdBuilding.");
+                return new BadRequestResponse("FromIdBuilding must have smaller street number than ToIdBuilding.");
 
             if (fromBuilding.StreetNumber == toBuilding.StreetNumber)
-                return new ErrorResponse("The buildings must have different street number.");
+                return new BadRequestResponse("The buildings must have different street number.");
 
             var buildings = _buildingQueryService.GetAll(fromBuilding.City, fromBuilding.Street,
                 fromBuilding.IdBuilding, toBuilding.IdBuilding,

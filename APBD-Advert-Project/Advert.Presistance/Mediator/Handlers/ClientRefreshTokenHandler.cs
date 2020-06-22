@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Advert.Database.DTOs.Responses;
 using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Services.IClientLogin;
@@ -21,10 +20,7 @@ namespace Advert.Presistance.Mediator.Handlers
             CancellationToken cancellationToken)
         {
             var tokenResult = await _loginService.RefreshTokenAsync(request);
-            if (tokenResult == null)
-            {
-                return new ErrorResponse("Cannot create refresh token");
-            }
+            if (tokenResult == null) return new BadRequestResponse("Cannot create refresh token");
 
             return new SuccessResponse(tokenResult);
         }

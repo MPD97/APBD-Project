@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Advert.Database.DTOs.Responses;
 using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Services.IClientLogin;
@@ -20,10 +19,7 @@ namespace Advert.Presistance.Mediator.Handlers
         public async Task<IResponseModel> Handle(ClientLoginCommand request, CancellationToken cancellationToken)
         {
             var tokenResult = await _loginService.LoginAsync(request);
-            if (tokenResult == null)
-            {
-                return new ErrorResponse("Cannot create token");
-            }
+            if (tokenResult == null) return new BadRequestResponse("Cannot create token");
             return new SuccessResponse(tokenResult);
         }
     }

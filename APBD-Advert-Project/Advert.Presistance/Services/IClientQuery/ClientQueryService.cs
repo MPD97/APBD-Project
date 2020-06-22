@@ -15,9 +15,19 @@ namespace Advert.Presistance.Services.IClientQuery
             _context = context;
         }
 
-        public async Task<Client> GetAsync(int id)
+        public async Task<Client> FindAsync(int id)
         {
-            return await _context.Clients.FirstOrDefaultAsync(client => client.IdClient == id);
+            return await _context.Clients.SingleOrDefaultAsync(c => c.IdClient == id);
+        }
+
+        public async Task<Client> FindByEmailAsync(string email)
+        {
+            return await _context.Clients.SingleOrDefaultAsync(c => c.Email == email);
+        }
+
+        public async Task<Client> FindByLoginAsync(string login)
+        {
+            return await _context.Clients.SingleOrDefaultAsync(c => c.Login == login);
         }
 
         public async Task<IEnumerable<Client>> GetAllAsync()

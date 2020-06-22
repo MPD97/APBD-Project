@@ -24,9 +24,9 @@ namespace Advert.API.Controllers.API.V1
         public async Task<IActionResult> GetAll()
         {
             var query = new ClientGetAllQuery();
-            
+
             var result = await _mediator.Send(query);
-            
+
             return Response(result);
         }
 
@@ -34,9 +34,9 @@ namespace Advert.API.Controllers.API.V1
         public async Task<IActionResult> Get(int id)
         {
             var query = new ClientGetQuery(id);
-            
+
             var result = await _mediator.Send(query);
-            
+
             return Response(result);
         }
 
@@ -48,7 +48,7 @@ namespace Advert.API.Controllers.API.V1
                     {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
             var result = await _mediator.Send(command);
-            
+
             return Response(result);
         }
 
@@ -72,17 +72,17 @@ namespace Advert.API.Controllers.API.V1
                     {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
             var result = await _mediator.Send(command);
-           
+
             return Response(result);
         }
-        
+
         private IActionResult Response(IResponseModel result)
         {
             return result switch
             {
                 SuccessResponse _ => Ok(result),
                 NotFoundResponse _ => NotFound(result),
-                ErrorResponse _ => BadRequest(result),
+                BadRequestResponse _ => BadRequest(result),
                 InternalError _ => StatusCode(500, result),
                 _ => NotFound()
             };

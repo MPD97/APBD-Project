@@ -22,7 +22,6 @@ namespace Advert.Presistance.Mediator.Handlers
             _buildingQueryService = buildingQueryService;
         }
 
-
         public async Task<IResponseModel> Handle(BuildingGetAllQuery request,
             CancellationToken cancellationToken)
         {

@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Advert.Database.Contexts;
 using Advert.Database.Entities;
-using Advert.Presistance.Services.IClientRegister.Exceptions;
 using Advert.Presistance.Services.IPasswordHasher;
 
 namespace Advert.Presistance.Services.IClientRegister
@@ -33,7 +32,7 @@ namespace Advert.Presistance.Services.IClientRegister
             _context.Add(client);
 
             if (await _context.SaveChangesAsync() <= 0)
-                throw new CannotUpdateException("SaveChangesAsync returned less or equal than 0.");
+                return null;
 
             return client;
         }
