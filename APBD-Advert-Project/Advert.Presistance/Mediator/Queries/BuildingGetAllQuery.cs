@@ -1,9 +1,11 @@
-﻿using Advert.Database.DTOs.Responses.ResponseModel;
+﻿using System.Collections.Generic;
+using Advert.Database.DTOs.Responses;
+using Advert.Database.DTOs.Responses.ResponseModel;
 using MediatR;
 
 namespace Advert.Presistance.Mediator.Queries
 {
-    public class BuildingGetAllQuery : IRequest<IResponseModel>
+    public class BuildingGetAllQuery : IRequest<IResponseModel<IEnumerable<BuildingResponseModel>>>
     {
         public BuildingGetAllQuery(string city = null, string street = null, int? streetStartNumber = null,
             int? steetEndNumber = null, bool? even = null)

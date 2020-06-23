@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Advert.Database.DTOs.Responses;
@@ -11,7 +12,8 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class BuildingGetAllHandler : IRequestHandler<BuildingGetAllQuery, IResponseModel>
+    public class
+        BuildingGetAllHandler : IRequestHandler<BuildingGetAllQuery, IResponseModel<IEnumerable<BuildingResponseModel>>>
     {
         private readonly IBuildingQueryService _buildingQueryService;
         private readonly IMapper _mapper;
@@ -22,16 +24,17 @@ namespace Advert.Presistance.Mediator.Handlers
             _buildingQueryService = buildingQueryService;
         }
 
-        public async Task<IResponseModel> Handle(BuildingGetAllQuery request,
+        public async Task<IResponseModel<IEnumerable<BuildingResponseModel>>> Handle(BuildingGetAllQuery request,
             CancellationToken cancellationToken)
         {
             // TODO: FluentValidation
             var buildings = _buildingQueryService.GetAll(request.City, request.Street,
                 request.StreetStartNumber, request.SteetEndNumber, request.Even);
             if (buildings == null)
-                return new NotFoundResponse("No buildings could be found");
+                return new NotFoundResponse<IEnumerable<BuildingResponseModel>>("No buildings could be found");
 
-            return new SuccessResponse(buildings.Select(_mapper.Map<Building, BuildingResponseModel>));
+            return new SuccessResponse<IEnumerable<BuildingResponseModel>>(
+                buildings.Select(_mapper.Map<Building, BuildingResponseModel>));
         }
     }
 }

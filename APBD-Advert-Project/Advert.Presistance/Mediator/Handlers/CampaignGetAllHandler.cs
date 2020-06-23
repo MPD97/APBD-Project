@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Advert.Database.DTOs.Responses;
@@ -11,7 +12,8 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class CampaignGetAllHandler : IRequestHandler<CampaignGetAllQuery, IResponseModel>
+    public class
+        CampaignGetAllHandler : IRequestHandler<CampaignGetAllQuery, IResponseModel<IEnumerable<CampaignResponseModel>>>
     {
         private readonly ICampaignQueryService _campaignQueryService;
         private readonly IMapper _mapper;
@@ -22,14 +24,16 @@ namespace Advert.Presistance.Mediator.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IResponseModel> Handle(CampaignGetAllQuery request,
+        public async Task<IResponseModel<IEnumerable<CampaignResponseModel>>> Handle(CampaignGetAllQuery request,
             CancellationToken cancellationToken)
         {
             var campaigns = await _campaignQueryService.GetAllAsync();
 
-            if (campaigns == null) return new NotFoundResponse("No campaigns could be found");
+            if (campaigns == null)
+                return new NotFoundResponse<IEnumerable<CampaignResponseModel>>("No campaigns could be found");
 
-            return new SuccessResponse(campaigns.Select(_mapper.Map<Campaign, CampaignResponseModel>));
+            return new SuccessResponse<IEnumerable<CampaignResponseModel>>(
+                campaigns.Select(_mapper.Map<Campaign, CampaignResponseModel>));
         }
     }
 }

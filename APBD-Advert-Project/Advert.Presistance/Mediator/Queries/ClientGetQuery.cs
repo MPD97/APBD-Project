@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Queries
 {
-    public class ClientGetQuery : IRequest<IResponseModel>
+    public class ClientGetQuery : IRequest<IResponseModel<ClientResponseModel>>
     {
         public ClientGetQuery(int clientId)
         {

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Advert.Database.DTOs.Responses;
 using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Services.IBannerCalculate;
@@ -10,7 +11,8 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class CampaignCreateHandler : IRequestHandler<CampaignCreateCommand, IResponseModel>
+    public class
+        CampaignCreateHandler : IRequestHandler<CampaignCreateCommand, IResponseModel<CampaignCreateResponseModel>>
     {
         private readonly IBannerCalculateService _bannerCalculateService;
         private readonly IBuildingQueryService _buildingQueryService;
@@ -25,7 +27,7 @@ namespace Advert.Presistance.Mediator.Handlers
         }
 
 
-        public async Task<IResponseModel> Handle(CampaignCreateCommand request,
+        public async Task<IResponseModel<CampaignCreateResponseModel>> Handle(CampaignCreateCommand request,
             CancellationToken cancellationToken)
         {
             // TODO: Logs
@@ -33,19 +35,22 @@ namespace Advert.Presistance.Mediator.Handlers
             var toBuilding = await _buildingQueryService.FindAsync(request.ToIdBuilding);
 
             if (fromBuilding.City != toBuilding.City)
-                return new BadRequestResponse("The buildings must be in the same city.");
+                return new BadRequestResponse<CampaignCreateResponseModel>("The buildings must be in the same city.");
 
             if (fromBuilding.Street != toBuilding.Street)
-                return new BadRequestResponse("The buildings must be on the same street.");
+                return new BadRequestResponse<CampaignCreateResponseModel>("The buildings must be on the same street.");
 
             if (toBuilding.StreetNumber % 2 == 0 != (fromBuilding.StreetNumber % 2 == 0))
-                return new BadRequestResponse("The buildings must be on the same side of the road.");
+                return new BadRequestResponse<CampaignCreateResponseModel>(
+                    "The buildings must be on the same side of the road.");
 
             if (fromBuilding.StreetNumber > toBuilding.StreetNumber)
-                return new BadRequestResponse("FromIdBuilding must have smaller street number than ToIdBuilding.");
+                return new BadRequestResponse<CampaignCreateResponseModel>(
+                    "FromIdBuilding must have smaller street number than ToIdBuilding.");
 
             if (fromBuilding.StreetNumber == toBuilding.StreetNumber)
-                return new BadRequestResponse("The buildings must have different street number.");
+                return new BadRequestResponse<CampaignCreateResponseModel>(
+                    "The buildings must have different street number.");
 
             var buildings = _buildingQueryService.GetAll(fromBuilding.City, fromBuilding.Street,
                 fromBuilding.IdBuilding, toBuilding.IdBuilding,
@@ -53,13 +58,13 @@ namespace Advert.Presistance.Mediator.Handlers
 
             var calculation = await _bannerCalculateService.Calculate(buildings.ToList(), request.PricePerSquareMeter);
             if (calculation == null)
-                return new InternalError("The calculation task could not be completed.");
+                return new InternalError<CampaignCreateResponseModel>("The calculation task could not be completed.");
 
             var result = await _campaignCreateService.CreateAsync(request, calculation);
             if (result == null)
-                return new InternalError("The campaign could not be created.");
+                return new InternalError<CampaignCreateResponseModel>("The campaign could not be created.");
 
-            return new SuccessResponse("Campaign has been created.", calculation);
+            return new SuccessResponse<CampaignCreateResponseModel>("Campaign has been created.", calculation);
         }
     }
 }

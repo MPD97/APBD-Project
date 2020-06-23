@@ -1,12 +1,12 @@
 ﻿namespace Advert.Database.DTOs.Responses.ResponseModel
 {
-    public class InternalError<T> : IResponseModel<T> where T : class
+    public class NotFoundResponse<T> : IResponseModel<T> where T : class
     {
-        private InternalError()
+        private NotFoundResponse()
         {
         }
 
-        public InternalError(string message)
+        public NotFoundResponse(string message)
         {
             Message = message;
         }
