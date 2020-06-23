@@ -19,7 +19,7 @@ namespace Advert.IntegrationTests
 {
     public class IntegrationTest
     {
-        protected readonly JsonSerializerSettings JsonSerializerSettings;
+        private readonly JsonSerializerSettings _jsonSerializerSettings;
         protected readonly HttpClient TestClient;
 
         public IntegrationTest()
@@ -36,7 +36,7 @@ namespace Advert.IntegrationTests
                 });
             TestClient = appFactory.CreateClient();
 
-            JsonSerializerSettings = new JsonSerializerSettings
+            _jsonSerializerSettings = new JsonSerializerSettings
             {
                 ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
             };
@@ -83,10 +83,10 @@ namespace Advert.IntegrationTests
             return successResponse.Result;
         }
 
-        private async Task<T> DeserializeObjectAsync<T>(HttpResponseMessage response) where T : class
+        protected async Task<T> DeserializeObjectAsync<T>(HttpResponseMessage response) where T : class
         {
             var json = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(json, JsonSerializerSettings);
+            return JsonConvert.DeserializeObject<T>(json, _jsonSerializerSettings);
         }
     }
 }

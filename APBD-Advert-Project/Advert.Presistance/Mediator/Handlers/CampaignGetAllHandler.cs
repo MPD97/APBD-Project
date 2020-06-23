@@ -29,7 +29,7 @@ namespace Advert.Presistance.Mediator.Handlers
         {
             var campaigns = await _campaignQueryService.GetAllAsync();
 
-            if (campaigns == null)
+            if (campaigns == null || campaigns.Count() == 0)
                 return new NotFoundResponse<IEnumerable<CampaignResponseModel>>("No campaigns could be found");
 
             return new SuccessResponse<IEnumerable<CampaignResponseModel>>(
