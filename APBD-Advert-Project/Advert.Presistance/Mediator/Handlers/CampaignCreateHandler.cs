@@ -56,7 +56,8 @@ namespace Advert.Presistance.Mediator.Handlers
                 fromBuilding.IdBuilding, toBuilding.IdBuilding,
                 toBuilding.StreetNumber % 2 == 0);
 
-            var calculation = await _bannerCalculateService.Calculate(buildings.ToList(), request.PricePerSquareMeter);
+            var calculation =
+                await _bannerCalculateService.CalculateAsync(buildings.ToList(), request.PricePerSquareMeter);
             if (calculation == null)
                 return new InternalError<CampaignCreateResponseModel>("The calculation task could not be completed.");
 

@@ -19,12 +19,13 @@ namespace Advert.IntegrationTests
 {
     public class IntegrationTest
     {
+        protected readonly WebApplicationFactory<Startup> _application;
         private readonly JsonSerializerSettings _jsonSerializerSettings;
         protected readonly HttpClient TestClient;
 
         public IntegrationTest()
         {
-            var appFactory = new WebApplicationFactory<Startup>()
+            _application = new WebApplicationFactory<Startup>()
                 .WithWebHostBuilder(builder =>
                 {
                     builder.ConfigureServices(services =>
@@ -34,7 +35,7 @@ namespace Advert.IntegrationTests
                             options => { options.UseInMemoryDatabase("TestDb"); });
                     });
                 });
-            TestClient = appFactory.CreateClient();
+            TestClient = _application.CreateClient();
 
             _jsonSerializerSettings = new JsonSerializerSettings
             {

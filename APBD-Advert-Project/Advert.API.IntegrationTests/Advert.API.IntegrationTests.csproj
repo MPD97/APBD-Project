@@ -4,6 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>Advert.IntegrationTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

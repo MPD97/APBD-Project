@@ -7,6 +7,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
 {
     public interface IBannerCalculateService
     {
-        public Task<CampaignCreateResponseModel> Calculate(List<Building> buildings, decimal pricePerSquareMeter = 35);
+        public Task<CampaignCreateResponseModel> CalculateAsync(List<Building> buildings,
+            decimal pricePerSquareMeter = 35);
     }
 }
