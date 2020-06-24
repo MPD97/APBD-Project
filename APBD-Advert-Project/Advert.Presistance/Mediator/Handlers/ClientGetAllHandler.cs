@@ -12,7 +12,8 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class ClientGetAllHandler : IRequestHandler<ClientGetAllQuery, IResponseModel>
+    public class
+        ClientGetAllHandler : IRequestHandler<ClientGetAllQuery, IResponseModel<IEnumerable<ClientResponseModel>>>
     {
         private readonly IClientQueryService _clientQueryService;
         private readonly IMapper _mapper;
@@ -23,13 +24,15 @@ namespace Advert.Presistance.Mediator.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IResponseModel> Handle(ClientGetAllQuery request,
+        public async Task<IResponseModel<IEnumerable<ClientResponseModel>>> Handle(ClientGetAllQuery request,
             CancellationToken cancellationToken)
         {
-            var client = await _clientQueryService.GetAllAsync();
-            if (client == null) return new NotFoundResponse("No clients could be found");
+            var clients = await _clientQueryService.GetAllAsync();
+            if (clients == null || clients.Count() == 0)
+                return new NotFoundResponse<IEnumerable<ClientResponseModel>>("No clients could be found");
 
-            return new SuccessResponse( client.Select(_mapper.Map<Client, ClientResponseModel>));
+            return new SuccessResponse<IEnumerable<ClientResponseModel>>(
+                clients.Select(_mapper.Map<Client, ClientResponseModel>));
         }
     }
 }

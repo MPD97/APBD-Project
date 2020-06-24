@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Commands
 {
-    public class ClientRefreshTokenCommand : ClientRefreshTokenModel, IRequest<IResponseModel>
+    public class ClientRefreshTokenCommand : ClientRefreshTokenModel, IRequest<IResponseModel<JwtTokenResponseModel>>
     {
     }
 }

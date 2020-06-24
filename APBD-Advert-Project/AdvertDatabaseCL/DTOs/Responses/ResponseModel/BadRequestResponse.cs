@@ -1,7 +1,11 @@
 ﻿namespace Advert.Database.DTOs.Responses.ResponseModel
 {
-    public class BadRequestResponse : IResponseModel
+    public class BadRequestResponse<T> : IResponseModel<T> where T : class
     {
+        private BadRequestResponse()
+        {
+        }
+
         public BadRequestResponse(string message)
         {
             Message = message;
@@ -9,18 +13,6 @@
 
         public ResponseStatus Status { get; set; } = ResponseStatus.Error;
         public string Message { get; set; }
-        public object Result { get; set; } = null;
-    }
-
-    public class NotFoundResponse : IResponseModel
-    {
-        public NotFoundResponse(string message)
-        {
-            Message = message;
-        }
-
-        public ResponseStatus Status { get; set; } = ResponseStatus.Error;
-        public string Message { get; set; }
-        public object Result { get; set; } = null;
+        public T Result { get; set; } = null;
     }
 }

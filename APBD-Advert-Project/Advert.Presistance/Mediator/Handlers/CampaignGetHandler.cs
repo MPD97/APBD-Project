@@ -9,7 +9,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class CampaignGetHandler : IRequestHandler<CampaignGetQuery, IResponseModel>
+    public class CampaignGetHandler : IRequestHandler<CampaignGetQuery, IResponseModel<CampaignResponseModel>>
     {
         private readonly ICampaignQueryService _campaignQueryService;
         private readonly IMapper _mapper;
@@ -20,12 +20,14 @@ namespace Advert.Presistance.Mediator.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IResponseModel> Handle(CampaignGetQuery request, CancellationToken cancellationToken)
+        public async Task<IResponseModel<CampaignResponseModel>> Handle(CampaignGetQuery request,
+            CancellationToken cancellationToken)
         {
             var campaign = await _campaignQueryService.FindAsync(request.CampaignId);
-            if (campaign == null) return new NotFoundResponse("No campaigns could be found with this id");
+            if (campaign == null)
+                return new NotFoundResponse<CampaignResponseModel>("No campaigns could be found with this id");
 
-            return new SuccessResponse(_mapper.Map<CampaignResponseModel>(campaign));
+            return new SuccessResponse<CampaignResponseModel>(_mapper.Map<CampaignResponseModel>(campaign));
         }
     }
 }

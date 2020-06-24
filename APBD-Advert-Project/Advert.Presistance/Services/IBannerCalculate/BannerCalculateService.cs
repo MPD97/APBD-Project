@@ -3,28 +3,28 @@ using System.Linq;
 using System.Threading.Tasks;
 using Advert.Database.DTOs.Responses;
 using Advert.Database.Entities;
-using Advert.Presistance.Services.IBuildingQuery;
 
 namespace Advert.Presistance.Services.IBannerCalculate
 {
     public class BannerCalculateService : IBannerCalculateService
     {
-        private readonly IBuildingQueryService _buildingQueryService;
-        private readonly int _buildingWidth = 1;
+        private readonly int _buildingWidth;
 
-        public BannerCalculateService(IBuildingQueryService buildingQueryService)
+        public BannerCalculateService(int buildingWidth = 1)
         {
-            _buildingQueryService = buildingQueryService;
+            _buildingWidth = buildingWidth;
         }
 
-        public async Task<CampaignCreateResponseModel> Calculate(List<Building> buildings,
+        public async Task<CampaignCreateResponseModel> CalculateAsync(List<Building> buildings,
             decimal pricePerSquareMeter = 35)
         {
+            if (buildings == null || buildings.Count <= 1 || pricePerSquareMeter <= 0) return null;
+
             var response = new CampaignCreateResponseModel();
-            
+
             var firstBuilding = buildings.First();
             var lasBuilding = buildings.Last();
-            
+
             if (firstBuilding.Height >= lasBuilding.Height)
             {
                 response.Banner1 = new CampaignCreateResponseModel.Banner

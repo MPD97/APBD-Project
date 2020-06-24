@@ -9,7 +9,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class BuildingGetHandler : IRequestHandler<BuildingGetQuery, IResponseModel>
+    public class BuildingGetHandler : IRequestHandler<BuildingGetQuery, IResponseModel<BuildingResponseModel>>
     {
         private readonly IBuildingQueryService _buildingQueryService;
         private readonly IMapper _mapper;
@@ -20,13 +20,15 @@ namespace Advert.Presistance.Mediator.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IResponseModel> Handle(BuildingGetQuery request, CancellationToken cancellationToken)
+        public async Task<IResponseModel<BuildingResponseModel>> Handle(BuildingGetQuery request,
+            CancellationToken cancellationToken)
         {
             var building = await _buildingQueryService.FindAsync(request.BuildingId);
 
-            if (building == null) return new NotFoundResponse("No buildings could be found with this id");
+            if (building == null)
+                return new NotFoundResponse<BuildingResponseModel>("No buildings could be found with this id");
 
-            return new SuccessResponse(_mapper.Map<BuildingResponseModel>(building));
+            return new SuccessResponse<BuildingResponseModel>(_mapper.Map<BuildingResponseModel>(building));
         }
     }
 }
