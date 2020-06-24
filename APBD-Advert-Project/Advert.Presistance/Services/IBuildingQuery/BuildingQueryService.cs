@@ -2,30 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Advert.Database.Contexts;
 using Advert.Database.Entities;
-using Microsoft.EntityFrameworkCore;
+using Advert.Presistance.Services.IRepository;
 
 namespace Advert.Presistance.Services.IBuildingQuery
 {
     public class BuildingQueryService : IBuildingQueryService
     {
-        private readonly AdvertContext _context;
+        private readonly IBuildingsRepository _repository;
 
-        public BuildingQueryService(AdvertContext context)
+        public BuildingQueryService(IBuildingsRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<Building> FindAsync(int id)
         {
-            return await _context.Buildings.SingleOrDefaultAsync(b => b.IdBuilding == id);
+            return await _repository.FindByIdAsync(id);
         }
 
         public IEnumerable<Building> GetAll(string city, string street, int? streetNumberStart,
             int? streetNumberEnd, bool? even)
         {
-            IEnumerable<Building> result = _context.Buildings;
+            var result = _repository.GetAll();
             if (city != null)
                 result = result.Where(b => string.Equals(b.City, city, StringComparison.CurrentCultureIgnoreCase));
 
