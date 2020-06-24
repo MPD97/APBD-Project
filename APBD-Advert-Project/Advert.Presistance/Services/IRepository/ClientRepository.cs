@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Advert.Database.Contexts;
@@ -24,6 +25,17 @@ namespace Advert.Presistance.Services.IRepository
         public async Task<Client> FindByIdAsync(int id)
         {
             return await _context.Clients.FindAsync(id);
+        }
+
+        public async Task<Client> FindByLoginAsync(string login)
+        {
+            return await _context.Clients.SingleOrDefaultAsync(c =>
+                string.Equals(c.Login, login, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        public async Task<Client> FindByTokenAsync(string token, string refresh)
+        {
+            return await _context.Clients.SingleOrDefaultAsync(c => c.Token == token && c.RefreshToken == refresh);
         }
 
         public async Task Insert(Client client)
