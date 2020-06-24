@@ -6,6 +6,8 @@ AutoMapper ✅<br />
 MediatR ✅<br />
 Swashbuckle Swagger ✅<br />
 LINQ ✅<br />
+FluentAssert ✅<br />
+NSubstitute ✅<br />
 
 # Patterns:
 Clean Code ✅<br />
