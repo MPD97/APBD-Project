@@ -9,9 +9,9 @@ namespace Advert.Presistance.Services.IBuildingQuery
 {
     public class BuildingQueryService : IBuildingQueryService
     {
-        private readonly IBuildingsRepository _repository;
+        private readonly IBuildingRepository _repository;
 
-        public BuildingQueryService(IBuildingsRepository repository)
+        public BuildingQueryService(IBuildingRepository repository)
         {
             _repository = repository;
         }
@@ -21,8 +21,8 @@ namespace Advert.Presistance.Services.IBuildingQuery
             return await _repository.FindByIdAsync(id);
         }
 
-        public IEnumerable<Building> GetAll(string city, string street, int? streetNumberStart,
-            int? streetNumberEnd, bool? even)
+        public IEnumerable<Building> GetAll(string city = null, string street = null, int? streetNumberStart = null,
+            int? streetNumberEnd = null, bool? even = null)
         {
             var result = _repository.GetAll();
             if (city != null)

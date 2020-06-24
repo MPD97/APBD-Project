@@ -4,7 +4,7 @@ using Advert.Database.Entities;
 
 namespace Advert.Presistance.Services.IRepository
 {
-    public interface IBuildingsRepository
+    public interface IBuildingRepository
     {
         IEnumerable<Building> GetAll();
         Task<Building> FindByIdAsync(int id);

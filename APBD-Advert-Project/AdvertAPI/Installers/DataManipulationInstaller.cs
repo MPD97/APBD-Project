@@ -9,6 +9,7 @@ using Advert.Presistance.Services.IClientQuery;
 using Advert.Presistance.Services.IClientRegister;
 using Advert.Presistance.Services.IJwtBearer;
 using Advert.Presistance.Services.IPasswordHasher;
+using Advert.Presistance.Services.IRepository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,6 +30,7 @@ namespace Advert.API.Installers
             services.AddScoped<ICampaignQueryService, CampaignQueryService>();
             services.AddScoped<ICampaignCreateService, CampaignCreateService>();
 
+            services.AddScoped<IBuildingRepository, BuildingRepository>();
             services.AddScoped<IBuildingQueryService, BuildingQueryService>();
 
             services.AddScoped<IBannerQueryService, BannerQueryService>();

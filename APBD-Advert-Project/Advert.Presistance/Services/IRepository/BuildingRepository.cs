@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Advert.Presistance.Services.IRepository
 {
-    public class BuildingsRepository : IBuildingsRepository
+    public class BuildingRepository : IBuildingRepository
     {
         private readonly AdvertContext _context;
 
-        public BuildingsRepository(AdvertContext context)
+        public BuildingRepository(AdvertContext context)
         {
             _context = context;
         }
