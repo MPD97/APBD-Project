@@ -34,6 +34,7 @@ namespace Advert.API.Installers
             services.AddScoped<IBuildingRepository, BuildingRepository>();
             services.AddScoped<IBuildingQueryService, BuildingQueryService>();
 
+            services.AddScoped<IBannerRepository, BannerRepository>();
             services.AddScoped<IBannerQueryService, BannerQueryService>();
             services.AddScoped<IBannerCreateService, BannerCreateService>();
             services.AddScoped<IBannerCalculateService, BannerCalculateService>();
