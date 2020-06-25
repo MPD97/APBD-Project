@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Advert.Database.Entities;
 using Advert.Presistance.Services.IRepository;
@@ -15,9 +14,9 @@ namespace Advert.Presistance.Services.IBannerQuery
             _repository = repository;
         }
 
-        public IEnumerable<Banner> GetAll(int id)
+        public IEnumerable<Banner> GetAll()
         {
-            return _repository.GetAll().ToList();
+            return _repository.GetAll();
         }
 
         public async Task<Banner> FindAsync(int id)
