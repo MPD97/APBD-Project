@@ -1,23 +1,27 @@
 ﻿using System.Threading.Tasks;
-using Advert.Database.Contexts;
 using Advert.Database.Entities;
 using Advert.Presistance.Services.IPasswordHasher;
+using Advert.Presistance.Services.IRepository;
 
 namespace Advert.Presistance.Services.IClientRegister
 {
     public class ClientRegisterService : IClientRegisterService
     {
-        private readonly AdvertContext _context;
         private readonly IPasswordHasherService _passwordHasher;
+        private readonly IClientRepository _repository;
 
-        public ClientRegisterService(IPasswordHasherService passwordHasher, AdvertContext context)
+        public ClientRegisterService(IClientRepository repository, IPasswordHasherService passwordHasher)
         {
+            _repository = repository;
             _passwordHasher = passwordHasher;
-            _context = context;
         }
+
 
         public async Task<Client> CreateAsync(Client client, string password)
         {
+            if (client == null)
+                return null;
+
             var salt = _passwordHasher.CreateSalt();
 
             var hash = _passwordHasher.Create(password, salt);
@@ -25,9 +29,9 @@ namespace Advert.Presistance.Services.IClientRegister
             client.Salt = salt;
             client.Hash = hash;
 
-            _context.Add(client);
+            await _repository.Insert(client);
 
-            if (await _context.SaveChangesAsync() <= 0)
+            if (await _repository.SaveAsync() <= 0)
                 return null;
 
             return client;

@@ -1,28 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Advert.Database.Contexts;
 using Advert.Database.Entities;
-using Microsoft.EntityFrameworkCore;
+using Advert.Presistance.Services.IRepository;
 
 namespace Advert.Presistance.Services.IBannerQuery
 {
     public class BannerQueryService : IBannerQueryService
     {
-        private readonly AdvertContext _context;
+        private readonly IBannerRepository _repository;
 
-        public BannerQueryService(AdvertContext context)
+        public BannerQueryService(IBannerRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        public async Task<ICollection<Banner>> GetAllAsync(int id)
+        public IEnumerable<Banner> GetAll()
         {
-            return await _context.Banners.ToArrayAsync();
+            return _repository.GetAll();
         }
 
         public async Task<Banner> FindAsync(int id)
         {
-            return await _context.Banners.SingleOrDefaultAsync(b => b.IdAdvertisment == id);
+            return await _repository.FindByIdAsync(id);
         }
     }
 }

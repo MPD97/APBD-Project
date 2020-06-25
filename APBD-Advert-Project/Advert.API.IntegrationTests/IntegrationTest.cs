@@ -65,8 +65,10 @@ namespace Advert.IntegrationTests
 
             var registerSuccess = await DeserializeObjectAsync<SuccessResponse<ClientResponseModel>>(registerResponse);
             if (registerSuccess == null) throw new Exception("Cannot deserialize response.");
-            if (registerResponse.StatusCode != HttpStatusCode.Created)
-                throw new Exception($"Register client returned: [{registerResponse.StatusCode.ToString()}]");
+            if (registerResponse.StatusCode != HttpStatusCode.Created &&
+                registerSuccess.Message != "Client with this email already exists.")
+                throw new Exception(
+                    $"Register client returned: [{registerResponse.StatusCode.ToString()}] [{registerSuccess.Message}]");
 
             var loginResponse = await TestClient.PostAsJsonAsync(ApiRoutes.Clients.LogIn, new ClientLoginCommand
             {

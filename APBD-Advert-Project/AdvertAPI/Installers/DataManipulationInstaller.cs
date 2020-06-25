@@ -23,6 +23,7 @@ namespace Advert.API.Installers
 
             services.AddSingleton<IJwtBearerService, JwtBearerService>();
 
+            services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IClientLoginService, ClientLoginService>();
             services.AddScoped<IClientRegisterService, ClientRegisterService>();
             services.AddScoped<IClientQueryService, ClientQueryService>();
@@ -33,6 +34,7 @@ namespace Advert.API.Installers
             services.AddScoped<IBuildingRepository, BuildingRepository>();
             services.AddScoped<IBuildingQueryService, BuildingQueryService>();
 
+            services.AddScoped<IBannerRepository, BannerRepository>();
             services.AddScoped<IBannerQueryService, BannerQueryService>();
             services.AddScoped<IBannerCreateService, BannerCreateService>();
             services.AddScoped<IBannerCalculateService, BannerCalculateService>();

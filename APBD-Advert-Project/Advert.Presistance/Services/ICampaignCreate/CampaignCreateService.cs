@@ -26,18 +26,18 @@ namespace Advert.Presistance.Services.ICampaignCreate
         {
             var campaign = _mapper.Map<Campaign>(model);
 
-            _context.Campaigns.Add(campaign);
+            await _context.Campaigns.AddAsync(campaign);
             if (await _context.SaveChangesAsync() == 0)
                 // TODO: Log errors
                 return null;
-            var bannerModel1 = new BannerCreateRequestModel
+            var bannerModel1 = new Banner
             {
                 IdCampaign = campaign.IdCampaign,
                 Area = calculation.Banner1.SquareMeters,
                 Name = 0,
                 Price = calculation.Banner1.Price
             };
-            var bannerModel2 = new BannerCreateRequestModel
+            var bannerModel2 = new Banner
             {
                 IdCampaign = campaign.IdCampaign,
                 Area = calculation.Banner2.SquareMeters,

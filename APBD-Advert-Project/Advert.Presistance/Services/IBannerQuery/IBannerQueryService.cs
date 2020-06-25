@@ -7,6 +7,6 @@ namespace Advert.Presistance.Services.IBannerQuery
     public interface IBannerQueryService
     {
         public Task<Banner> FindAsync(int id);
-        public Task<ICollection<Banner>> GetAllAsync(int id);
+        public IEnumerable<Banner> GetAll();
     }
 }

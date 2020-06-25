@@ -1,28 +1,23 @@
 ﻿using System.Threading.Tasks;
-using Advert.Database.Contexts;
-using Advert.Database.DTOs.Requests;
 using Advert.Database.Entities;
-using AutoMapper;
+using Advert.Presistance.Services.IRepository;
 
 namespace Advert.Presistance.Services.IBannerCreate
 {
     public class BannerCreateService : IBannerCreateService
     {
-        private readonly AdvertContext _context;
-        private readonly IMapper _mapper;
+        private readonly IBannerRepository _repository;
 
-        public BannerCreateService(IMapper mapper, AdvertContext context)
+        public BannerCreateService(IBannerRepository repository)
         {
-            _mapper = mapper;
-            _context = context;
+            _repository = repository;
         }
 
-        public async Task<Banner> Create(BannerCreateRequestModel model)
+        public async Task<Banner> Create(Banner banner)
         {
-            var banner = _mapper.Map<Banner>(model);
-            _context.Add((object) banner);
+            await _repository.Insert(banner);
 
-            if (await _context.SaveChangesAsync() == 0) return null;
+            if (await _repository.SaveAsync() == 0) return null;
 
             return banner;
         }

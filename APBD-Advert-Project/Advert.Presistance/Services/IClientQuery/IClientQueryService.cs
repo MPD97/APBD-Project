@@ -9,6 +9,6 @@ namespace Advert.Presistance.Services.IClientQuery
         public Task<Client> FindAsync(int id);
         public Task<Client> FindByEmailAsync(string email);
         public Task<Client> FindByLoginAsync(string login);
-        public Task<IEnumerable<Client>> GetAllAsync();
+        public IEnumerable<Client> GetAll();
     }
 }
