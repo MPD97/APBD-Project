@@ -23,6 +23,7 @@ namespace Advert.API.Installers
 
             services.AddSingleton<IJwtBearerService, JwtBearerService>();
 
+            services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IClientLoginService, ClientLoginService>();
             services.AddScoped<IClientRegisterService, ClientRegisterService>();
             services.AddScoped<IClientQueryService, ClientQueryService>();

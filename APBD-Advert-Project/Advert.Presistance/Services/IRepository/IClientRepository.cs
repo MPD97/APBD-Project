@@ -9,6 +9,7 @@ namespace Advert.Presistance.Services.IRepository
         IEnumerable<Client> GetAll();
         Task<Client> FindByIdAsync(int id);
         Task<Client> FindByLoginAsync(string login);
+        Task<Client> FindByEmailAsync(string email);
         Task<Client> FindByTokenAsync(string token, string refresh);
         Task Insert(Client client);
         Task Insert(IEnumerable<Client> clients);

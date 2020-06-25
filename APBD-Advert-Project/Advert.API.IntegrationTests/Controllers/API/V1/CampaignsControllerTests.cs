@@ -36,11 +36,29 @@ namespace Advert.IntegrationTests.Controllers.API.V1
         }
 
         [Fact]
+        public async Task Get_ShouldReturnNotFound_WhenAuthorizedAndNoDataInDb()
+        {
+            await AuthenticateAsync();
+            var response = await TestClient.GetAsync(ApiRoutes.Campaigns.Get.Replace("{id:int}", "150"));
+
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+
+        [Fact]
         public async Task GetAll_ShouldReturnAccessDenied_WhenNotAuthorized()
         {
             var response = await TestClient.GetAsync(ApiRoutes.Campaigns.GetAll);
 
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+        }
+
+        [Fact]
+        public async Task GetAll_ShouldReturnNotFound_WhenAuthorizedAndNoDataInDb()
+        {
+            await AuthenticateAsync();
+            var response = await TestClient.GetAsync(ApiRoutes.Campaigns.GetAll);
+
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
     }
 }

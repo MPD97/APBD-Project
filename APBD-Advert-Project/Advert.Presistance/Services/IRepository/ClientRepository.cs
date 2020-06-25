@@ -33,6 +33,12 @@ namespace Advert.Presistance.Services.IRepository
                 string.Equals(c.Login, login, StringComparison.CurrentCultureIgnoreCase));
         }
 
+        public async Task<Client> FindByEmailAsync(string email)
+        {
+            return await _context.Clients.SingleOrDefaultAsync(c =>
+                string.Equals(c.Email, email, StringComparison.CurrentCultureIgnoreCase));
+        }
+
         public async Task<Client> FindByTokenAsync(string token, string refresh)
         {
             return await _context.Clients.SingleOrDefaultAsync(c => c.Token == token && c.RefreshToken == refresh);

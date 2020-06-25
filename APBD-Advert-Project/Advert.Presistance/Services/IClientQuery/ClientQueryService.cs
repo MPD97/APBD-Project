@@ -1,38 +1,37 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Advert.Database.Contexts;
 using Advert.Database.Entities;
-using Microsoft.EntityFrameworkCore;
+using Advert.Presistance.Services.IRepository;
 
 namespace Advert.Presistance.Services.IClientQuery
 {
     public class ClientQueryService : IClientQueryService
     {
-        private readonly AdvertContext _context;
+        private readonly IClientRepository _repository;
 
-        public ClientQueryService(AdvertContext context)
+        public ClientQueryService(IClientRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<Client> FindAsync(int id)
         {
-            return await _context.Clients.SingleOrDefaultAsync(c => c.IdClient == id);
+            return await _repository.FindByIdAsync(id);
         }
 
         public async Task<Client> FindByEmailAsync(string email)
         {
-            return await _context.Clients.SingleOrDefaultAsync(c => c.Email == email);
+            return await _repository.FindByEmailAsync(email);
         }
 
         public async Task<Client> FindByLoginAsync(string login)
         {
-            return await _context.Clients.SingleOrDefaultAsync(c => c.Login == login);
+            return await _repository.FindByLoginAsync(login);
         }
 
-        public async Task<IEnumerable<Client>> GetAllAsync()
+        public IEnumerable<Client> GetAll()
         {
-            return await _context.Clients.ToArrayAsync();
+            return _repository.GetAll();
         }
     }
 }
