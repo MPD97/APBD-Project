@@ -19,6 +19,9 @@ namespace Advert.Presistance.Services.IClientRegister
 
         public async Task<Client> CreateAsync(Client client, string password)
         {
+            if (client == null)
+                return null;
+
             var salt = _passwordHasher.CreateSalt();
 
             var hash = _passwordHasher.Create(password, salt);
