@@ -1,6 +1,6 @@
 ﻿namespace Advert.Database.DTOs.Responses
 {
-    public class CampaignCreateResponseModel
+    public class CampaignCreateResponse
     {
         public Banner Banner1 { get; set; }
         public Banner Banner2 { get; set; }

@@ -9,9 +9,9 @@ namespace Advert.Database.MapProfiles
     {
         public CampaignProfile()
         {
-            CreateMap<Campaign, CampaignResponseModel>();
-            CreateMap<CampaignResponseModel, Campaign>();
-            CreateMap<CampaignCreateRequestModel, Campaign>();
+            CreateMap<Campaign, CampaignResponse>();
+            CreateMap<CampaignResponse, Campaign>();
+            CreateMap<CampaignCreateRequest, Campaign>();
         }
     }
 }

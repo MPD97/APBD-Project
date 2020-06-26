@@ -9,7 +9,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class ClientGetHandler : IRequestHandler<ClientGetQuery, IResponseModel<ClientResponseModel>>
+    public class ClientGetHandler : IRequestHandler<ClientGetQuery, IResponseModel<ClientResponse>>
     {
         private readonly IClientQueryService _clientQueryService;
         private readonly IMapper _mapper;
@@ -20,14 +20,14 @@ namespace Advert.Presistance.Mediator.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IResponseModel<ClientResponseModel>> Handle(ClientGetQuery request,
+        public async Task<IResponseModel<ClientResponse>> Handle(ClientGetQuery request,
             CancellationToken cancellationToken)
         {
             var client = await _clientQueryService.FindAsync(request.ClientId);
             if (client == null)
-                return new NotFoundResponse<ClientResponseModel>("No client could be found with this id");
+                return new NotFoundResponse<ClientResponse>("No client could be found with this id");
 
-            return new SuccessResponse<ClientResponseModel>(_mapper.Map<ClientResponseModel>(client));
+            return new SuccessResponse<ClientResponse>(_mapper.Map<ClientResponse>(client));
         }
     }
 }

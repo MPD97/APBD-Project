@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Queries
 {
-    public class BuildingGetAllQuery : IRequest<IResponseModel<IEnumerable<BuildingResponseModel>>>
+    public class BuildingGetAllQuery : IRequest<IResponseModel<IEnumerable<BuildingResponse>>>
     {
         public string City { get; set; }
         public string Street { get; set; }

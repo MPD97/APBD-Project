@@ -1,6 +1,6 @@
 ﻿namespace Advert.Database.DTOs.Requests
 {
-    public class BannerCreateRequestModel
+    public class BannerCreateRequest
     {
         public int Name { get; set; }
         public decimal Price { get; set; }

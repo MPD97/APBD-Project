@@ -5,6 +5,6 @@ namespace Advert.Presistance.Services.IJwtBearer
 {
     public interface IJwtBearerService
     {
-        public JwtTokenResponseModel CreateToken(Client model);
+        public JwtTokenResponse CreateToken(Client model);
     }
 }

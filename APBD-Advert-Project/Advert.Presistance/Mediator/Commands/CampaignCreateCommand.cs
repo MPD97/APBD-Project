@@ -5,8 +5,8 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Commands
 {
-    public class CampaignCreateCommand : CampaignCreateRequestModel,
-        IRequest<IResponseModel<CampaignCreateResponseModel>>
+    public class CampaignCreateCommand : CampaignCreateRequest,
+        IRequest<IResponseModel<CampaignCreateResponse>>
     {
     }
 }

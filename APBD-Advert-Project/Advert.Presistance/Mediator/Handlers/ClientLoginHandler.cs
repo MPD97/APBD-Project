@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class ClientLoginHandler : IRequestHandler<ClientLoginCommand, IResponseModel<JwtTokenResponseModel>>
+    public class ClientLoginHandler : IRequestHandler<ClientLoginCommand, IResponseModel<JwtTokenResponse>>
     {
         private readonly IClientLoginService _loginService;
 
@@ -17,12 +17,12 @@ namespace Advert.Presistance.Mediator.Handlers
             _loginService = loginService;
         }
 
-        public async Task<IResponseModel<JwtTokenResponseModel>> Handle(ClientLoginCommand request,
+        public async Task<IResponseModel<JwtTokenResponse>> Handle(ClientLoginCommand request,
             CancellationToken cancellationToken)
         {
             var tokenResult = await _loginService.LoginAsync(request);
-            if (tokenResult == null) return new BadRequestResponse<JwtTokenResponseModel>("Cannot create token");
-            return new SuccessResponse<JwtTokenResponseModel>(tokenResult);
+            if (tokenResult == null) return new BadRequestResponse<JwtTokenResponse>("Invalid login or password.");
+            return new SuccessResponse<JwtTokenResponse>(tokenResult);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Advert.IntegrationTests.Controllers.API.V1
         {
             var response = await TestClient.GetAsync(ApiRoutes.Buildings.Get.Replace("{id:int}", "150"));
 
-            var successResponse = await DeserializeObjectAsync<SuccessResponse<BuildingResponseModel>>(response);
+            var successResponse = await DeserializeObjectAsync<SuccessResponse<BuildingResponse>>(response);
 
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
 
@@ -33,7 +33,7 @@ namespace Advert.IntegrationTests.Controllers.API.V1
             var response = await TestClient.GetAsync(ApiRoutes.Buildings.GetAll);
 
             var successResponse =
-                await DeserializeObjectAsync<SuccessResponse<IEnumerable<BuildingResponseModel>>>(response);
+                await DeserializeObjectAsync<SuccessResponse<IEnumerable<BuildingResponse>>>(response);
 
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
 

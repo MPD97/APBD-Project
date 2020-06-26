@@ -2,10 +2,6 @@
 {
     public class BadRequestResponse<T> : IResponseModel<T> where T : class
     {
-        private BadRequestResponse()
-        {
-        }
-
         public BadRequestResponse(string message)
         {
             Message = message;

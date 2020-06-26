@@ -1,6 +1,6 @@
 ﻿namespace Advert.Database.DTOs.Responses
 {
-    public class BuildingResponseModel
+    public class BuildingResponse
     {
         public int IdBuilding { get; set; }
         public string Street { get; set; }

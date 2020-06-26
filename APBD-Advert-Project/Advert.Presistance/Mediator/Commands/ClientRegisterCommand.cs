@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Advert.Presistance.Mediator.Commands
 {
-    public class ClientRegisterCommand : ClientRegisterRequestModel, IRequest<IResponseModel<ClientResponseModel>>
+    public class ClientRegisterCommand : ClientRegisterRequest, IRequest<IResponseModel<ClientResponse>>
     {
     }
 }

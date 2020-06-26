@@ -29,13 +29,13 @@ namespace Advert.Presistance.Tests.Services.IClientLogin
         public async Task LoginAsync_ShouldReturnJwtTokenResponse_WhenInputIsValid()
         {
             // Arrange
-            var clientToLogin = new ClientLoginRequestModel
+            var clientToLogin = new ClientLoginRequest
             {
                 Login = "login",
                 Password = "password"
             };
             var client = new Client();
-            var jwtToken = new JwtTokenResponseModel {Token = "token", RefreshToken = "refreshToken"};
+            var jwtToken = new JwtTokenResponse {Token = "token", RefreshToken = "refreshToken"};
 
             _clientRepository.FindByLoginAsync(Arg.Any<string>()).Returns(client);
             _passwordHasher.Validate(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns(true);
@@ -53,7 +53,7 @@ namespace Advert.Presistance.Tests.Services.IClientLogin
         public async Task LoginAsync_ShouldReturnNull_WhenClientNotFoundInDb()
         {
             // Arrange
-            var clientToLogin = new ClientLoginRequestModel
+            var clientToLogin = new ClientLoginRequest
             {
                 Login = "login",
                 Password = "password"
@@ -72,7 +72,7 @@ namespace Advert.Presistance.Tests.Services.IClientLogin
         public async Task LoginAsync_ShouldReturnNull_WhenPasswordIsNotValid()
         {
             // Arrange
-            var clientToLogin = new ClientLoginRequestModel
+            var clientToLogin = new ClientLoginRequest
             {
                 Login = "login",
                 Password = "password"
@@ -91,13 +91,13 @@ namespace Advert.Presistance.Tests.Services.IClientLogin
         public async Task LoginAsync_ShouldReturnNull_WhenSaveAsyncFails()
         {
             // Arrange
-            var clientToLogin = new ClientLoginRequestModel
+            var clientToLogin = new ClientLoginRequest
             {
                 Login = "login",
                 Password = "password"
             };
             var client = new Client();
-            var jwtToken = new JwtTokenResponseModel {Token = "token", RefreshToken = "refreshToken"};
+            var jwtToken = new JwtTokenResponse {Token = "token", RefreshToken = "refreshToken"};
 
             _clientRepository.FindByLoginAsync(Arg.Any<string>()).Returns(client);
             _passwordHasher.Validate(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns(true);

@@ -8,7 +8,7 @@ namespace Advert.Database.MapProfiles
     {
         public BannerProfile()
         {
-            CreateMap<BannerCreateRequestModel, Banner>();
+            CreateMap<BannerCreateRequest, Banner>();
         }
     }
 }

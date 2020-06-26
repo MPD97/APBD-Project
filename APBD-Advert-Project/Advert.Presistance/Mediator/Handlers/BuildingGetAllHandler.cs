@@ -13,7 +13,7 @@ using MediatR;
 namespace Advert.Presistance.Mediator.Handlers
 {
     public class
-        BuildingGetAllHandler : IRequestHandler<BuildingGetAllQuery, IResponseModel<IEnumerable<BuildingResponseModel>>>
+        BuildingGetAllHandler : IRequestHandler<BuildingGetAllQuery, IResponseModel<IEnumerable<BuildingResponse>>>
     {
         private readonly IBuildingQueryService _buildingQueryService;
         private readonly IMapper _mapper;
@@ -24,17 +24,17 @@ namespace Advert.Presistance.Mediator.Handlers
             _buildingQueryService = buildingQueryService;
         }
 
-        public async Task<IResponseModel<IEnumerable<BuildingResponseModel>>> Handle(BuildingGetAllQuery request,
+        public async Task<IResponseModel<IEnumerable<BuildingResponse>>> Handle(BuildingGetAllQuery request,
             CancellationToken cancellationToken)
         {
             // TODO: FluentValidation
             var buildings = _buildingQueryService.GetAll(request.City, request.Street,
                 request.StreetStartNumber, request.StreetEndNumber, request.Even)?.ToList();
             if (buildings == null || !buildings.Any())
-                return new NotFoundResponse<IEnumerable<BuildingResponseModel>>("No buildings could be found");
+                return new NotFoundResponse<IEnumerable<BuildingResponse>>("No buildings could be found");
 
-            return new SuccessResponse<IEnumerable<BuildingResponseModel>>(
-                buildings.Select(_mapper.Map<Building, BuildingResponseModel>));
+            return new SuccessResponse<IEnumerable<BuildingResponse>>(
+                buildings.Select(_mapper.Map<Building, BuildingResponse>));
         }
     }
 }

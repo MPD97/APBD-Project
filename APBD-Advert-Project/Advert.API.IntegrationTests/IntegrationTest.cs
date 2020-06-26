@@ -50,7 +50,7 @@ namespace Advert.IntegrationTests
                 new AuthenticationHeaderValue("bearer", jwt.Token);
         }
 
-        private async Task<JwtTokenResponseModel> GetJwtAsync()
+        private async Task<JwtTokenResponse> GetJwtAsync()
         {
             var registerResponse = await TestClient.PostAsJsonAsync(ApiRoutes.Clients.Create, new ClientRegisterCommand
             {
@@ -63,7 +63,7 @@ namespace Advert.IntegrationTests
                 RepeatPassword = "string123T"
             });
 
-            var registerSuccess = await DeserializeObjectAsync<SuccessResponse<ClientResponseModel>>(registerResponse);
+            var registerSuccess = await DeserializeObjectAsync<SuccessResponse<ClientResponse>>(registerResponse);
             if (registerSuccess == null) throw new Exception("Cannot deserialize response.");
             if (registerResponse.StatusCode != HttpStatusCode.Created &&
                 registerSuccess.Message != "Client with this email already exists.")
@@ -80,7 +80,7 @@ namespace Advert.IntegrationTests
                 throw new Exception($"Login client returned: [{registerResponse.StatusCode.ToString()}]");
 
 
-            var successResponse = await DeserializeObjectAsync<SuccessResponse<JwtTokenResponseModel>>(loginResponse);
+            var successResponse = await DeserializeObjectAsync<SuccessResponse<JwtTokenResponse>>(loginResponse);
             if (successResponse == null) throw new Exception("Cannot deserialize response.");
 
             return successResponse.Result;

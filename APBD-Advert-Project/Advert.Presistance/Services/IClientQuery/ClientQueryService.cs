@@ -49,7 +49,7 @@ namespace Advert.Presistance.Services.IClientQuery
             if (phone != null)
                 query = query.Where(a => string.Equals(a.Phone, phone, StringComparison.InvariantCultureIgnoreCase));
 
-            return query;
+            return query.AsEnumerable();
         }
     }
 }

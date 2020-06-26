@@ -21,8 +21,8 @@ namespace Advert.Presistance.Services.ICampaignCreate
             _bannerCreateService = bannerCreateService;
         }
 
-        public async Task<Campaign> CreateAsync(CampaignCreateRequestModel model,
-            CampaignCreateResponseModel calculation)
+        public async Task<Campaign> CreateAsync(CampaignCreateRequest model,
+            CampaignCreateResponse calculation)
         {
             var campaign = _mapper.Map<Campaign>(model);
 

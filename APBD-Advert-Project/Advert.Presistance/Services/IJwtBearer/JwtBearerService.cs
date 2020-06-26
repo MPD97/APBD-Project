@@ -17,7 +17,7 @@ namespace Advert.Presistance.Services.IJwtBearer
             _jwtBearerConfig = jwtBearerConfig;
         }
 
-        public JwtTokenResponseModel CreateToken(Client model)
+        public JwtTokenResponse CreateToken(Client model)
         {
             var claims = new[]
             {
@@ -37,7 +37,7 @@ namespace Advert.Presistance.Services.IJwtBearer
                 signingCredentials: creds
             );
 
-            var result = new JwtTokenResponseModel
+            var result = new JwtTokenResponse
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 RefreshToken = Guid.NewGuid().ToString()

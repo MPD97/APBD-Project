@@ -23,7 +23,7 @@ namespace Advert.Presistance.Services.IClientLogin
         }
 
 
-        public async Task<JwtTokenResponseModel> LoginAsync(ClientLoginRequestModel model)
+        public async Task<JwtTokenResponse> LoginAsync(ClientLoginRequest model)
         {
             var client = await _repository.FindByLoginAsync(model.Login);
             if (client == null) return null;
@@ -34,7 +34,7 @@ namespace Advert.Presistance.Services.IClientLogin
             return await GenerateAndSaveTokenAsync(client);
         }
 
-        public async Task<JwtTokenResponseModel> RefreshTokenAsync(ClientRefreshTokenModel model)
+        public async Task<JwtTokenResponse> RefreshTokenAsync(ClientRefreshToken model)
         {
             var client = await _repository.FindByTokenAsync(model.Token, model.RefreshToken);
             if (client == null) return null;
@@ -42,7 +42,7 @@ namespace Advert.Presistance.Services.IClientLogin
             return await GenerateAndSaveTokenAsync(client);
         }
 
-        private async Task<JwtTokenResponseModel> GenerateAndSaveTokenAsync(Client client)
+        private async Task<JwtTokenResponse> GenerateAndSaveTokenAsync(Client client)
         {
             var tokenResult = _jwtBearer.CreateToken(client);
 

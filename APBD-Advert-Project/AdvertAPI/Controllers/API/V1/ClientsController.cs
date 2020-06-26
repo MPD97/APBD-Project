@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
 using Advert.Database.DTOs.Responses;
 using Advert.Database.DTOs.Responses.ResponseModel;
@@ -41,18 +40,14 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Clients.Create)]
         public async Task<IActionResult> Create(ClientRegisterCommand command)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new ErrorResponseModel
-                    {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
-
             var result = await _mediator.Send(command);
 
             return result switch
             {
-                SuccessResponse<ClientResponseModel> _ => StatusCode(201, result),
-                NotFoundResponse<ClientResponseModel> _ => NotFound(result),
-                BadRequestResponse<ClientResponseModel> _ => BadRequest(result),
-                InternalError<ClientResponseModel> _ => StatusCode(500, result),
+                SuccessResponse<ClientResponse> _ => StatusCode(201, result),
+                NotFoundResponse<ClientResponse> _ => NotFound(result),
+                BadRequestResponse<ClientResponse> _ => BadRequest(result),
+                InternalError<ClientResponse> _ => StatusCode(500, result),
                 _ => NotFound()
             };
         }
@@ -60,10 +55,6 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Clients.LogIn)]
         public async Task<IActionResult> LogIn(ClientLoginCommand command)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new ErrorResponseModel
-                    {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
-
             var result = await _mediator.Send(command);
 
             return Response(result);
@@ -72,10 +63,6 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Clients.Refresh)]
         public async Task<IActionResult> RefreshToken(ClientRefreshTokenCommand command)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new ErrorResponseModel
-                    {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
-
             var result = await _mediator.Send(command);
 
             return Response(result);
