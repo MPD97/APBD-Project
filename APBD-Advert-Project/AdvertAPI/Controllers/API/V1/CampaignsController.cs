@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
-using Advert.Database.DTOs.Responses;
 using Advert.Database.DTOs.Responses.ResponseModel;
 using Advert.Presistance.Mediator.Commands;
 using Advert.Presistance.Mediator.Queries;
@@ -43,9 +41,9 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Campaigns.Create)]
         public async Task<IActionResult> Create(CampaignCreateCommand command)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new ErrorResponse
-                    {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
+            // if (!ModelState.IsValid)
+            //     return BadRequest(new ErrorResponse
+            //         {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
             var result = await _mediator.Send(command);
 

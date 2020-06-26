@@ -4,7 +4,7 @@ namespace Advert.Database.DTOs.Responses.ResponseModel
 {
     public class ErrorResponse
     {
-        public IEnumerable<ErrorModel> Errors { get; set; } = new List<ErrorModel>();
+        public List<ErrorModel> Errors { get; set; } = new List<ErrorModel>();
     }
 
     public class ErrorModel

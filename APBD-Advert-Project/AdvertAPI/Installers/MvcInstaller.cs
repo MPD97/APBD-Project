@@ -1,4 +1,5 @@
-﻿using FluentValidation.AspNetCore;
+﻿using Advert.API.Filters;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -16,8 +17,9 @@ namespace Advert.API.Installers
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
                 }
             );
-            services.AddMvc().AddFluentValidation(mvcConfiguration =>
-                mvcConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddMvc(options => { options.Filters.Add<ValidationFilter>(); })
+                .AddFluentValidation(mvcConfiguration =>
+                    mvcConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
     }
 }

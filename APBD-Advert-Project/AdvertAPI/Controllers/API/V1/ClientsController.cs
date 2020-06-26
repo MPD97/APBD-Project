@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Advert.API.Contracts.V1;
 using Advert.Database.DTOs.Responses;
 using Advert.Database.DTOs.Responses.ResponseModel;
@@ -41,10 +40,6 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Clients.Create)]
         public async Task<IActionResult> Create(ClientRegisterCommand command)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new ErrorResponse
-                    {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
-
             var result = await _mediator.Send(command);
 
             return result switch
@@ -60,9 +55,9 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Clients.LogIn)]
         public async Task<IActionResult> LogIn(ClientLoginCommand command)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new ErrorResponse
-                    {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
+            // if (!ModelState.IsValid)
+            //     return BadRequest(new ErrorResponse
+            //         {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
             var result = await _mediator.Send(command);
 
@@ -72,9 +67,9 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Clients.Refresh)]
         public async Task<IActionResult> RefreshToken(ClientRefreshTokenCommand command)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new ErrorResponse
-                    {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
+            // if (!ModelState.IsValid)
+            //     return BadRequest(new ErrorResponse
+            //         {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
             var result = await _mediator.Send(command);
 
