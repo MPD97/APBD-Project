@@ -29,6 +29,8 @@ namespace Advert.API.Validators
 
             RuleFor(a => a.Phone)
                 .NotEmpty()
+                .MinimumLength(9)
+                .MaximumLength(15)
                 .Matches(@"^\d{9,15}$")
                 .WithMessage("Phone can contain only digits");
 
