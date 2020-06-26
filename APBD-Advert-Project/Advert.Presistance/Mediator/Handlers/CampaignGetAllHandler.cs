@@ -13,7 +13,7 @@ using MediatR;
 namespace Advert.Presistance.Mediator.Handlers
 {
     public class
-        CampaignGetAllHandler : IRequestHandler<CampaignGetAllQuery, IResponseModel<IEnumerable<CampaignResponseModel>>>
+        CampaignGetAllHandler : IRequestHandler<CampaignGetAllQuery, IResponseModel<IEnumerable<CampaignResponse>>>
     {
         private readonly ICampaignQueryService _campaignQueryService;
         private readonly IMapper _mapper;
@@ -24,16 +24,16 @@ namespace Advert.Presistance.Mediator.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IResponseModel<IEnumerable<CampaignResponseModel>>> Handle(CampaignGetAllQuery request,
+        public async Task<IResponseModel<IEnumerable<CampaignResponse>>> Handle(CampaignGetAllQuery request,
             CancellationToken cancellationToken)
         {
             var campaigns = await _campaignQueryService.GetAllAsync();
 
             if (campaigns == null || campaigns.Count() == 0)
-                return new NotFoundResponse<IEnumerable<CampaignResponseModel>>("No campaigns could be found");
+                return new NotFoundResponse<IEnumerable<CampaignResponse>>("No campaigns could be found");
 
-            return new SuccessResponse<IEnumerable<CampaignResponseModel>>(
-                campaigns.Select(_mapper.Map<Campaign, CampaignResponseModel>));
+            return new SuccessResponse<IEnumerable<CampaignResponse>>(
+                campaigns.Select(_mapper.Map<Campaign, CampaignResponse>));
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Advert.Database.DTOs.Responses
 {
-    public class ErrorResponseModel
+    public class ErrorResponse
     {
         public IEnumerable<string> Errors { get; set; }
     }

@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Advert.Presistance.Mediator.Handlers
 {
-    public class ClientRegisterHandler : IRequestHandler<ClientRegisterCommand, IResponseModel<ClientResponseModel>>
+    public class ClientRegisterHandler : IRequestHandler<ClientRegisterCommand, IResponseModel<ClientResponse>>
     {
         private readonly IClientQueryService _clientQueryService;
         private readonly ILogger<ClientRegisterHandler> _logger;
@@ -28,20 +28,20 @@ namespace Advert.Presistance.Mediator.Handlers
             _clientQueryService = clientQueryService;
         }
 
-        public async Task<IResponseModel<ClientResponseModel>> Handle(ClientRegisterCommand request,
+        public async Task<IResponseModel<ClientResponse>> Handle(ClientRegisterCommand request,
             CancellationToken cancellationToken)
         {
             if (await _clientQueryService.FindByEmailAsync(request.Email) != null)
-                return new BadRequestResponse<ClientResponseModel>("Client with this email already exists.");
+                return new BadRequestResponse<ClientResponse>("Client with this email already exists.");
 
             if (await _clientQueryService.FindByLoginAsync(request.Login) != null)
-                return new BadRequestResponse<ClientResponseModel>("Client with this login already exists.");
+                return new BadRequestResponse<ClientResponse>("Client with this login already exists.");
 
             var client = await _registerService.CreateAsync(_mapper.Map<Client>(request), request.RepeatPassword);
-            if (client == null) return new BadRequestResponse<ClientResponseModel>("Cannot create client");
+            if (client == null) return new BadRequestResponse<ClientResponse>("Cannot create client");
 
-            return new SuccessResponse<ClientResponseModel>("Client created.",
-                _mapper.Map<ClientResponseModel>(client));
+            return new SuccessResponse<ClientResponse>("Client created.",
+                _mapper.Map<ClientResponse>(client));
         }
     }
 }

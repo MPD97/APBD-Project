@@ -9,7 +9,7 @@ using MediatR;
 namespace Advert.Presistance.Mediator.Handlers
 {
     public class
-        ClientRefreshTokenHandler : IRequestHandler<ClientRefreshTokenCommand, IResponseModel<JwtTokenResponseModel>>
+        ClientRefreshTokenHandler : IRequestHandler<ClientRefreshTokenCommand, IResponseModel<JwtTokenResponse>>
     {
         private readonly IClientLoginService _loginService;
 
@@ -18,14 +18,14 @@ namespace Advert.Presistance.Mediator.Handlers
             _loginService = loginService;
         }
 
-        public async Task<IResponseModel<JwtTokenResponseModel>> Handle(ClientRefreshTokenCommand request,
+        public async Task<IResponseModel<JwtTokenResponse>> Handle(ClientRefreshTokenCommand request,
             CancellationToken cancellationToken)
         {
             var tokenResult = await _loginService.RefreshTokenAsync(request);
             if (tokenResult == null)
-                return new BadRequestResponse<JwtTokenResponseModel>("Cannot create refresh token");
+                return new BadRequestResponse<JwtTokenResponse>("Cannot create refresh token");
 
-            return new SuccessResponse<JwtTokenResponseModel>(tokenResult);
+            return new SuccessResponse<JwtTokenResponse>(tokenResult);
         }
     }
 }

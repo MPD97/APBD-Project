@@ -9,10 +9,10 @@ namespace Advert.Database.MapProfiles
     {
         public ClientProfile()
         {
-            CreateMap<Client, ClientRegisterRequestModel>();
-            CreateMap<Client, ClientResponseModel>();
-            CreateMap<ClientResponseModel, Client>();
-            CreateMap<ClientRegisterRequestModel, Client>();
+            CreateMap<Client, ClientRegisterRequest>();
+            CreateMap<Client, ClientResponse>();
+            CreateMap<ClientResponse, Client>();
+            CreateMap<ClientRegisterRequest, Client>();
         }
     }
 }

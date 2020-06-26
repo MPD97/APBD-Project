@@ -15,19 +15,19 @@ namespace Advert.Presistance.Services.IBannerCalculate
             _buildingWidth = buildingWidth;
         }
 
-        public async Task<CampaignCreateResponseModel> CalculateAsync(List<Building> buildings,
+        public async Task<CampaignCreateResponse> CalculateAsync(List<Building> buildings,
             decimal pricePerSquareMeter = 35)
         {
             if (buildings == null || buildings.Count <= 1 || pricePerSquareMeter <= 0) return null;
 
-            var response = new CampaignCreateResponseModel();
+            var response = new CampaignCreateResponse();
 
             var firstBuilding = buildings.First();
             var lasBuilding = buildings.Last();
 
             if (firstBuilding.Height >= lasBuilding.Height)
             {
-                response.Banner1 = new CampaignCreateResponseModel.Banner
+                response.Banner1 = new CampaignCreateResponse.Banner
                 {
                     Width = _buildingWidth,
                     Height = firstBuilding.Height
@@ -35,7 +35,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
                 response.Banner1.SquareMeters = response.Banner1.Width * response.Banner1.Height;
                 response.Banner1.Price = response.Banner1.Width * response.Banner1.Height * pricePerSquareMeter;
 
-                response.Banner2 = new CampaignCreateResponseModel.Banner
+                response.Banner2 = new CampaignCreateResponse.Banner
                 {
                     Width = (buildings.Count() - 1) * _buildingWidth,
                     Height = lasBuilding.Height
@@ -45,7 +45,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
             }
             else
             {
-                response.Banner1 = new CampaignCreateResponseModel.Banner
+                response.Banner1 = new CampaignCreateResponse.Banner
                 {
                     Width = (buildings.Count() - 1) * _buildingWidth,
                     Height = firstBuilding.Height
@@ -53,7 +53,7 @@ namespace Advert.Presistance.Services.IBannerCalculate
                 response.Banner1.SquareMeters = response.Banner1.Width * response.Banner1.Height;
                 response.Banner1.Price = response.Banner1.Width * response.Banner1.Height * pricePerSquareMeter;
 
-                response.Banner2 = new CampaignCreateResponseModel.Banner
+                response.Banner2 = new CampaignCreateResponse.Banner
                 {
                     Width = _buildingWidth,
                     Height = lasBuilding.Height

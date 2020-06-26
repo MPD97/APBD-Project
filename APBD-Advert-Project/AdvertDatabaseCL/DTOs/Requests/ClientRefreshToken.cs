@@ -2,7 +2,7 @@
 
 namespace Advert.Database.DTOs.Requests
 {
-    public class ClientRefreshTokenModel
+    public class ClientRefreshToken
     {
         [Required] public string Token { get; set; }
 

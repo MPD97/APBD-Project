@@ -2,7 +2,7 @@
 
 namespace Advert.Database.DTOs.Requests
 {
-    public class ClientLoginRequestModel
+    public class ClientLoginRequest
     {
         [Required]
         [MinLength(6)]

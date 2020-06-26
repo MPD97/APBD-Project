@@ -1,6 +1,6 @@
 ﻿namespace Advert.Database.DTOs.Responses
 {
-    public class ClientResponseModel
+    public class ClientResponse
     {
         public int IdClient { get; set; }
         public string FirstName { get; set; }

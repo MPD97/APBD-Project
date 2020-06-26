@@ -6,7 +6,7 @@ namespace Advert.Presistance.Services.IClientLogin
 {
     public interface IClientLoginService
     {
-        public Task<JwtTokenResponseModel> LoginAsync(ClientLoginRequestModel model);
-        public Task<JwtTokenResponseModel> RefreshTokenAsync(ClientRefreshTokenModel model);
+        public Task<JwtTokenResponse> LoginAsync(ClientLoginRequest model);
+        public Task<JwtTokenResponse> RefreshTokenAsync(ClientRefreshToken model);
     }
 }

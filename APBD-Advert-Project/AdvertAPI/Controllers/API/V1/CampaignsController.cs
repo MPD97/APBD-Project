@@ -44,7 +44,7 @@ namespace Advert.API.Controllers.API.V1
         public async Task<IActionResult> Create(CampaignCreateCommand command)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new ErrorResponseModel
+                return BadRequest(new ErrorResponse
                     {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
 
             var result = await _mediator.Send(command);
