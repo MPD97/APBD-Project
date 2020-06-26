@@ -33,10 +33,8 @@ namespace Advert.API.Controllers.API.V1
         }
 
         [HttpGet(ApiRoutes.Campaigns.GetAll)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] CampaignGetAllQuery query)
         {
-            var query = new CampaignGetAllQuery();
-
             var result = await _mediator.Send(query);
 
             return Response(result);
