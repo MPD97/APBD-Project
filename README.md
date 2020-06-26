@@ -1,3 +1,6 @@
+# Subject:
+[project requirements (in Polish)](https://github.com/MPD97/APBD-Project/blob/master/APBD-Project.pdf)
+
 # Technologies used:
 [Entity Framework Core (code first)](https://www.entityframeworktutorial.net/efcore/entity-framework-core.aspx) ✅<br />
 [FluentAPI in Entity Framework Core](https://www.entityframeworktutorial.net/efcore/fluent-api-in-entity-framework-core.aspx) ✅<br />
