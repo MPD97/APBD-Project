@@ -55,10 +55,6 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Clients.LogIn)]
         public async Task<IActionResult> LogIn(ClientLoginCommand command)
         {
-            // if (!ModelState.IsValid)
-            //     return BadRequest(new ErrorResponse
-            //         {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
-
             var result = await _mediator.Send(command);
 
             return Response(result);
@@ -67,10 +63,6 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Clients.Refresh)]
         public async Task<IActionResult> RefreshToken(ClientRefreshTokenCommand command)
         {
-            // if (!ModelState.IsValid)
-            //     return BadRequest(new ErrorResponse
-            //         {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
-
             var result = await _mediator.Send(command);
 
             return Response(result);
