@@ -27,8 +27,9 @@ namespace Advert.Presistance.Mediator.Handlers
         public async Task<IResponseModel<IEnumerable<ClientResponseModel>>> Handle(ClientGetAllQuery request,
             CancellationToken cancellationToken)
         {
-            var clients = _clientQueryService.GetAll();
-            if (clients == null || clients.Count() == 0)
+            var clients = _clientQueryService.GetAll(request.Login, request.FirstName, request.LastName, request.Phone)
+                ?.ToList();
+            if (clients == null || !clients.Any())
                 return new NotFoundResponse<IEnumerable<ClientResponseModel>>("No clients could be found");
 
             return new SuccessResponse<IEnumerable<ClientResponseModel>>(

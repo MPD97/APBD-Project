@@ -29,8 +29,8 @@ namespace Advert.Presistance.Mediator.Handlers
         {
             // TODO: FluentValidation
             var buildings = _buildingQueryService.GetAll(request.City, request.Street,
-                request.StreetStartNumber, request.SteetEndNumber, request.Even);
-            if (buildings == null || buildings.Count() == 0)
+                request.StreetStartNumber, request.StreetEndNumber, request.Even)?.ToList();
+            if (buildings == null || !buildings.Any())
                 return new NotFoundResponse<IEnumerable<BuildingResponseModel>>("No buildings could be found");
 
             return new SuccessResponse<IEnumerable<BuildingResponseModel>>(

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Advert.API
 {
-    // TODO: Add filters to requests
+    // TODO: Better filters
     // TODO: Add fluent validation
     // TODO: Add fluent validation using Mediator
     // TODO: Add clean code logging
