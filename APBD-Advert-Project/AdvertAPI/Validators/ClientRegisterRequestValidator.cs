@@ -53,4 +53,20 @@ namespace Advert.API.Validators
                 .Equal(x => x.Password);
         }
     }
+
+    public class ClientLoginCommandValidator : AbstractValidator<ClientLoginCommand>
+    {
+        public ClientLoginCommandValidator()
+        {
+            RuleFor(a => a.Login)
+                .NotEmpty()
+                .MinimumLength(6)
+                .MaximumLength(15);
+
+            RuleFor(a => a.Password)
+                .NotEmpty()
+                .MinimumLength(8)
+                .MaximumLength(20);
+        }
+    }
 }
