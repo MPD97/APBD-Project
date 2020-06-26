@@ -13,5 +13,6 @@ NSubstitute ✅<br />
 Clean Code ✅<br />
 CQRS ✅<br />
 Factory ✅<br />
+Repository ✅<br />
 Mediator pattern ✅<br />
 Dependecy Injection ✅<br />
