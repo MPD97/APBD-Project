@@ -21,7 +21,7 @@ namespace Advert.Presistance.Mediator.Handlers
             CancellationToken cancellationToken)
         {
             var tokenResult = await _loginService.LoginAsync(request);
-            if (tokenResult == null) return new BadRequestResponse<JwtTokenResponse>("Cannot create token");
+            if (tokenResult == null) return new BadRequestResponse<JwtTokenResponse>("Invalid login or password.");
             return new SuccessResponse<JwtTokenResponse>(tokenResult);
         }
     }

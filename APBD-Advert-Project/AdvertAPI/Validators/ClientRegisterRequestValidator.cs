@@ -12,14 +12,14 @@ namespace Advert.API.Validators
                 .MinimumLength(2)
                 .MaximumLength(15)
                 .Matches("^[A-Z]{1}[a-z]{1,14}$")
-                .WithMessage("First name must start uppercase");
+                .WithMessage("First name must start uppercase and contains only characters.");
 
             RuleFor(a => a.LastName)
                 .NotEmpty()
                 .MinimumLength(2)
                 .MaximumLength(15)
                 .Matches("^[A-Z]{1}[a-z]{1,14}$")
-                .WithMessage("Last name must start uppercase");
+                .WithMessage("Last name must start uppercase and contains only characters.");
 
             RuleFor(a => a.Email)
                 .NotEmpty()
