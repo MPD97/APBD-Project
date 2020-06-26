@@ -18,4 +18,34 @@ namespace Advert.API.Validators
                 .MaximumLength(20);
         }
     }
+
+    public class CampaignCreateCommandValidator : AbstractValidator<CampaignCreateCommand>
+    {
+        public CampaignCreateCommandValidator()
+        {
+            RuleFor(a => a.IdClient)
+                .NotEmpty()
+                .GreaterThan(0);
+
+            RuleFor(a => a.StartDate)
+                .NotEmpty();
+
+            RuleFor(a => a.EndDate)
+                .NotEmpty()
+                .GreaterThan(a => a.StartDate);
+
+            RuleFor(a => a.PricePerSquareMeter)
+                .NotEmpty()
+                .GreaterThan(0);
+
+            RuleFor(a => a.FromIdBuilding)
+                .NotEmpty()
+                .GreaterThan(0);
+
+            RuleFor(a => a.ToIdBuilding)
+                .NotEmpty()
+                .GreaterThan(0)
+                .GreaterThan(a => a.FromIdBuilding);
+        }
+    }
 }

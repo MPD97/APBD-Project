@@ -41,10 +41,6 @@ namespace Advert.API.Controllers.API.V1
         [HttpPost(ApiRoutes.Campaigns.Create)]
         public async Task<IActionResult> Create(CampaignCreateCommand command)
         {
-            // if (!ModelState.IsValid)
-            //     return BadRequest(new ErrorResponse
-            //         {Errors = ModelState.Values.SelectMany(e => e.Errors.Select(a => a.ErrorMessage))});
-
             var result = await _mediator.Send(command);
 
             return Response(result);
