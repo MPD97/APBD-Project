@@ -25,9 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Advert.Presistance\Advert.Presistance.csproj" />
-    <ProjectReference Include="..\AdvertDatabaseCL\Advert.Database.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Advert.Presistance\Advert.Presistance.csproj" />
   </ItemGroup>
+
 
 
 </Project>
