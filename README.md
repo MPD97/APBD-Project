@@ -1,5 +1,5 @@
 # Subject:
-[project requirements (in Polish)](https://github.com/MPD97/APBD-Project/blob/master/APBD-Advert-Project/docs/APBD-Project.pdf)
+[Project requirements (in Polish)](https://github.com/MPD97/APBD-Project/blob/master/APBD-Advert-Project/docs/APBD-Project.pdf)
 
 # Documentation:
 [SwaggerHub](https://app.swaggerhub.com/apis-docs/Private9492/advert-api/v1)
