@@ -1,7 +1,7 @@
 # Subject:
 [project requirements (in Polish)](https://github.com/MPD97/APBD-Project/blob/master/APBD-Project.pdf)
 
-# Documentation
+# Documentation:
 [SwaggerHub](https://app.swaggerhub.com/apis-docs/Private9492/advert-api/v1)
 
 # Technologies used:
