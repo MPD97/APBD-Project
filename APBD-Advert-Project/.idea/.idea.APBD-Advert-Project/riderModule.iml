@@ -2,7 +2,6 @@
 <module type="RIDER_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/../.." />
-    <content url="file://$MODULE_DIR$/../../../APBD-Project.pdf" />
     <content url="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.5.0/build/netcoreapp2.1" />
     <content url="file://$USER_HOME$/.nuget/packages/microsoft.testplatform.testhost/16.5.0/build/netcoreapp2.1/x64/testhost.dll" />
     <content url="file://$USER_HOME$/.nuget/packages/microsoft.testplatform.testhost/16.5.0/build/netcoreapp2.1/x64/testhost.exe" />

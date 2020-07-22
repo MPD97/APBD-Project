@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Advert.Database.Contexts;
@@ -29,7 +30,7 @@ namespace Advert.Presistance.Services.IRepository
         public async Task<Client> FindByLoginAsync(string login)
         {
             return await _context.Clients.SingleOrDefaultAsync(c =>
-                c.Login.ToLower().Contains(login.ToLower()));
+                string.Equals(c.Login, login, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public async Task<Client> FindByEmailAsync(string email)
