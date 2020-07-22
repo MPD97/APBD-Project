@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Advert.Presistance\Advert.Presistance.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Advert_Presistance\Advert_Presistance.csproj" />
   </ItemGroup>
 
 

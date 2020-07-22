@@ -4,19 +4,25 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>Advert.IntegrationTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.5" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-        <PackageReference Include="NSubstitute" Version="4.2.2" />
+        <PackageReference Include="System.Net.Http.Formatting.Extension" Version="5.2.3" />
         <PackageReference Include="xunit" Version="2.4.0" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
         <PackageReference Include="coverlet.collector" Version="1.2.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Infrastructure\Advert.Presistance\Advert.Presistance.csproj" />
+      <ProjectReference Include="..\..\src\Presentation\Advert_API\Advert_API.csproj" />
     </ItemGroup>
+
 
 </Project>

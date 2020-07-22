@@ -17,7 +17,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Advert.Database\Advert.Database.csproj" />
+    <ProjectReference Include="..\..\Core\Advert_Database\Advert_Database.csproj" />
   </ItemGroup>
 
 </Project>
